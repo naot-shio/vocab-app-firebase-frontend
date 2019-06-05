@@ -1,12 +1,17 @@
 import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles(theme => ({
+  AppBar: {
+    boxShadow: "none",
+    marginBottom: 0 
+  },
   root: {
     flexGrow: 1,
-    backgroundColor: "#fafafa",
+    backgroundColor: "rgba(0,0,0,0.8)",
     "& a": {
       textDecoration: "none",
-      color: "#696969",
+      color: "#fafafa",
+      fontFamily: "Serif"
     }
   },
   title: {
