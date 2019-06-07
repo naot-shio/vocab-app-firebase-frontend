@@ -1,6 +1,5 @@
 const styles = {
   icons: {
-    marginLeft: "auto",
     width: 54,
     marginLeft: "auto",
     marginRight: 20
