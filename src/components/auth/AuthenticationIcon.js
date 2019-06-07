@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import SignUp from './SignUp'
 
 // font awesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -84,7 +85,14 @@ class AuthenticationIcon extends Component {
         </Tooltip>
 
         <Dialog open={openSignUpForm} aria-labelledby="sign-up-dialog-title" onClose={this.handleCloseSignUp}>
-          <DialogTitle id="sign-up-dialog-title">Sign Up!</DialogTitle>
+          <div className={classes.dialogSignUp}>
+            <DialogTitle id="sign-up-dialog-title" className="dialogSignUpTitle">
+              <span className={classes.dialogIcon}>
+                <FontAwesomeIcon icon={faUserPlus} />
+              </span>Sign Up
+            </DialogTitle>
+            <SignUp />
+          </div>
         </Dialog>
 
         <Dialog open={openLoginForm} aria-labelledby="login-dialog-title" onClose={this.handleCloseLogin}>
