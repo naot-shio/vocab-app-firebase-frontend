@@ -6,7 +6,7 @@ import withStyles from '@material-ui/core/styles/withStyles'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import DialogTitle from '@material-ui/core/DialogTitle';
-import styles from '../../styles/SignUpStyles'
+import styles from '../../styles/AuthenticationStyles'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons'
 
@@ -39,7 +39,7 @@ class SignUp extends Component {
     const { classes } = this.props;
     return (
       <div className={classes.root}>
-        <DialogTitle id="sign-up-dialog-title" className="dialogSignUpTitle">
+        <DialogTitle id="sign-up-dialog-title">
           <span className={classes.dialogIcon}>
             <FontAwesomeIcon icon={faUserPlus} />
           </span>Sign Up

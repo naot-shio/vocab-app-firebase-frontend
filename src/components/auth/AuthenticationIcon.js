@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import SignUp from './SignUp'
+import Login from './Login'
 
 // font awesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -10,7 +11,6 @@ import withStyles from '@material-ui/core/styles/withStyles'
 import Fab from '@material-ui/core/Fab'
 import Tooltip from '@material-ui/core/Tooltip';
 import Dialog from '@material-ui/core/Dialog';
-import DialogTitle from '@material-ui/core/DialogTitle';
 import styles from '../../styles/AuthenticationIconStyles'
 
 class AuthenticationIcon extends Component {
@@ -89,7 +89,7 @@ class AuthenticationIcon extends Component {
         </Dialog>
 
         <Dialog open={openLoginForm} aria-labelledby="login-dialog-title" onClose={this.handleCloseLogin}>
-          <DialogTitle id="login-dialog-title">Login!</DialogTitle>
+          <Login />
         </Dialog>
       </div>
     )
