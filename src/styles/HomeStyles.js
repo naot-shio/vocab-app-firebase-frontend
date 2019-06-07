@@ -3,7 +3,7 @@ import BackgroundImage from '../images/background-min.png'
 
 const useStyles = makeStyles(theme => ({
   root: {
-    height: "100vh"
+    height: "100vh",
   },
   main: {
     height: "70%",
@@ -11,16 +11,16 @@ const useStyles = makeStyles(theme => ({
     backgroundPosition: "center",
     backgroundSize: "cover",
     textAlign: "center",
+    color: "rgba(0,0,0,0.87)",
     "& h1": {
       marginTop: 0,
       paddingTop: 70,
-      color: "#181818",
       fontFamily: "serif"
     },
     "& h3": {
       marginTop: 20
     }
-  }
+  },
 }));
 
 export default useStyles;
