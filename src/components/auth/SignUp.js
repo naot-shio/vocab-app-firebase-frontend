@@ -5,7 +5,10 @@ import PropTypes from 'prop-types'
 import withStyles from '@material-ui/core/styles/withStyles'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
+import DialogTitle from '@material-ui/core/DialogTitle';
 import styles from '../../styles/SignUpStyles'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUserPlus } from '@fortawesome/free-solid-svg-icons'
 
 class SignUp extends Component {
   constructor(props) {
@@ -18,6 +21,7 @@ class SignUp extends Component {
       loading: false,
       error: {}
     }
+    this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(evt) {
@@ -26,15 +30,20 @@ class SignUp extends Component {
     });
   }
 
-
   handleSubmit = (evt) => {
     evt.preventDefault()
     alert('po')
-  } 
+  }
+
   render() {
     const { classes } = this.props;
     return (
-      <div className={classes.SignUp}>
+      <div className={classes.root}>
+        <DialogTitle id="sign-up-dialog-title" className="dialogSignUpTitle">
+          <span className={classes.dialogIcon}>
+            <FontAwesomeIcon icon={faUserPlus} />
+          </span>Sign Up
+        </DialogTitle>
         <form noValidate onSubmit={this.handleSubmit}>
           <TextField 
             id="name" 
@@ -81,7 +90,6 @@ class SignUp extends Component {
           />
 
           <Button type="submit" variant="contained" color="primary" className={classes.button}>Sign Up</Button>
-  
         </form>
       </div>
     )

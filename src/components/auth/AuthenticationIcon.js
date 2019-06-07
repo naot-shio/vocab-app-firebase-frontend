@@ -85,14 +85,7 @@ class AuthenticationIcon extends Component {
         </Tooltip>
 
         <Dialog open={openSignUpForm} aria-labelledby="sign-up-dialog-title" onClose={this.handleCloseSignUp}>
-          <div className={classes.dialogSignUp}>
-            <DialogTitle id="sign-up-dialog-title" className="dialogSignUpTitle">
-              <span className={classes.dialogIcon}>
-                <FontAwesomeIcon icon={faUserPlus} />
-              </span>Sign Up
-            </DialogTitle>
-            <SignUp />
-          </div>
+          <SignUp />
         </Dialog>
 
         <Dialog open={openLoginForm} aria-labelledby="login-dialog-title" onClose={this.handleCloseLogin}>

@@ -10,17 +10,6 @@ const styles = {
   },
   hiddenIcon: {
     marginTop: 7,
-  },
-  dialogSignUp: {
-    textAlign: "center",
-    backgroundColor: "#f5f5f5"
-  },
-  dialogSignUpTitle: {
-    fontWeight: 600
-  },
-  dialogIcon: {
-    marginRight: 10,
-    color: "green"
   }
 }
 
