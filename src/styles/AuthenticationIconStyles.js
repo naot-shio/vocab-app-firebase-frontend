@@ -1,8 +1,10 @@
 const styles = {
   icons: {
     width: 54,
+    marginTop: -35,
     marginLeft: "auto",
-    marginRight: 20
+    marginRight: 20,
+    zIndex: 5
   },
   icon: {
     marginTop: 7,
@@ -10,6 +12,11 @@ const styles = {
   },
   hiddenIcon: {
     marginTop: 7,
+  },
+  "@media (max-width: 430px)" :{
+    hiddenIcon: {
+      opacity: "0.8"
+    }
   }
 }
 

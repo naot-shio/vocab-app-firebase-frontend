@@ -1,13 +1,10 @@
-const styles = theme => ({
+const styles = {
   root: {
     paddingBottom: 30,
     paddingLeft: 30,
     paddingRight: 30,
     textAlign: "center",
     backgroundColor: "#f5f5f5",
-    [theme.breakpoints.down('xs')]: {
-      width: 200
-    }
   },
   textField: {
     marginBottom: 5
@@ -17,8 +14,16 @@ const styles = theme => ({
   },
   dialogIcon: {
     marginRight: 10,
-    color: "green"
+    color: "green",
+  },
+  "@media (max-width: 320px)" :{
+    root: {
+      width: 150
+    },
+    dialogIcon: {
+      display: "none"
+    }
   }
-})
+}
 
 export default styles;
