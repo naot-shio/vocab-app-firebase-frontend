@@ -36,5 +36,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "proxy": "https://asia-northeast1-vocab-d8c5e.cloudfunctions.net/api"
 }

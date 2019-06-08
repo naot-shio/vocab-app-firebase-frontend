@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import axios from 'axios'
 
 // styles
 import withStyles from '@material-ui/core/styles/withStyles'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
-import DialogTitle from '@material-ui/core/DialogTitle';
+import DialogTitle from '@material-ui/core/DialogTitle'
 import styles from '../../styles/AuthenticationStyles'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons'
@@ -17,9 +18,9 @@ class SignUp extends Component {
       name: '',
       email: '',
       password: '',
-      passwordConfirmation: '',
+      confirmPassword: '',
       loading: false,
-      error: {}
+      errors: {}
     }
     this.handleChange = this.handleChange.bind(this);
   }
@@ -31,8 +32,31 @@ class SignUp extends Component {
   }
 
   handleSubmit = (evt) => {
-    evt.preventDefault()
-    alert('po')
+    evt.preventDefault();
+    const newUserData = {
+      name: this.state.name,
+      email: this.state.email,
+      password: this.state.password,
+      confirmPassword: this.state.confirmPassword
+    }
+    console.log(newUserData)
+    axios
+      .post('/signup', newUserData)
+      .then((res) => {
+        console.log(res.data);
+        localStorage.setItem('FBIdToken', `Bearer ${res.data.token}`);
+        this.setState({
+          loading: false
+        });
+        this.props.history.push('/');
+      })
+      .catch((err) => {
+        console.log(err.response.data)
+        this.setState({
+          errors: err.response.data,
+          loading: false
+        });
+      });
   }
 
   render() {
@@ -44,50 +68,65 @@ class SignUp extends Component {
             <FontAwesomeIcon icon={faUserPlus} />
           </span>Sign Up
         </DialogTitle>
+
         <form noValidate onSubmit={this.handleSubmit}>
           <TextField 
-            id="name" 
-            name="name" 
-            type="name" 
-            label="User Name" 
-            className={classes.textField} 
-            value={this.state.name} 
+            id="name"
+            name="name"
+            type="name"
+            label="User Name"
+            className={classes.textField}
+            helperText={errors.name}
+            error={errors.name ? true : false}
+            value={this.state.name}
             onChange={this.handleChange}
-            fullWidth  
+            fullWidth
           />
 
           <TextField 
-            id="email" 
-            name="email" 
-            type="email" 
-            label="Email" 
-            className={classes.textField} 
-            value={this.state.email} 
+            id="email"
+            name="email"
+            type="email"
+            label="Email"
+            className={classes.textField}
+            helperText={errors.email}
+            error={errors.email ? true : false}
+            value={this.state.email}
             onChange={this.handleChange}
-            fullWidth  
+            fullWidth
           />
 
           <TextField 
-            id="password" 
-            name="password" 
-            type="password" 
-            label="Password" 
-            className={classes.textField} 
-            value={this.state.password} 
+            id="password"
+            name="password"
+            type="password"
+            label="Password"
+            className={classes.textField}
+            helperText={errors.password}
+            error={errors.password ? true : false}
+            value={this.state.password}
             onChange={this.handleChange}
-            fullWidth  
+            fullWidth
           />
 
           <TextField 
-            id="passwordConfirmation" 
-            name="passwordConfirmation" 
-            type="password" 
-            label="Confirm Password" 
-            className={classes.textField} 
-            value={this.state.passwordConfirmation} 
+            id="confirmPassword"
+            name="confirmPassword"
+            type="password"
+            label="Confirm Password"
+            className={classes.textField}
+            helperText={errors.confirmPassword}
+            error={errors.confirmPassword ? true : false}
+            value={this.state.confirmPassword}
             onChange={this.handleChange}
-            fullWidth  
+            fullWidth
           />
+
+          {errors.general && (
+            <Typography variant="body2" className={classes.error}>
+              {errors.general}
+            </Typography>
+          )}
 
           <Button type="submit" variant="contained" color="primary" className={classes.button}>Sign Up</Button>
         </form>
