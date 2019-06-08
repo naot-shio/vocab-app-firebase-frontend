@@ -1,15 +1,19 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import axios from 'axios'
 
 // styles
 import withStyles from '@material-ui/core/styles/withStyles'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
-import DialogTitle from '@material-ui/core/DialogTitle';
+import DialogTitle from '@material-ui/core/DialogTitle'
+import Typography from '@material-ui/core/Typography'
 import styles from '../../styles/AuthenticationStyles'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSignInAlt } from '@fortawesome/free-solid-svg-icons'
+
+// redux
+import { connect } from 'react-redux'
+import { loginUser } from '../../redux/actions/userActions'
 
 class Login extends Component {
   constructor(props) {
@@ -21,6 +25,12 @@ class Login extends Component {
       errors: {}
     }
     this.handleChange = this.handleChange.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.UI.errors) {
+      this.setState({ errors: nextProps.UI.errors });
+    }
   }
 
   handleChange(evt) {
@@ -35,23 +45,7 @@ class Login extends Component {
       email: this.state.email,
       password: this.state.password
     }
-    console.log(userData)
-    axios
-      .post('/login', userData)
-      .then((res) => {
-        console.log(res.data);
-        localStorage.setItem('FBIdToken', `Bearer ${res.data.token}`);
-        this.setState({
-          loading: false
-        });
-      })
-      .catch((err) => {
-        console.log(err.response.data)
-        this.setState({
-          errors: err.response.data,
-          loading: false
-        });
-      });
+    this.props.loginUser(userData)
   }
 
   render() {
@@ -92,6 +86,12 @@ class Login extends Component {
             fullWidth  
           />
 
+          {errors.general && (
+            <Typography variant="body2" className={classes.error}>
+              {errors.general}
+            </Typography>
+          )}
+
           <Button type="submit" variant="contained" color="primary" className={classes.button}>Sign Up</Button>
         </form>
       </div>
@@ -100,7 +100,15 @@ class Login extends Component {
 }
 
 Login.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  loginUser: PropTypes.func.isRequired,
+  user: PropTypes.object.isRequired,
+  UI: PropTypes.object.isRequired
 }
 
-export default withStyles(styles)(Login)
+const mapStateToProps = state => ({
+  user: state.user,
+  UI: state.UI
+})
+
+export default connect(mapStateToProps, { loginUser })(withStyles(styles)(Login))
