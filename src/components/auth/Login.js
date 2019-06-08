@@ -17,7 +17,7 @@ class Login extends Component {
       email: '',
       password: '',
       loading: false,
-      error: {}
+      errors: {}
     }
     this.handleChange = this.handleChange.bind(this);
   }
@@ -30,11 +30,33 @@ class Login extends Component {
 
   handleSubmit = (evt) => {
     evt.preventDefault()
-    alert('po')
+    const userData = {
+      email: this.state.email,
+      password: this.state.password
+    }
+    console.log(userData)
+    axios
+      .post('/signup', userData)
+      .then((res) => {
+        console.log(res.data);
+        localStorage.setItem('FBIdToken', `Bearer ${res.data.token}`);
+        this.setState({
+          loading: false
+        });
+        this.props.history.push('/');
+      })
+      .catch((err) => {
+        console.log(err.response.data)
+        this.setState({
+          errors: err.response.data,
+          loading: false
+        });
+      });
   }
 
   render() {
     const { classes } = this.props;
+    const { errors } = this.state
     return (
       <div className={classes.root}>
         <DialogTitle id="sign-up-dialog-title">
@@ -45,22 +67,26 @@ class Login extends Component {
         <form noValidate onSubmit={this.handleSubmit}>
 
           <TextField 
-            id="email" 
-            name="email" 
-            type="email" 
-            label="Email" 
+            id="email"
+            name="email"
+            type="email"
+            label="Email"
             className={classes.textField} 
+            helperText={errors.email}
+            error={errors.email ? true : false}
             value={this.state.email} 
             onChange={this.handleChange}
             fullWidth  
           />
 
           <TextField 
-            id="password" 
-            name="password" 
-            type="password" 
-            label="Password" 
+            id="password"
+            name="password"
+            type="password"
+            label="Password"
             className={classes.textField} 
+            helperText={errors.password}
+            error={errors.password ? true : false}
             value={this.state.password} 
             onChange={this.handleChange}
             fullWidth  
