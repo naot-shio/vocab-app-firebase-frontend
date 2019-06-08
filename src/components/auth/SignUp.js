@@ -41,15 +41,15 @@ class SignUp extends Component {
       confirmPassword: this.state.confirmPassword
     }
     console.log(newUserData)
+
     axios
       .post('/signup', newUserData)
       .then((res) => {
         console.log(res.data);
         localStorage.setItem('FBIdToken', `Bearer ${res.data.token}`);
         this.setState({
-          loading: false
+          loading: false,
         });
-        this.props.history.push('/');
       })
       .catch((err) => {
         console.log(err.response.data)
@@ -101,7 +101,7 @@ class SignUp extends Component {
           <TextField 
             id="password"
             name="password"
-            type="password"
+            type="text"
             label="Password"
             className={classes.textField}
             helperText={errors.password}
@@ -114,7 +114,7 @@ class SignUp extends Component {
           <TextField 
             id="confirmPassword"
             name="confirmPassword"
-            type="password"
+            type="text"
             label="Confirm Password"
             className={classes.textField}
             helperText={errors.confirmPassword}

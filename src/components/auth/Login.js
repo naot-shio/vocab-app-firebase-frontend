@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import axios from 'axios'
+
 // styles
 import withStyles from '@material-ui/core/styles/withStyles'
 import TextField from '@material-ui/core/TextField'
@@ -36,14 +37,13 @@ class Login extends Component {
     }
     console.log(userData)
     axios
-      .post('/signup', userData)
+      .post('/login', userData)
       .then((res) => {
         console.log(res.data);
         localStorage.setItem('FBIdToken', `Bearer ${res.data.token}`);
         this.setState({
           loading: false
         });
-        this.props.history.push('/');
       })
       .catch((err) => {
         console.log(err.response.data)
