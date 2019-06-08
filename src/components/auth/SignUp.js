@@ -61,6 +61,7 @@ class SignUp extends Component {
 
   render() {
     const { classes } = this.props;
+    const { errors } = this.state;
     return (
       <div className={classes.root}>
         <DialogTitle id="sign-up-dialog-title">
