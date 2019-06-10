@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react'
 import AuthenticationIcon from '../auth/AuthenticationIcon'
-import wordMeaningPairs from '../../utils/wordMeaningPairs'
+// import wordMeaningPairs from '../../utils/wordMeaningPairs'
 import Profile from '../pages/Profile'
 
 // styles
@@ -56,16 +56,15 @@ class WordList extends Component {
             <Typography variant="h5" className={classes.sentence}>
               {i + 1}. {sentence.sentence} 
             </Typography>
-              
-              {wordMeaningPairs(sentence).map((pair, index) =>
-                <div key={index} className={classes.pairs}>
-                  <Typography className={classes.index}>{i+1}-{index+1}</Typography>
+
+              {sentence.words.map((word, index) => 
+                <div key={index} className={classes.word}>
+                   <Typography className={classes.indices}>{i+1}-{index+1}</Typography>
                   
                   <Checkbox onChange={this.handleChange} />
-                  <Typography className={classes.english}>{pair[0]}: </Typography>
-                              
-                  <Typography>{pair[1]}</Typography>
-                </div>
+                  <Typography className={classes.english}>{word.english}: </Typography>
+                  <Typography className={classes.japanese}>{word.japanese}</Typography>
+                </div>  
               )}
   
             <Typography variant="body1" className={classes.translation}>
