@@ -1,4 +1,4 @@
-import { LOADING_DATA, SET_SENTENCES } from "../types";
+import { LOADING_DATA, SET_SENTENCES, POST_SENTENCE } from "../types";
 
 const initialState = {
   sentences: [],
@@ -17,6 +17,14 @@ export default function(state=initialState, action) {
         ...state,
         sentences: action.payload,
         loading: false
+      }
+    case POST_SENTENCE:
+      return {
+        ...state,
+        sentences: [
+          ...state.sentences,
+          action.payload
+        ]
       }
     default: 
       return state;
