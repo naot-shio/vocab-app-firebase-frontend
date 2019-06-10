@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react'
 import AuthenticationIcon from '../auth/AuthenticationIcon'
+import wordMeaningPairs from '../../utils/wordMeaningPairs'
 
 // styles
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -15,27 +16,28 @@ import { connect } from 'react-redux'
 import { getSentences } from '../../redux/actions/dataActions'
 
 class WordList extends Component {
-
   componentDidMount() {
-    getSentences()
+    this.props.getSentences();
   }
 
   render() {
     const { classes } = this.props;
+    const { loading, sentences } = this.props.data;
     let allSentences = !loading ? 
-      this.props.sentences.map(sentence =>
-        <Card className={classes.Card} key={sentence.id}>
+      sentences.map(sentence =>
+        <Card className={classes.Card} key={sentence.sentenceId}>
           <CardContent>
-            <div className={classes.example}>
-              <Typography variant="body2">
-                {sentence.sentence} 
-              </Typography>
-             
-              <Typography variant="body1">
-                {sentence.translation}
-              </Typography>     
-            </div>
-                  
+            <Typography variant="body2">
+              {sentence.sentence} 
+            </Typography>
+              
+              {wordMeaningPairs(sentence).map((pair, index) =>
+                <Typography key={index}>{pair.join(": ")}</Typography>
+              )}
+  
+            <Typography variant="body1">
+              {sentence.translation}
+            </Typography>       
           </CardContent>
         </Card>
       ) :
@@ -45,7 +47,7 @@ class WordList extends Component {
       <Grid container>
         <Grid item sm={2} xs={1} />
         <Grid item sm={8} xs={10}>
-         {allSentences}
+          {allSentences} 
         </Grid>
         <Grid item sm={2} xs={1}>
           <div className={classes.auth}>
@@ -58,12 +60,12 @@ class WordList extends Component {
 }
 
 const mapStateToProps = state => ({
-  sentence: state.data.sentence,
+  data: state.data,
   UI: state.UI
 })
 
 const mapActionsToProps = {
-  getSentences
+  getSentences,
 }
 
 export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(WordList))

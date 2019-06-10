@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 // JS files
 import Navbar from './components/pages/Navbar'
 import Home from './components/pages/Home'
-import SentenceList from './components/words/SentenceList'
+import SentenceList from './components/sentences/SentenceList'
 import './App.css'
 // redux
 import { Provider } from 'react-redux'
