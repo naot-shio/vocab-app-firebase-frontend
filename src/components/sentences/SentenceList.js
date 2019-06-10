@@ -2,6 +2,7 @@
 import React, { Component } from 'react'
 import AuthenticationIcon from '../auth/AuthenticationIcon'
 import wordMeaningPairs from '../../utils/wordMeaningPairs'
+import Profile from '../pages/Profile'
 
 // styles
 import withStyles from '@material-ui/core/styles/withStyles'
@@ -10,7 +11,11 @@ import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
 import Typography from '@material-ui/core/Typography'
 import Checkbox from '@material-ui/core/Checkbox'
-
+import DialogActions from '@material-ui/core/DialogActions'
+import Dialog from '@material-ui/core/Dialog'
+import Button from '@material-ui/core/Button'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBars } from '@fortawesome/free-solid-svg-icons'
 import styles from '../../styles/SentenceListStyles'
 
 // Redux 
@@ -21,9 +26,11 @@ class WordList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      clicked: false
+      clicked: false,
+      open: false
     }
     this.handleChange = this.handleChange.bind(this)
+    this.handleClickToggle = this.handleClickToggle.bind(this)
   }
 
   componentDidMount() {
@@ -34,9 +41,14 @@ class WordList extends Component {
     this.setState({ clicked: true })
   }
 
+  handleClickToggle() {
+    this.setState({ open: !this.state.open })
+  }
+
   render() {
     const { classes } = this.props;
     const { loading, sentences } = this.props.data;
+    const { authenticated } = this.props.user;
     let allSentences = !loading ? 
       sentences.map((sentence, i) =>
         <Card className={classes.Card} key={sentence.sentenceId}>
@@ -64,9 +76,38 @@ class WordList extends Component {
       ) :
       <p>Loading</p>
 
+    // const profileDrawer = authenticated && 
+    //                         <IconButton
+    //                           color="inherit"
+    //                           aria-label="Open drawer"
+    //                           edge="start"
+    //                           onClick={this.handleDrawerToggle}
+    //                           className={classes.menuButton}
+    //                         >
+    //                           <FontAwesomeIcon icon={faBars} />
+    //                         </IconButton>
+
     return (
       <Grid container>
-        <Grid item sm={2} xs={1} />
+        <Grid item sm={2} xs={1}>    
+          <Button variant="outlined" color="primary" onClick={this.handleClickToggle}>
+            Open responsive dialog
+          </Button>
+          <Dialog
+            open={this.state.open}
+            onClose={this.handleClose}
+            aria-labelledby="responsive-dialog-title"
+          >
+            <Profile />
+            
+            <DialogActions>
+              <Button onClick={this.handleClickToggle} color="primary">
+                X
+              </Button>
+            </DialogActions>
+          </Dialog>
+        </Grid>
+
         <Grid item sm={8} xs={10}>
           {allSentences} 
         </Grid>
@@ -82,7 +123,8 @@ class WordList extends Component {
 
 const mapStateToProps = state => ({
   data: state.data,
-  UI: state.UI
+  UI: state.UI,
+  user: state.user
 })
 
 const mapActionsToProps = {

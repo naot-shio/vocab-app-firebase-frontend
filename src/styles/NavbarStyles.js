@@ -1,6 +1,4 @@
-import { makeStyles } from '@material-ui/core/styles'
-
-const useStyles = makeStyles(theme => ({
+const styles = {
   AppBar: {
     boxShadow: "none",
     marginBottom: 0 
@@ -21,6 +19,6 @@ const useStyles = makeStyles(theme => ({
       fontWeight: 600
     }
   },
-}));
+};
 
-export default useStyles;
+export default styles;

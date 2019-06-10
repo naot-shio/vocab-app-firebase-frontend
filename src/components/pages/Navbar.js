@@ -3,10 +3,11 @@ import { Link } from 'react-router-dom'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
-import useStyles from '../../styles/NavbarStyles'
+import withStyles from '@material-ui/core/styles/withStyles'
+import styles from '../../styles/NavbarStyles'
 
-function Navbar (){
-  const classes = useStyles();
+function Navbar (props){
+  const {classes} = props;
   return (
     <AppBar position="static" className={classes.AppBar}>
       <Toolbar className={classes.root}>
@@ -18,4 +19,4 @@ function Navbar (){
   );
 }
 
-export default Navbar
+export default withStyles(styles)(Navbar)
