@@ -10,13 +10,14 @@ const styles = {
     fontSize: "1.5rem",
     paddingLeft: 5,
     backgroundColor: "#E0FFFF",
-    borderRadius: 5
+    borderRadius: 5,
+    marginBottom: 10 
   },
-  pairs: {
+  word: {
     display: "flex",
     alignItems: "center"
   },
-  index: {
+  indices: {
     width: "9%",
     marginLeft: 15
   },
@@ -27,6 +28,7 @@ const styles = {
     marginLeft: 15
   },
   translation: {
+    marginTop: 10,
     marginLeft: 15
   },
   "@media (max-width: 950px)": {

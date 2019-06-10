@@ -1,7 +1,6 @@
 
 import React, { Component } from 'react'
 import AuthenticationIcon from '../auth/AuthenticationIcon'
-// import wordMeaningPairs from '../../utils/wordMeaningPairs'
 import Profile from '../pages/Profile'
 
 // styles
@@ -14,8 +13,6 @@ import Checkbox from '@material-ui/core/Checkbox'
 import DialogActions from '@material-ui/core/DialogActions'
 import Dialog from '@material-ui/core/Dialog'
 import Button from '@material-ui/core/Button'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars } from '@fortawesome/free-solid-svg-icons'
 import styles from '../../styles/SentenceListStyles'
 
 // Redux 
@@ -48,7 +45,6 @@ class WordList extends Component {
   render() {
     const { classes } = this.props;
     const { loading, sentences } = this.props.data;
-    const { authenticated } = this.props.user;
     let allSentences = !loading ? 
       sentences.map((sentence, i) =>
         <Card className={classes.Card} key={sentence.sentenceId}>
@@ -59,7 +55,7 @@ class WordList extends Component {
 
               {sentence.words.map((word, index) => 
                 <div key={index} className={classes.word}>
-                   <Typography className={classes.indices}>{i+1}-{index+1}</Typography>
+                  <Typography className={classes.indices}>{i+1}-{index+1}</Typography>
                   
                   <Checkbox onChange={this.handleChange} />
                   <Typography className={classes.english}>{word.english}: </Typography>
@@ -74,17 +70,6 @@ class WordList extends Component {
         </Card>
       ) :
       <p>Loading</p>
-
-    // const profileDrawer = authenticated && 
-    //                         <IconButton
-    //                           color="inherit"
-    //                           aria-label="Open drawer"
-    //                           edge="start"
-    //                           onClick={this.handleDrawerToggle}
-    //                           className={classes.menuButton}
-    //                         >
-    //                           <FontAwesomeIcon icon={faBars} />
-    //                         </IconButton>
 
     return (
       <Grid container>
