@@ -23,8 +23,7 @@ export class CreateSentence extends Component {
       open: false,
       sentence: '',
       translation: '',
-      word: '',
-      meaning: '',
+      words: [{english: "", japanese: ""}],
       errors: {}
     };
     this.handleChange = this.handleChange.bind(this);
@@ -42,7 +41,19 @@ export class CreateSentence extends Component {
   }
 
   handleChange(evt) {
-    this.setState({[evt.target.name]: evt.target.value})
+    if (["english", "japanese"].includes(evt.target.className)) {
+      let words = [...this.state.words]
+      words[evt.target.dataset.id][evt.target.className] = evt.target.value
+      this.setState({ words }, () => console.log(this.state.words))
+    } else {
+       this.setState({[evt.target.name]: evt.target.value})
+    }
+  }
+  
+  addWord = (evt) => {
+    this.setState(prevState => ({
+      words: [...prevState.words, {english: '', japanese: ''}]
+    }))
   }
 
   handleSubmit(evt) {
@@ -51,8 +62,7 @@ export class CreateSentence extends Component {
     const newWord = {
       sentence: this.state.sentence,
       translation: this.state.translation,
-      words: [this.state.word],
-      meanings: [this.state.meaning]
+      words: this.state.words,
     }
     this.props.postSentence(newWord);
   }
@@ -74,7 +84,7 @@ export class CreateSentence extends Component {
         >
           <DialogTitle>Create a new sentence</DialogTitle>
           <DialogContent>
-            <form onSubmit={this.handleSubmit}>
+            <form onSubmit={this.handleSubmit} onChange={this.handleChange}>
               <TextField
                 name="sentence"
                 type="text"
@@ -95,25 +105,34 @@ export class CreateSentence extends Component {
                 fullWidth
               />
 
-              <TextField
-                name="word"
-                type="text"
-                value={this.state.word}
-                label="word"
-                className={classes.textField}
-                onChange={this.handleChange}
-                fullWidth
-              />
-              <TextField
-                name="meaning"
-                type="text"
-                value={this.state.meaning}
-                label="meaning"
-                className={classes.textField}
-                onChange={this.handleChange}
-                fullWidth
-              />
+              <button onClick={this.addWord}>Add a word</button>
 
+              {this.state.words.map((val, idx) => {
+                let englishId = `english-${idx}`, japaneseId = `english-${idx}`
+                
+                return (
+                  <div key={idx}>
+                    <label htmlFor={englishId}>{`English #${idx + 1}`}</label>
+                    <input
+                      type="text"
+                      name={englishId}
+                      data-id={idx}
+                      id={englishId}
+                      className="english"
+                    />
+                    <label htmlFor={japaneseId}>{`Japense #${idx + 1}`}</label>
+                    <input
+                      type="text"
+                      name={japaneseId}
+                      data-id={idx}
+                      id={japaneseId}
+                      className="japanese"
+                    />
+
+                  </div>
+                )
+              })}
+            
 
               <Button type="submit" variant="contained" color="primary" className={classes.submitButton}>
                 Submit!
