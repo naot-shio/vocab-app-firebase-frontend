@@ -1,4 +1,4 @@
-import { LOADING_DATA, SET_SENTENCES, LOADING_UI, POST_SENTENCE, SET_ERRORS, CLEAR_ERRORS } from "../types";
+import { LOADING_DATA, SET_SENTENCES, LOADING_UI, POST_SENTENCE, SET_ERRORS, CLEAR_ERRORS, UPDATE_SENTENCE, SET_SENTENCE, STOP_LOADING_UI } from "../types";
 import axios from 'axios'
 
 export const getSentences = () => (dispatch) => {
@@ -16,6 +16,20 @@ export const getSentences = () => (dispatch) => {
         payload: []
       })
     })
+}
+
+export const getSentence = (sentenceId) => (dispatch) => {
+  dispatch({ type: LOADING_UI });
+  axios
+    .get(`/sentence/${sentenceId}`)
+    .then(res => {
+      dispatch({
+        type: SET_SENTENCE,
+        payload: res.data
+      });
+      dispatch({ type: STOP_LOADING_UI})
+    })
+    .catch(err => console.error(err))
 }
 
 export const postSentence = (newSentence) => (dispatch) => {
@@ -36,3 +50,22 @@ export const postSentence = (newSentence) => (dispatch) => {
       })
     })
 }
+
+export const updateSentence = (sentenceId, sentenceData) => (dispatch) => {
+  dispatch({ type: LOADING_UI })
+  axios
+    .put(`/sentence/${sentenceId}`, sentenceData)
+    .then(res => {
+      dispatch({
+        type: UPDATE_SENTENCE,
+        payload: res.data
+      })
+    })
+    .catch(err => {
+      dispatch({
+        type: SET_ERRORS,
+        payload: err.response.data
+      })
+    })
+}
+

@@ -1,7 +1,8 @@
-import { LOADING_DATA, SET_SENTENCES, POST_SENTENCE } from "../types";
+import { LOADING_DATA, SET_SENTENCES, POST_SENTENCE, UPDATE_SENTENCE, SET_SENTENCE } from "../types";
 
 const initialState = {
   sentences: [],
+  sentence: {},
   loading: false
 }
 
@@ -18,6 +19,11 @@ export default function(state=initialState, action) {
         sentences: action.payload,
         loading: false
       }
+    case SET_SENTENCE:
+      return {
+        ...state,
+        sentence: action.payload
+      }
     case POST_SENTENCE:
       return {
         ...state,
@@ -26,6 +32,11 @@ export default function(state=initialState, action) {
           action.payload
         ]
       }
+    case UPDATE_SENTENCE:
+      return {
+        ...state,
+        sentence: action.payload
+      }      
     default: 
       return state;
   }

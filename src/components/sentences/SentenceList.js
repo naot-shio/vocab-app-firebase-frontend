@@ -89,7 +89,6 @@ class WordList extends Component {
               >
                 <FontAwesomeIcon icon={faTrashAlt} />
               </Fab>
-              
             </div>
           </CardContent>
         </Card>

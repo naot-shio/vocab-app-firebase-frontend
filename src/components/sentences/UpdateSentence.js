@@ -7,7 +7,11 @@ import Button from '@material-ui/core/Button'
 import Fab from '@material-ui/core/Fab'
 import withStyles from '@material-ui/core/styles/withStyles'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlusSquare, faPlus } from '@fortawesome/free-solid-svg-icons'
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
+
+// Redux
+import { connect } from 'react-redux'
+import { getSentence } from '../../redux/actions/dataActions'
 
 const styles = {}
 
@@ -24,6 +28,10 @@ class UpdateSentence extends Component {
     this.handleChange = this.handleChange.bind(this)
   }
 
+  componentDidMount() {
+    this.props.getSentence(this.props.sentenceId);
+  }
+
   handleSubmit(evt) {
     evt.preventDefault();
     alert('U clicked me')
@@ -31,7 +39,6 @@ class UpdateSentence extends Component {
 
   handleChange(evt) {
     if (evt.target.name === 'sentence' || evt.target.name === 'translation') {
-      console.log('oi')
       this.setState({[evt.target.name]: evt.target.value})
     } else {
       let words = [...this.state.words]
@@ -42,6 +49,10 @@ class UpdateSentence extends Component {
  
   render() {
     const { classes } = this.props
+    const { sentence } = this.props.data
+    const { loading } = this.props.UI
+    console.log(loading)
+
     return (
       <div>
         <form onSubmit={this.handleSubmit} onChange={this.handleChange}>
@@ -122,4 +133,9 @@ class UpdateSentence extends Component {
   }
 }
 
-export default withStyles(styles)(UpdateSentence)
+const mapStateToProps = state => ({
+  data: state.data,
+  UI: state.UI
+})
+
+export default connect(mapStateToProps, { getSentence })(withStyles(styles)(UpdateSentence))
