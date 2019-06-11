@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import axios from 'axios'
 
 // styles
 import TextField from '@material-ui/core/TextField'
@@ -11,7 +12,7 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons'
 
 // Redux
 import { connect } from 'react-redux'
-import { getSentence, updateSentence } from '../../redux/actions/dataActions'
+import { updateSentence } from '../../redux/actions/dataActions'
 
 const styles = {}
 
@@ -26,26 +27,39 @@ class UpdateSentence extends Component {
     }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
+    this.addWord = this.addWord.bind(this)
   }
 
   componentDidMount() {
-    this.props.getSentence(this.props.sentenceId);
+    axios
+      .get(`/sentence/${this.props.sentenceId}`)
+      .then(res => {
+        let englishJapanesePair = [];
+        for (let i = 0; i < res.data.words.length; i++) {
+          englishJapanesePair.push({
+            english: res.data.words[i].english, 
+            japanese: res.data.words[i].japanese 
+          })
+        }
+
+        this.setState({
+          sentence: res.data.sentence,
+          translation: res.data.translation,
+          words: englishJapanesePair
+        })
+      })
+      .catch(err => console.error(err))
   }
 
   handleSubmit(evt) {
     evt.preventDefault();
-    alert('U clicked me')
-  }
-
-  handleSubmit(evt) {
-    evt.preventDefault();
-    console.log(this.state)
     const word = {
       sentence: this.state.sentence,
       translation: this.state.translation,
       words: this.state.words,
     }
     this.props.updateSentence(this.props.sentenceId, word);
+    this.props.history.push('/words');
   }
 
   handleChange(evt) {
@@ -54,18 +68,23 @@ class UpdateSentence extends Component {
     } else {
       let words = [...this.state.words]
       words[evt.target.dataset.id][evt.target.className] = evt.target.value
-      this.setState({ words }, () => console.log(this.state.words))
+      this.setState({ words })
     }
   }
+
+  addWord() {
+    this.setState(prevState => ({
+      words: [...prevState.words, {english: '', japanese: ''}]
+    }))
+  } 
  
   render() {
     const { classes } = this.props
-    const { sentence } = this.props.data
     const { loading } = this.props.UI
 
     return (
       <div>
-        <form onSubmit={this.handleSubmit} onChange={this.handleChange}>
+        <form onSubmit={this.handleSubmit}>
           <TextField
             name="sentence"
             type="text"
@@ -96,8 +115,10 @@ class UpdateSentence extends Component {
                       name={englishId}
                       data-id={idx}
                       id={englishId}
+                      value={this.state.words[idx].english}
                       className="english"
                       placeholder={`English: ${idx + 1}`}
+                      onChange={this.handleChange}
                     />
                 
                     <input
@@ -105,8 +126,10 @@ class UpdateSentence extends Component {
                       name={japaneseId}
                       data-id={idx}
                       id={japaneseId}
+                      value={this.state.words[idx].japanese}
                       className="japanese"
                       placeholder={`Japanese: ${idx + 1}`}
+                      onChange={this.handleChange}
                     />
                   </div>
                 )
@@ -148,4 +171,4 @@ const mapStateToProps = state => ({
   UI: state.UI
 })
 
-export default connect(mapStateToProps, { getSentence, updateSentence })(withStyles(styles)(UpdateSentence))
+export default connect(mapStateToProps, { updateSentence })(withStyles(styles)(UpdateSentence))

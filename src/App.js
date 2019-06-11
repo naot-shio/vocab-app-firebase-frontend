@@ -35,13 +35,21 @@ class App extends Component {
           <Navbar />
             <Switch>
               <Route exact path="/" component={Home} />
-              <Route exact path="/words" component={SentenceList} />
+              <Route 
+                exact 
+                path="/words" 
+                render={routeProps => (
+                  <SentenceList 
+                    {...routeProps}
+                  />)} 
+              />
               <Route 
                 exact 
                 path="/word/:sentenceId" 
                 render={routeProps => 
                   <UpdateSentence 
                     sentenceId={routeProps.match.params.sentenceId}
+                    {...routeProps}
                   />}
                 />
             </Switch>
