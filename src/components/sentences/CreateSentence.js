@@ -23,7 +23,7 @@ export class CreateSentence extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      open: true,
+      open: false,
       sentence: '',
       translation: '',
       words: [{english: "", japanese: ""}],

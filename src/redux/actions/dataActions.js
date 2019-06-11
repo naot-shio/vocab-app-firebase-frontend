@@ -27,9 +27,9 @@ export const getSentence = (sentenceId) => (dispatch) => {
         type: SET_SENTENCE,
         payload: res.data
       });
-      dispatch({ type: STOP_LOADING_UI})
     })
     .catch(err => console.error(err))
+    dispatch({ type: STOP_LOADING_UI})
 }
 
 export const postSentence = (newSentence) => (dispatch) => {

@@ -11,7 +11,7 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons'
 
 // Redux
 import { connect } from 'react-redux'
-import { getSentence } from '../../redux/actions/dataActions'
+import { getSentence, updateSentence } from '../../redux/actions/dataActions'
 
 const styles = {}
 
@@ -37,6 +37,17 @@ class UpdateSentence extends Component {
     alert('U clicked me')
   }
 
+  handleSubmit(evt) {
+    evt.preventDefault();
+    console.log(this.state)
+    const word = {
+      sentence: this.state.sentence,
+      translation: this.state.translation,
+      words: this.state.words,
+    }
+    this.props.updateSentence(this.props.sentenceId, word);
+  }
+
   handleChange(evt) {
     if (evt.target.name === 'sentence' || evt.target.name === 'translation') {
       this.setState({[evt.target.name]: evt.target.value})
@@ -51,7 +62,6 @@ class UpdateSentence extends Component {
     const { classes } = this.props
     const { sentence } = this.props.data
     const { loading } = this.props.UI
-    console.log(loading)
 
     return (
       <div>
@@ -138,4 +148,4 @@ const mapStateToProps = state => ({
   UI: state.UI
 })
 
-export default connect(mapStateToProps, { getSentence })(withStyles(styles)(UpdateSentence))
+export default connect(mapStateToProps, { getSentence, updateSentence })(withStyles(styles)(UpdateSentence))
