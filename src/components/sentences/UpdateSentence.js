@@ -6,15 +6,15 @@ import TextField from '@material-ui/core/TextField'
 import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button'
 import Fab from '@material-ui/core/Fab'
+import Paper from '@material-ui/core/Paper'
 import withStyles from '@material-ui/core/styles/withStyles'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
+import styles from '../../styles/UpdateSentenceStyles'
 
 // Redux
 import { connect } from 'react-redux'
 import { updateSentence } from '../../redux/actions/dataActions'
-
-const styles = {}
 
 class UpdateSentence extends Component {
   constructor(props) {
@@ -83,7 +83,7 @@ class UpdateSentence extends Component {
     const { loading } = this.props.UI
 
     return (
-      <div>
+      <Paper className={classes.Paper}>
         <form onSubmit={this.handleSubmit}>
           <TextField
             name="sentence"
@@ -157,11 +157,8 @@ class UpdateSentence extends Component {
           >
             Submit!
           </Button>
-
         </form>
-  
-        
-      </div>
+      </Paper>
     )
   }
 }
