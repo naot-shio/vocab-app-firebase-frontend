@@ -110,14 +110,10 @@ export class CreateSentence extends Component {
               />
               <Grid container>
                 <Grid item xs={9}>
-                
-                
-              
-                {this.state.words.map((val, idx) => {
-                  let englishId = `english-${idx}`, japaneseId = `english-${idx}`
-                  
-                  return (
-                    <div key={idx} className={classes.englishJapaneseInputForm}>
+                  {this.state.words.map((val, idx) => {
+                    let englishId = `english-${idx}`, japaneseId = `english-${idx}`
+                    return (
+                      <div key={idx} className={classes.englishJapaneseInputForm}>
                         <input
                           type="text"
                           name={englishId}
@@ -135,10 +131,9 @@ export class CreateSentence extends Component {
                           className="japanese"
                           placeholder={`Japanese: ${idx + 1}`}
                         />
-                      
-                    </div>
-                  )
-                })}
+                      </div>
+                    )
+                  })}
                 </Grid>
 
                 <Grid item xs={3}>
@@ -151,13 +146,15 @@ export class CreateSentence extends Component {
                       <FontAwesomeIcon icon={faPlus} />
                     </Fab>
                   </div>
-                 
                 </Grid>
               </Grid>
-              
-            
 
-              <Button type="submit" variant="contained" color="primary" className={classes.submitButton}>
+              <Button 
+                type="submit" 
+                variant="contained" 
+                color="primary" 
+                className={classes.submitButton}
+              >
                 Submit!
               </Button>
 
