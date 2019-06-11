@@ -45,12 +45,11 @@ export class CreateSentence extends Component {
 
   handleChange(evt) {
     if (evt.target.name === 'sentence' || evt.target.name === 'translation') {
-      console.log('oi')
       this.setState({[evt.target.name]: evt.target.value})
     } else {
       let words = [...this.state.words]
       words[evt.target.dataset.id][evt.target.className] = evt.target.value
-      this.setState({ words }, () => console.log(this.state.words))
+      this.setState({ words })
     }
   }
   

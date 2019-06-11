@@ -16,4 +16,3 @@ export const SET_SENTENCE = 'SET_SENTENCE'
 
 // UI REDUCER TYPES
 export const POST_SENTENCE = 'POST_SENTENCE'
-
