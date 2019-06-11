@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import AuthenticationIcon from '../auth/AuthenticationIcon'
 import Profile from '../pages/Profile'
+import DeleteSentence from './DeleteSentence'
 
 // styles
 import withStyles from '@material-ui/core/styles/withStyles'
@@ -81,14 +82,9 @@ class WordList extends Component {
                   <FontAwesomeIcon icon={faEdit} />
                 </Link>
               </Fab>
-              <Fab
-                color="secondary"
-                aria-label="Delete"
-                className={classes.deleteIcon}
-                size="small"
-              >
-                <FontAwesomeIcon icon={faTrashAlt} />
-              </Fab>
+              
+              <DeleteSentence sentenceId={sentence.sentenceId} />
+
             </div>
           </CardContent>
         </Card>

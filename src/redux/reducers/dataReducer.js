@@ -1,4 +1,4 @@
-import { LOADING_DATA, SET_SENTENCES, POST_SENTENCE, UPDATE_SENTENCE, SET_SENTENCE } from "../types";
+import { LOADING_DATA, SET_SENTENCES, POST_SENTENCE, UPDATE_SENTENCE, SET_SENTENCE, DELETE_SENTENCE } from "../types";
 
 const initialState = {
   sentences: [],
@@ -36,7 +36,15 @@ export default function(state=initialState, action) {
       return {
         ...state,
         sentence: action.payload
-      }      
+      }
+    case DELETE_SENTENCE:
+      let index = state.sentences.findIndex(
+        sentence => sentence.sentenceId === action.payload
+      );
+      state.sentences.splice(index, 1);
+      return {
+        ...state
+      };
     default: 
       return state;
   }

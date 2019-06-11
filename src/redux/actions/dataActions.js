@@ -1,4 +1,16 @@
-import { LOADING_DATA, SET_SENTENCES, LOADING_UI, POST_SENTENCE, SET_ERRORS, CLEAR_ERRORS, UPDATE_SENTENCE, SET_SENTENCE, STOP_LOADING_UI } from "../types";
+import { 
+  LOADING_DATA,
+  SET_SENTENCES,
+  LOADING_UI,
+  POST_SENTENCE,
+  SET_ERRORS,
+  CLEAR_ERRORS,
+  UPDATE_SENTENCE,
+  SET_SENTENCE,
+  STOP_LOADING_UI,
+  DELETE_SENTENCE
+} from "../types";
+
 import axios from 'axios'
 
 export const getSentences = () => (dispatch) => {
@@ -69,3 +81,11 @@ export const updateSentence = (sentenceId, sentenceData) => (dispatch) => {
     })
 }
 
+export const deleteSentence = (sentenceId) => (dispatch) => {
+  axios
+    .delete(`/sentence/${sentenceId}`)
+    .then(() => {
+      dispatch({ type: DELETE_SENTENCE, payload: sentenceId });
+    })
+    .catch((err) => console.log(err));
+};
