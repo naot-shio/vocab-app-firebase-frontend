@@ -13,6 +13,9 @@ import Checkbox from '@material-ui/core/Checkbox'
 import DialogActions from '@material-ui/core/DialogActions'
 import Dialog from '@material-ui/core/Dialog'
 import Button from '@material-ui/core/Button'
+import Fab from '@material-ui/core/Fab'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 import styles from '../../styles/SentenceListStyles'
 
 // Redux 
@@ -65,7 +68,25 @@ class WordList extends Component {
   
             <Typography variant="body1" className={classes.translation}>
               訳: {sentence.translation}
-            </Typography>       
+            </Typography>
+           
+            <div className={classes.icons}>
+              <Fab
+                color="primary"
+                aria-label="Edit"
+                size="small"
+              >
+                <FontAwesomeIcon icon={faEdit} />
+              </Fab>
+
+              <Fab
+                color="secondary"
+                aria-label="Delete"
+                size="small"
+              >
+                <FontAwesomeIcon icon={faTrashAlt} />
+              </Fab>
+            </div>
           </CardContent>
         </Card>
       ) :

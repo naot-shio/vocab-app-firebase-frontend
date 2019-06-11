@@ -31,6 +31,14 @@ const styles = {
     marginTop: 10,
     marginLeft: 15
   },
+  icons: {
+    float: 'right',
+    paddingTop: 5,
+    paddingBottom: 5,
+    '& deleteIcon': {
+      paddingLeft: 5,
+    }
+  },
   "@media (max-width: 950px)": {
     Card: {
       width: 650,
