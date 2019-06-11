@@ -1,5 +1,6 @@
 
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import AuthenticationIcon from '../auth/AuthenticationIcon'
 import Profile from '../pages/Profile'
 
@@ -15,29 +16,29 @@ import Dialog from '@material-ui/core/Dialog'
 import Button from '@material-ui/core/Button'
 import Fab from '@material-ui/core/Fab'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
+import { faEdit, faTrashAlt, faPlus } from '@fortawesome/free-solid-svg-icons'
 import styles from '../../styles/SentenceListStyles'
 
 // Redux 
 import { connect } from 'react-redux'
-import { getSentences } from '../../redux/actions/dataActions'
+import { getSentences, updateSentence } from '../../redux/actions/dataActions'
 
 class WordList extends Component {
   constructor(props) {
     super(props);
     this.state = {
       clicked: false,
-      open: false
+      open: false,
     }
-    this.handleChange = this.handleChange.bind(this)
-    this.handleClickToggle = this.handleClickToggle.bind(this)
+    this.handleClick = this.handleClick.bind(this)
+    this.handleClickToggle = this.handleClickToggle.bind(this) 
   }
 
   componentDidMount() {
     this.props.getSentences();
   }
 
-  handleChange() {
+  handleClick() {
     this.setState({ clicked: true })
   }
 
@@ -60,7 +61,7 @@ class WordList extends Component {
                 <div key={index} className={classes.word}>
                   <Typography className={classes.indices}>{i+1}-{index+1}</Typography>
                   
-                  <Checkbox onChange={this.handleChange} />
+                  <Checkbox onChange={this.handleClick} />
                   <Typography className={classes.english}>{word.english}: </Typography>
                   <Typography className={classes.japanese}>{word.japanese}</Typography>
                 </div>  
@@ -76,16 +77,19 @@ class WordList extends Component {
                 aria-label="Edit"
                 size="small"
               >
-                <FontAwesomeIcon icon={faEdit} />
+                <Link to={`/word/${sentence.sentenceId}`} onClick={e => e.stopPropagation()}>
+                  <FontAwesomeIcon icon={faEdit} />
+                </Link>
               </Fab>
-
               <Fab
                 color="secondary"
                 aria-label="Delete"
+                className={classes.deleteIcon}
                 size="small"
               >
                 <FontAwesomeIcon icon={faTrashAlt} />
               </Fab>
+              
             </div>
           </CardContent>
         </Card>
@@ -134,6 +138,7 @@ const mapStateToProps = state => ({
 
 const mapActionsToProps = {
   getSentences,
+  updateSentence
 }
 
 export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(WordList))

@@ -7,6 +7,7 @@ import jwtDecode from 'jwt-decode'
 import Navbar from './components/pages/Navbar'
 import Home from './components/pages/Home'
 import SentenceList from './components/sentences/SentenceList'
+import UpdateSentence from './components/sentences/UpdateSentence';
 import './App.css'
 // redux
 import { Provider } from 'react-redux'
@@ -35,6 +36,14 @@ class App extends Component {
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/words" component={SentenceList} />
+              <Route 
+                exact 
+                path="/word/:sentenceId" 
+                render={routeProps => 
+                  <UpdateSentence 
+                    sentenceId={routeProps.match.params.sentenceId}
+                  />}
+                />
             </Switch>
         </BrowserRouter>
       </Provider>
