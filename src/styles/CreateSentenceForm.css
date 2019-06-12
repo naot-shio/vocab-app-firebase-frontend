@@ -1,0 +1,23 @@
+.english, .japanese{
+  box-sizing: border-box;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid grey;
+  height: 2.5rem;
+  font-size: 0.95rem;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.english:focus, .japanese:focus{
+  border-bottom: 2px solid purple;
+}
+
+.english::placeholder, .japanese::placeholder {
+  color: grey;
+  transition: all 0.2s ease;
+}
+
+.english:focus::placeholder, .japanese:focus::placeholder {
+  color: transparent;
+}

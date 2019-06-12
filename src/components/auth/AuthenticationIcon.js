@@ -13,6 +13,9 @@ import Tooltip from '@material-ui/core/Tooltip';
 import Dialog from '@material-ui/core/Dialog';
 import styles from '../../styles/AuthenticationIconStyles'
 
+// Redux
+import { connect} from 'react-redux'
+
 class AuthenticationIcon extends Component {
   constructor(props) {
     super(props);
@@ -43,11 +46,12 @@ class AuthenticationIcon extends Component {
     this.setState({ openSignUpForm: false})
   }
   
-
   render() {
     const { classes } = this.props;
     const { open, openSignUpForm, openLoginForm } = this.state;
-    return (
+    const { authenticated } = this.props.user
+
+    const showIcons = !authenticated ? (
       <div className={classes.icons}>
         <Tooltip title="Sign up/Login" placement="left">
           <Fab 
@@ -92,8 +96,14 @@ class AuthenticationIcon extends Component {
           <Login />
         </Dialog>
       </div>
-    )
+    ) : null
+
+    return showIcons;
   }
 }
 
-export default withStyles(styles)(AuthenticationIcon)
+const mapStateToProps = state => ({
+  user: state.user
+})
+
+export default connect(mapStateToProps)(withStyles(styles)(AuthenticationIcon))
