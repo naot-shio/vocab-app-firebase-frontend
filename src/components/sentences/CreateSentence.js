@@ -1,16 +1,14 @@
 import React, { Component } from 'react'
+import SentenceForm from './SentenceForm'
 
 //styles 
 import withStyles from '@material-ui/core/styles/withStyles'
 import Button from '@material-ui/core/Button'
-import TextField from '@material-ui/core/TextField'
 import Dialog from '@material-ui/core/Dialog'
-import DialogContent from '@material-ui/core/DialogContent'
 import DialogTitle from '@material-ui/core/DialogTitle'
-import Fab from '@material-ui/core/Fab'
-import Grid from '@material-ui/core/Grid'
+import DialogContent from '@material-ui/core/DialogContent'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlusSquare, faPlus } from '@fortawesome/free-solid-svg-icons'
+import { faPlusSquare } from '@fortawesome/free-solid-svg-icons'
 import styles from '../../styles/CreateSentenceStyles'
 import '../../styles/CreateSentenceForm.css'
 
@@ -29,7 +27,6 @@ export class CreateSentence extends Component {
       words: [{english: "", japanese: ""}],
       errors: {}
     };
-    this.handleChange = this.handleChange.bind(this);
     this.handleOpen = this.handleOpen.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -43,7 +40,7 @@ export class CreateSentence extends Component {
     this.setState({ open: false })
   }
 
-  handleChange(evt) {
+  handleChange = (evt) => {
     if (evt.target.name === 'sentence' || evt.target.name === 'translation') {
       this.setState({[evt.target.name]: evt.target.value})
     } else {
@@ -52,12 +49,12 @@ export class CreateSentence extends Component {
       this.setState({ words })
     }
   }
-  
-  addWord = (evt) => {
+
+  addWord = () => {
     this.setState(prevState => ({
       words: [...prevState.words, {english: '', japanese: ''}]
     }))
-  }
+  } 
 
   handleSubmit(evt) {
     evt.preventDefault();
@@ -66,12 +63,13 @@ export class CreateSentence extends Component {
       sentence: this.state.sentence,
       translation: this.state.translation,
       words: this.state.words,
-    }
+    };
     this.props.postSentence(newWord);
+    this.handleClose();
   }
 
   render() {
-    const { errors, open } = this.state;
+    const { open } = this.state;
     const { classes } = this.props;
     return (
       <>
@@ -87,76 +85,15 @@ export class CreateSentence extends Component {
         >
           <DialogTitle>Create a new sentence</DialogTitle>
           <DialogContent>
-            <form onSubmit={this.handleSubmit} onChange={this.handleChange}>
-              <TextField
-                name="sentence"
-                type="text"
-                value={this.state.sentence}
-                label="sentence"
-                className={classes.textField}
-                onChange={this.handleChange}
-                fullWidth
+            <form onSubmit={this.handleSubmit}>
+              <SentenceForm
+                sentenceState={this.state.sentence}
+                translationState={this.state.translation}
+                wordsState={this.state.words}
+                handleSubmit={this.handleSubmit}
+                addWord={this.addWord}
+                handleChange={this.handleChange}
               />
-
-              <TextField
-                name="translation"
-                type="text"
-                value={this.state.translation}
-                label="translation"
-                className={classes.textField}
-                onChange={this.handleChange}
-                fullWidth
-              />
-              <Grid container>
-                <Grid item xs={9}>
-                  {this.state.words.map((val, idx) => {
-                    let englishId = `english-${idx}`, japaneseId = `english-${idx}`
-                    return (
-                      <div key={idx} className={classes.englishJapaneseInputForm}>
-                        <input
-                          type="text"
-                          name={englishId}
-                          data-id={idx}
-                          id={englishId}
-                          className="english"
-                          placeholder={`English: ${idx + 1}`}
-                        />
-                    
-                        <input
-                          type="text"
-                          name={japaneseId}
-                          data-id={idx}
-                          id={japaneseId}
-                          className="japanese"
-                          placeholder={`Japanese: ${idx + 1}`}
-                        />
-                      </div>
-                    )
-                  })}
-                </Grid>
-
-                <Grid item xs={3}>
-                  <div className={classes.addWord}>
-                    <Fab 
-                      color="secondary" 
-                      aria-label="Add" 
-                      onClick={this.addWord}
-                    >
-                      <FontAwesomeIcon icon={faPlus} />
-                    </Fab>
-                  </div>
-                </Grid>
-              </Grid>
-
-              <Button 
-                type="submit" 
-                variant="contained" 
-                color="primary" 
-                className={classes.submitButton}
-              >
-                Submit!
-              </Button>
-
             </form>
           </DialogContent>
         </Dialog>
