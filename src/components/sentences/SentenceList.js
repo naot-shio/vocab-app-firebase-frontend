@@ -50,6 +50,7 @@ class WordList extends Component {
   render() {
     const { classes } = this.props;
     const { loading, sentences } = this.props.data;
+    const { authenticated, credentials: { name } } = this.props.user;
     let allSentences = !loading ? 
       sentences.map((sentence, i) =>
         <Card className={classes.Card} key={sentence.sentenceId}>
@@ -71,7 +72,8 @@ class WordList extends Component {
             <Typography variant="body1" className={classes.translation}>
               訳: {sentence.translation}
             </Typography>
-           
+                       
+            { (authenticated && sentence.userName === name) &&  
             <div className={classes.icons}>
               <Fab
                 color="primary"
@@ -85,7 +87,7 @@ class WordList extends Component {
               
               <DeleteSentence sentenceId={sentence.sentenceId} />
 
-            </div>
+            </div>}
           </CardContent>
         </Card>
       ) :
