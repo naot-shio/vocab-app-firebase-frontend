@@ -22,12 +22,13 @@ class WordList extends Component {
     this.state = {
       clicked: false,
       open: false,
+      numOfSentences: 10
     }
     this.handleClickToggle = this.handleClickToggle.bind(this) 
   }
 
   componentDidMount() {
-    this.props.getSentences();
+    this.props.getSentences(this.state.numOfSentences);
   }
 
   handleClickToggle() {
