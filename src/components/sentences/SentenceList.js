@@ -1,23 +1,15 @@
 
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import AuthenticationIcon from '../auth/AuthenticationIcon'
 import Profile from '../pages/Profile'
-import DeleteSentence from './DeleteSentence'
+import AllSentences from './AllSentences'
 
 // styles
 import withStyles from '@material-ui/core/styles/withStyles'
 import Grid from '@material-ui/core/Grid'
-import Card from '@material-ui/core/Card'
-import CardContent from '@material-ui/core/CardContent'
-import Typography from '@material-ui/core/Typography'
-import Checkbox from '@material-ui/core/Checkbox'
 import DialogActions from '@material-ui/core/DialogActions'
 import Dialog from '@material-ui/core/Dialog'
 import Button from '@material-ui/core/Button'
-import Fab from '@material-ui/core/Fab'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEdit, faTrashAlt, faPlus } from '@fortawesome/free-solid-svg-icons'
 import styles from '../../styles/SentenceListStyles'
 
 // Redux 
@@ -31,16 +23,11 @@ class WordList extends Component {
       clicked: false,
       open: false,
     }
-    this.handleClick = this.handleClick.bind(this)
     this.handleClickToggle = this.handleClickToggle.bind(this) 
   }
 
   componentDidMount() {
     this.props.getSentences();
-  }
-
-  handleClick() {
-    this.setState({ clicked: true })
   }
 
   handleClickToggle() {
@@ -51,47 +38,6 @@ class WordList extends Component {
     const { classes } = this.props;
     const { loading, sentences } = this.props.data;
     const { authenticated, credentials: { name } } = this.props.user;
-    let allSentences = !loading ? 
-      sentences.map((sentence, i) =>
-        <Card className={classes.Card} key={sentence.sentenceId}>
-          <CardContent>
-            <Typography variant="h5" className={classes.sentence}>
-              {i + 1}. {sentence.sentence} 
-            </Typography>
-
-              {sentence.words.map((word, index) => 
-                <div key={index} className={classes.word}>
-                  <Typography className={classes.indices}>{i+1}-{index+1}</Typography>
-                  
-                  <Checkbox onChange={this.handleClick} />
-                  <Typography className={classes.english}>{word.english}: </Typography>
-                  <Typography className={classes.japanese}>{word.japanese}</Typography>
-                </div>  
-              )}
-  
-            <Typography variant="body1" className={classes.translation}>
-              訳: {sentence.translation}
-            </Typography>
-                       
-            { (authenticated && sentence.userName === name) &&  
-            <div className={classes.icons}>
-              <Fab
-                color="primary"
-                aria-label="Edit"
-                size="small"
-              >
-                <Link to={`/word/${sentence.sentenceId}`} onClick={e => e.stopPropagation()}>
-                  <FontAwesomeIcon icon={faEdit} />
-                </Link>
-              </Fab>
-              
-              <DeleteSentence sentenceId={sentence.sentenceId} />
-
-            </div>}
-          </CardContent>
-        </Card>
-      ) :
-      <p>Loading</p>
 
     return (
       <Grid container>
@@ -115,7 +61,12 @@ class WordList extends Component {
         </Grid>
 
         <Grid item sm={8} xs={10}>
-          {allSentences} 
+          <AllSentences 
+            sentences={sentences} 
+            loading={loading} 
+            authenticated={authenticated} 
+            name={name}
+          />
         </Grid>
         <Grid item sm={2} xs={1}>
           <div className={classes.auth}>
