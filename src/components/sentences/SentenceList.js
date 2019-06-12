@@ -16,7 +16,7 @@ import styles from '../../styles/SentenceListStyles'
 import { connect } from 'react-redux'
 import { getSentences, updateSentence } from '../../redux/actions/dataActions'
 
-class WordList extends Component {
+class SentenceList extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -90,4 +90,4 @@ const mapActionsToProps = {
   updateSentence
 }
 
-export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(WordList))
+export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(SentenceList))
