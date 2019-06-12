@@ -13,11 +13,11 @@ import {
 
 import axios from 'axios'
 
-export const getSentences = (numOfSentences) => (dispatch) => {
+export const getSentences = (keyword) => (dispatch) => {
   dispatch({ type: LOADING_DATA });
   axios.get('/sentences', {
     params: {
-      limit: numOfSentences
+      keyword: keyword
     }
   })
     .then(res => {

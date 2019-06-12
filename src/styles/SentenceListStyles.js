@@ -1,4 +1,10 @@
 const styles = {
+  textField:{
+    margin: 10,
+    width: "80%",
+    marginLeft: "auto",
+    marginRight: "auto"
+  },
   Card: {
     margin: 30,
     width: 700,
