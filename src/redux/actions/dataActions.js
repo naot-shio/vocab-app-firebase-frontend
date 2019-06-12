@@ -13,9 +13,13 @@ import {
 
 import axios from 'axios'
 
-export const getSentences = () => (dispatch) => {
+export const getSentences = (keyword) => (dispatch) => {
   dispatch({ type: LOADING_DATA });
-  axios.get('/sentences')
+  axios.get('/sentences', {
+    params: {
+      keyword: keyword
+    }
+  })
     .then(res => {
       dispatch({
         type: SET_SENTENCES,

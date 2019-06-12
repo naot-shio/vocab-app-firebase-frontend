@@ -19,7 +19,7 @@ function Navbar (props){
     <AppBar position="static" className={classes.AppBar}>
       <Toolbar className={classes.root}>
         <Typography variant="h6" className={classes.title}>
-          <Link to="/">VocabBuilder</Link>
+          <Link to="/words">VocabBuilder</Link>
         </Typography>
         {authenticated && <CreateSentence />}
       </Toolbar>

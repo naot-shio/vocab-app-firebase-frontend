@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react'
 import AuthenticationIcon from '../auth/AuthenticationIcon'
 import Profile from '../pages/Profile'
@@ -10,28 +9,42 @@ import Grid from '@material-ui/core/Grid'
 import DialogActions from '@material-ui/core/DialogActions'
 import Dialog from '@material-ui/core/Dialog'
 import Button from '@material-ui/core/Button'
+import TextField from '@material-ui/core/TextField'
 import styles from '../../styles/SentenceListStyles'
 
 // Redux 
 import { connect } from 'react-redux'
 import { getSentences, updateSentence } from '../../redux/actions/dataActions'
 
-class WordList extends Component {
+class SentenceList extends Component {
   constructor(props) {
     super(props);
     this.state = {
       clicked: false,
       open: false,
+      keyword: ''
     }
     this.handleClickToggle = this.handleClickToggle.bind(this) 
   }
 
   componentDidMount() {
-    this.props.getSentences();
+    this.props.getSentences(this.state.keyword);
   }
 
   handleClickToggle() {
     this.setState({ open: !this.state.open })
+  }
+
+  handleChange = (evt) => {
+    this.setState({
+      [evt.target.name]: evt.target.value
+    });
+  }
+
+  handleSubmit = (evt) => {
+    evt.preventDefault()
+    this.props.getSentences(this.state.keyword);
+    this.setState({ keyword: '' })
   }
 
   render() {
@@ -61,6 +74,19 @@ class WordList extends Component {
         </Grid>
 
         <Grid item sm={8} xs={10}>
+          <div className={classes.textField}>
+            <form onSubmit={this.handleSubmit}>
+              <TextField
+                name="keyword"
+                type="text"
+                value={this.state.keyword}
+                label="search"
+                onChange={this.handleChange}
+                fullWidth
+              />
+            </form>
+          </div>
+          
           <AllSentences 
             sentences={sentences} 
             loading={loading} 
@@ -68,12 +94,13 @@ class WordList extends Component {
             name={name}
           />
         </Grid>
+
         <Grid item sm={2} xs={1}>
           <div className={classes.auth}>
             <AuthenticationIcon />
           </div>
         </Grid>
-      </Grid>
+      </Grid>      
     )
   }
 }
@@ -89,4 +116,4 @@ const mapActionsToProps = {
   updateSentence
 }
 
-export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(WordList))
+export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(SentenceList))
