@@ -6,9 +6,6 @@ import AllSentences from './AllSentences'
 // styles
 import withStyles from '@material-ui/core/styles/withStyles'
 import Grid from '@material-ui/core/Grid'
-import DialogActions from '@material-ui/core/DialogActions'
-import Dialog from '@material-ui/core/Dialog'
-import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
 import styles from '../../styles/SentenceListStyles'
 
@@ -21,18 +18,12 @@ class SentenceList extends Component {
     super(props);
     this.state = {
       clicked: false,
-      open: false,
       keyword: ''
     }
-    this.handleClickToggle = this.handleClickToggle.bind(this) 
   }
 
   componentDidMount() {
     this.props.getSentences(this.state.keyword);
-  }
-
-  handleClickToggle() {
-    this.setState({ open: !this.state.open })
   }
 
   handleChange = (evt) => {
@@ -52,26 +43,11 @@ class SentenceList extends Component {
     const { loading, sentences } = this.props.data;
     const { authenticated, credentials: { name } } = this.props.user;
 
+    const isAuthenticated = authenticated ? <Profile /> : <AuthenticationIcon />;
+
     return (
       <Grid container>
-        <Grid item sm={2} xs={1}>    
-          <Button variant="outlined" color="primary" onClick={this.handleClickToggle}>
-            Open responsive dialog
-          </Button>
-          <Dialog
-            open={this.state.open}
-            onClose={this.handleClose}
-            aria-labelledby="responsive-dialog-title"
-          >
-            <Profile />
-            
-            <DialogActions>
-              <Button onClick={this.handleClickToggle} color="primary">
-                X
-              </Button>
-            </DialogActions>
-          </Dialog>
-        </Grid>
+        <Grid item sm={2} xs={1} />
 
         <Grid item sm={8} xs={10}>
           <div className={classes.textField}>
@@ -96,9 +72,7 @@ class SentenceList extends Component {
         </Grid>
 
         <Grid item sm={2} xs={1}>
-          <div className={classes.auth}>
-            <AuthenticationIcon />
-          </div>
+          {isAuthenticated}
         </Grid>
       </Grid>      
     )
