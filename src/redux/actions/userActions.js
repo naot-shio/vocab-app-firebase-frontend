@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { SET_USER, SET_ERRORS, CLEAR_ERRORS, LOADING_UI, LOADING_USER} from '../types'
+import { SET_USER, SET_ERRORS, CLEAR_ERRORS, LOADING_UI, LOADING_USER, SET_UNAUTHENTICATED} from '../types'
 
 export const signUpUser = (newUserData) => (dispatch) => {
   dispatch({ type: LOADING_UI });
@@ -62,4 +62,10 @@ export const uploadImage = (formData) => (dispatch) => {
       dispatch(getUserData());
     })
     .catch(err => console.log(err))
+}
+
+export const logout = () => (dispatch) => {
+  localStorage.removeItem('FBIdToken');
+  delete axios.defaults.headers.common['Authorization'];
+  dispatch({ type: SET_UNAUTHENTICATED });
 }

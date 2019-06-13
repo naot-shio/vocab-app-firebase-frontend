@@ -10,12 +10,12 @@ import Paper from '@material-ui/core/Paper'
 import IconButton from '@material-ui/core/IconButton'
 import Tooltip from '@material-ui/core/Tooltip'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faIdCard, faImage } from '@fortawesome/free-solid-svg-icons'
+import { faIdCard, faImage, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 import styles from '../../styles/ProfileStyles'
 
 // Redux
 import { connect } from 'react-redux'
-import { uploadImage } from '../../redux/actions/userActions'
+import { uploadImage, logout } from '../../redux/actions/userActions'
 
 class Profile extends Component {
   state = {
@@ -37,6 +37,10 @@ class Profile extends Component {
   handleEditImage = () => {
     const fileInput = document.getElementById('imageInput');
     fileInput.click();
+  }
+
+  handleLogout = () => {
+    this.props.logout();
   }
 
   render() {
@@ -62,9 +66,9 @@ class Profile extends Component {
             <div className={classes.profile}>
               <div className="image-wrapper">
                 <img src={imageUrl} alt="profile" className="profile-image" />
-                <input 
-                  type="file" 
-                  id="imageInput" 
+                <input
+                  type="file"
+                  id="imageInput"
                   hidden="hidden"
                   onChange={this.handleImageUpload}
                 />
@@ -81,6 +85,11 @@ class Profile extends Component {
             </div>
           </Paper>
           <DialogActions>
+            <Tooltip title="Logout" placement="left">
+              <IconButton onClick={this.handleLogout} className="button">
+                <FontAwesomeIcon icon={faSignOutAlt} />
+              </IconButton>
+            </Tooltip>
             <Button onClick={this.handleClickToggle} color="primary">
               X
             </Button>
@@ -101,7 +110,8 @@ const mapStateToProps = state => ({
 })
 
 const mapActionsToProps = {
-  uploadImage
+  uploadImage,
+  logout
 }
 
 export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(Profile))
