@@ -45,14 +45,12 @@ class Profile extends Component {
     
     return (
       <>
-        <div style={{marginTop: 10 }}>
-          <Button 
-            variant="outlined" 
-            color="primary" 
-            onClick={this.handleClickToggle}
-          >
-            <FontAwesomeIcon icon={faIdCard} />
-          </Button>
+        <div style={{marginTop: 10, marginLeft: 'auto', marginRight: 30, width: 50 }}>
+          <Tooltip title="Profile" placement="left">
+            <IconButton  onClick={this.handleClickToggle} className="button" style={{marginLeft: 20, marginTop: 5 }}>
+              <FontAwesomeIcon icon={faIdCard} />
+            </IconButton>
+          </Tooltip>
         </div>
         
         <Dialog
