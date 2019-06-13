@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import AuthenticationIcon from '../auth/AuthenticationIcon'
 import Profile from '../pages/Profile'
-import AllSentences from './AllSentences'
+import Sentence from './Sentence'
 
 // styles
 import withStyles from '@material-ui/core/styles/withStyles'
@@ -22,6 +22,10 @@ class SentenceList extends Component {
     }
   }
 
+  componentDidMount() {
+    this.props.getSentences(this.state.keyword);
+  }
+
   handleChange = (evt) => {
     this.setState({
       [evt.target.name]: evt.target.value
@@ -37,7 +41,12 @@ class SentenceList extends Component {
   render() {
     const { classes } = this.props;
     const { authenticated } = this.props.user;
+    const { sentences, loading } = this.props.data;
+    
     const isAuthenticated = authenticated ? <Profile /> : <AuthenticationIcon />;
+    let getAllSentences = !loading ? (
+      sentences.map((sentence, i) => <Sentence key={sentence.sentenceId} sentence={sentence} i={i} />)
+    ) : <p>Loading...</p>;
 
     return (
       <Grid container>
@@ -57,7 +66,7 @@ class SentenceList extends Component {
             </form>
           </div>
           
-          <AllSentences />
+          {getAllSentences}
         </Grid>
 
         <Grid item sm={2} xs={1}>
@@ -69,7 +78,8 @@ class SentenceList extends Component {
 }
 
 const mapStateToProps = state => ({
-  user: state.user
+  user: state.user,
+  data: state.data
 })
 
 const mapActionsToProps = {
