@@ -53,3 +53,13 @@ export const getUserData = () => (dispatch) => {
     })
     .catch(err => console.error(err))
 }
+
+export const uploadImage = (formData) => (dispatch) => {
+  dispatch({ type: LOADING_USER });
+  axios
+    .post('user/image', formData)
+    .then(res => {
+      dispatch(getUserData());
+    })
+    .catch(err => console.log(err))
+}

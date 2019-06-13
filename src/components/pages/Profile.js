@@ -7,12 +7,15 @@ import DialogActions from '@material-ui/core/DialogActions'
 import Dialog from '@material-ui/core/Dialog'
 import Button from '@material-ui/core/Button'
 import Paper from '@material-ui/core/Paper'
+import IconButton from '@material-ui/core/IconButton'
+import Tooltip from '@material-ui/core/Tooltip'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faIdCard } from '@fortawesome/free-solid-svg-icons'
+import { faIdCard, faImage } from '@fortawesome/free-solid-svg-icons'
 import styles from '../../styles/ProfileStyles'
 
 // Redux
 import { connect } from 'react-redux'
+import { uploadImage } from '../../redux/actions/userActions'
 
 class Profile extends Component {
   state = {
@@ -21,6 +24,19 @@ class Profile extends Component {
 
   handleClickToggle = () => {
     this.setState({ open: !this.state.open })
+  }
+
+  handleImageUpload = (evt) => {
+    evt.preventDefault();
+    const image = evt.target.files[0];
+    const formData = new FormData();
+    formData.append('image', image, image);
+    this.props.uploadImage(formData);
+  }
+
+  handleEditImage = () => {
+    const fileInput = document.getElementById('imageInput');
+    fileInput.click();
   }
 
   render() {
@@ -48,6 +64,17 @@ class Profile extends Component {
             <div className={classes.profile}>
               <div className="image-wrapper">
                 <img src={imageUrl} alt="profile" className="profile-image" />
+                <input 
+                  type="file" 
+                  id="imageInput" 
+                  hidden="hidden"
+                  onChange={this.handleImageUpload}
+                />
+                <Tooltip title="Upload image" placement="top">
+                  <IconButton onClick={this.handleEditImage} className="button" style={{marginLeft: 20, marginTop: 5 }}>
+                    <FontAwesomeIcon icon={faImage} />
+                  </IconButton>
+                </Tooltip>
               </div>
               <hr />
               <div className={classes.username}>
@@ -75,4 +102,8 @@ const mapStateToProps = state => ({
   user: state.user
 })
 
-export default connect(mapStateToProps)(withStyles(styles)(Profile))
+const mapActionsToProps = {
+  uploadImage
+}
+
+export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(Profile))
