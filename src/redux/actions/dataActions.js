@@ -6,9 +6,9 @@ import {
   SET_ERRORS,
   CLEAR_ERRORS,
   UPDATE_SENTENCE,
-  SET_SENTENCE,
-  STOP_LOADING_UI,
-  DELETE_SENTENCE
+  DELETE_SENTENCE,
+  LIKE_SENTENCE,
+  UNLIKE_SENTENCE
 } from "../types";
 
 import axios from 'axios'
@@ -93,3 +93,27 @@ export const deleteSentence = (sentenceId) => (dispatch) => {
     })
     .catch((err) => console.log(err));
 };
+
+export const likeSentence = (sentenceId) => (dispatch) => {
+  axios
+    .get(`/sentence/${sentenceId}/like`)
+    .then(res => {
+      dispatch({
+        type: LIKE_SENTENCE,
+        payload: res.data
+      })
+    })
+    .catch(err => console.log(err))
+}
+
+export const unlikeSentence = (sentenceId) => (dispatch) => {
+  axios
+    .get(`/sentence/${sentenceId}/unlike`)
+    .then(res => {
+      dispatch({
+        type: UNLIKE_SENTENCE,
+        payload: res.data
+      })
+    })
+    .catch(err => console.log(err))
+}

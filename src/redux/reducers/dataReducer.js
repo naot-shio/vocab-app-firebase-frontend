@@ -1,4 +1,4 @@
-import { LOADING_DATA, SET_SENTENCES, POST_SENTENCE, UPDATE_SENTENCE, SET_SENTENCE, DELETE_SENTENCE } from "../types";
+import { LOADING_DATA, SET_SENTENCES, POST_SENTENCE, UPDATE_SENTENCE, SET_SENTENCE, DELETE_SENTENCE, LIKE_SENTENCE, UNLIKE_SENTENCE } from "../types";
 
 const initialState = {
   sentences: [],
@@ -7,6 +7,9 @@ const initialState = {
 }
 
 export default function(state=initialState, action) {
+  let index = state.sentences.findIndex(
+    sentence => sentence.sentenceId === action.payload
+  );
   switch(action.type) {
     case LOADING_DATA:
       return {
@@ -38,13 +41,16 @@ export default function(state=initialState, action) {
         sentence: action.payload
       }
     case DELETE_SENTENCE:
-      let index = state.sentences.findIndex(
-        sentence => sentence.sentenceId === action.payload
-      );
       state.sentences.splice(index, 1);
       return {
         ...state
-      };
+      }
+    case LIKE_SENTENCE:
+    case UNLIKE_SENTENCE:
+      state.sentences[index] = action.payload
+      return {
+        ...state
+      }
     default: 
       return state;
   }
