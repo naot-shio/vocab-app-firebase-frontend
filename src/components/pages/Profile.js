@@ -45,6 +45,7 @@ class Profile extends Component {
 
   render() {
     const { classes } = this.props;
+    const { likes } = this.props.user
     const { name, imageUrl } = this.props.user.credentials;
     
     return (
@@ -81,6 +82,9 @@ class Profile extends Component {
               <hr />
               <div className={classes.username}>
                 {name}
+              </div>
+              <div>
+              {likes.length} likes
               </div>
             </div>
           </Paper>
