@@ -34,7 +34,7 @@ class Sentence extends Component {
   }
 
   render() {
-    const { classes, sentence, i } = this.props
+    const { classes, sentence, i, displayOnlyLikedSentences } = this.props
     const { authenticated, credentials: { name } } = this.props.user;
 
     const likeButton =  this.sentenceLiked() ? (
@@ -64,6 +64,7 @@ class Sentence extends Component {
 
     return (
       <>
+      {displayOnlyLikedSentences && this.props.user.likes && this.props.user.likes.find(like => like.sentenceId === this.props.sentence.sentenceId) &&
         <Card className={classes.Card} key={sentence.sentenceId}>
           <CardContent>
             <Typography variant="h5" className={classes.sentence}>
@@ -91,6 +92,37 @@ class Sentence extends Component {
             {editDeleteButton(sentence)}
           </CardContent>
         </Card>
+        }
+        {
+        !displayOnlyLikedSentences &&
+        <Card className={classes.Card} key={sentence.sentenceId}>
+          <CardContent>
+            <Typography variant="h5" className={classes.sentence}>
+              {i + 1}. {sentence.sentence} 
+            </Typography>
+
+            {authenticated &&
+              <div>
+                {likeButton}
+              </div>
+            }
+
+            {sentence.words.map((word, index) => 
+              <div key={index} className={classes.word}>
+                <Typography className={classes.indices}>{i+1}-{index+1}</Typography>
+                <Typography className={classes.english}>{word.english}: </Typography>
+                <Typography className={classes.japanese}>{word.japanese}</Typography>
+              </div>  
+            )}
+  
+            <Typography variant="body1" className={classes.translation}>
+              訳: {sentence.translation}
+            </Typography>
+                      
+            {editDeleteButton(sentence)}
+          </CardContent>
+        </Card>
+        }
       </>
     )
   }

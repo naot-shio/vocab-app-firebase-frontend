@@ -7,6 +7,10 @@ import Sentence from './Sentence'
 import withStyles from '@material-ui/core/styles/withStyles'
 import Grid from '@material-ui/core/Grid'
 import TextField from '@material-ui/core/TextField'
+import IconButton from '@material-ui/core/IconButton'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEdit, faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons'
+import { faHeart as faHeartRegular } from '@fortawesome/free-regular-svg-icons'
 import styles from '../../styles/SentenceListStyles'
 
 // Redux 
@@ -18,7 +22,8 @@ class SentenceList extends Component {
     super(props);
     this.state = {
       clicked: false,
-      keyword: ''
+      keyword: '',
+      displayOnlyLikedSentences: false
     }
   }
 
@@ -32,6 +37,18 @@ class SentenceList extends Component {
     });
   }
 
+  handleDisplayLikedSentences = () => {
+    this.setState({
+      displayOnlyLikedSentences: true
+    })
+  }
+
+  handleDisplayAllSentences = () => {
+    this.setState({
+      displayOnlyLikedSentences: false
+    })
+  }
+
   handleSubmit = (evt) => {
     evt.preventDefault()
     this.props.getSentences(this.state.keyword);
@@ -42,15 +59,27 @@ class SentenceList extends Component {
     const { classes } = this.props;
     const { authenticated } = this.props.user;
     const { sentences, loading } = this.props.data;
+
+    const displayLikeButton =  this.state.displayOnlyLikedSentences ? (
+      <IconButton onClick={this.handleDisplayAllSentences}>
+        <FontAwesomeIcon icon={faHeartSolid} color="red" />
+      </IconButton>
+    ) : (
+      <IconButton onClick={this.handleDisplayLikedSentences}>
+        <FontAwesomeIcon icon={faHeartRegular} color="red" />
+      </IconButton>
+    )
     
     const isAuthenticated = authenticated ? <Profile /> : <AuthenticationIcon />;
     let getAllSentences = !loading ? (
-      sentences.map((sentence, i) => <Sentence key={sentence.sentenceId} sentence={sentence} i={i} />)
+      sentences.map((sentence, i) => <Sentence key={sentence.sentenceId} sentence={sentence} i={i} displayOnlyLikedSentences={this.state.displayOnlyLikedSentences}  />)
     ) : <p>Loading...</p>;
 
     return (
       <Grid container>
-        <Grid item sm={2} xs={1} />
+        <Grid item sm={2} xs={1}>
+          {displayLikeButton}
+        </Grid>
 
         <Grid item sm={8} xs={10}>
           <div className={classes.textField}>
