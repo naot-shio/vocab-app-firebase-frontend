@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import DeleteSentence from './DeleteSentence'
+import WordMeaningList from './WordMeaningList';
 
 // styles
 import Card from '@material-ui/core/Card'
@@ -9,7 +10,7 @@ import Typography from '@material-ui/core/Typography'
 import Fab from '@material-ui/core/Fab'
 import IconButton from '@material-ui/core/IconButton'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEdit, faInfoCircle, faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons'
+import { faEdit, faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons'
 import { faHeart as faHeartRegular } from '@fortawesome/free-regular-svg-icons'
 import withStyles from '@material-ui/core/styles/withStyles'
 import styles from '../../styles/SentenceListStyles'
@@ -78,11 +79,11 @@ class Sentence extends Component {
             }
 
             {sentence.words.map((word, index) => 
-              <div key={index} className={classes.word}>
-                <Typography className={classes.indices}>{i+1}-{index+1}</Typography>
-                <Typography className={classes.english}><FontAwesomeIcon icon={faInfoCircle} className={classes.infoIcon} />{word.english}: </Typography>
-                <Typography className={classes.japanese}>{word.japanese}</Typography>
-              </div>  
+              <WordMeaningList
+                index={index}
+                i={i}
+                word={word}
+              />  
             )}
   
             <Typography variant="body1" className={classes.translation}>
@@ -108,11 +109,11 @@ class Sentence extends Component {
             }
 
             {sentence.words.map((word, index) => 
-              <div key={index} className={classes.word}>
-                <Typography className={classes.indices}>{i+1}-{index+1}</Typography>
-                <Typography className={classes.english}><FontAwesomeIcon icon={faInfoCircle} className={classes.infoIcon} />{word.english}: </Typography>
-                <Typography className={classes.japanese}>{word.japanese}</Typography>
-              </div>  
+              <WordMeaningList
+                index={index}
+                i={i}
+                word={word}
+              />
             )}
   
             <Typography variant="body1" className={classes.translation}>
