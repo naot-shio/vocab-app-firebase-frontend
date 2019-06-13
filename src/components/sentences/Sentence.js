@@ -39,11 +39,11 @@ class Sentence extends Component {
 
     const likeButton =  this.sentenceLiked() ? (
       <IconButton onClick={this.unlikeSentence}>
-        <FontAwesomeIcon icon={faHeartSolid} />
+        <FontAwesomeIcon icon={faHeartSolid} color="red" />
       </IconButton>
     ) : (
       <IconButton onClick={this.likeSentence}>
-        <FontAwesomeIcon icon={faHeartRegular} />
+        <FontAwesomeIcon icon={faHeartRegular} color="red" />
       </IconButton>
     )
     
