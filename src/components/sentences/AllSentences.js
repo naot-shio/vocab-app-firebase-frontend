@@ -12,9 +12,19 @@ import { faEdit, faTrashAlt, faPlus } from '@fortawesome/free-solid-svg-icons'
 import withStyles from '@material-ui/core/styles/withStyles'
 import styles from '../../styles/SentenceListStyles'
 
+// Redux
+import { connect } from 'react-redux'
+import { getSentences } from '../../redux/actions/dataActions'
+
 class AllSentences extends Component {
+  componentDidMount() {
+    this.props.getSentences('');
+  }
+
   render() {
-    const { classes, sentences, loading, authenticated, name } = this.props
+    const { classes } = this.props
+    const { loading, sentences } = this.props.data;
+    const { authenticated, credentials: { name } } = this.props.user;
     return (
       <>
         {
@@ -64,4 +74,9 @@ class AllSentences extends Component {
   }
 }
 
-export default withStyles(styles)(AllSentences)
+const mapStateToProps = state => ({
+  data: state.data,
+  user: state.user
+})
+
+export default connect(mapStateToProps, { getSentences })(withStyles(styles)(AllSentences))

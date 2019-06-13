@@ -22,10 +22,6 @@ class SentenceList extends Component {
     }
   }
 
-  componentDidMount() {
-    this.props.getSentences(this.state.keyword);
-  }
-
   handleChange = (evt) => {
     this.setState({
       [evt.target.name]: evt.target.value
@@ -40,9 +36,7 @@ class SentenceList extends Component {
 
   render() {
     const { classes } = this.props;
-    const { loading, sentences } = this.props.data;
-    const { authenticated, credentials: { name } } = this.props.user;
-
+    const { authenticated } = this.props.user;
     const isAuthenticated = authenticated ? <Profile /> : <AuthenticationIcon />;
 
     return (
@@ -63,12 +57,7 @@ class SentenceList extends Component {
             </form>
           </div>
           
-          <AllSentences 
-            sentences={sentences} 
-            loading={loading} 
-            authenticated={authenticated} 
-            name={name}
-          />
+          <AllSentences />
         </Grid>
 
         <Grid item sm={2} xs={1}>
@@ -80,8 +69,6 @@ class SentenceList extends Component {
 }
 
 const mapStateToProps = state => ({
-  data: state.data,
-  UI: state.UI,
   user: state.user
 })
 
