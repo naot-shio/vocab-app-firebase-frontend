@@ -73,6 +73,10 @@ export class WordMeaningList extends Component {
           }
 
           if (res.data[0].meaning.noun) {
+            if (res.data[0].meaning.noun.definition === undefined) {
+              console.log('not found')
+              return 'Not found'
+            }
             dataLength = res.data[0].meaning.noun.length
             let nounList = [];
             for (let i = 0; i < dataLength; i++) {
