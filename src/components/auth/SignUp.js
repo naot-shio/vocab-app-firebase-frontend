@@ -53,7 +53,7 @@ class SignUp extends Component {
   }
 
   render() {
-    const { classes, UI: { loading } } = this.props;
+    const { classes } = this.props;
     const { errors } = this.state;
     return (
       <div className={classes.root}>
