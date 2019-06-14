@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import DeleteSentence from './DeleteSentence'
+import WordMeaningList from './WordMeaningList';
 
 // styles
 import Card from '@material-ui/core/Card'
@@ -78,11 +79,11 @@ class Sentence extends Component {
             }
 
             {sentence.words.map((word, index) => 
-              <div key={index} className={classes.word}>
-                <Typography className={classes.indices}>{i+1}-{index+1}</Typography>
-                <Typography className={classes.english}>{word.english}: </Typography>
-                <Typography className={classes.japanese}>{word.japanese}</Typography>
-              </div>  
+              <WordMeaningList
+                index={index}
+                i={i}
+                word={word}
+              />  
             )}
   
             <Typography variant="body1" className={classes.translation}>
@@ -108,11 +109,11 @@ class Sentence extends Component {
             }
 
             {sentence.words.map((word, index) => 
-              <div key={index} className={classes.word}>
-                <Typography className={classes.indices}>{i+1}-{index+1}</Typography>
-                <Typography className={classes.english}>{word.english}: </Typography>
-                <Typography className={classes.japanese}>{word.japanese}</Typography>
-              </div>  
+              <WordMeaningList
+                index={index}
+                i={i}
+                word={word}
+              />
             )}
   
             <Typography variant="body1" className={classes.translation}>

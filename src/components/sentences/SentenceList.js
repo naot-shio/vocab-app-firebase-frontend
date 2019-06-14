@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import axios from 'axios'
 import AuthenticationIcon from '../auth/AuthenticationIcon'
 import Profile from '../pages/Profile'
 import Sentence from './Sentence'
