@@ -12,7 +12,6 @@ import { faPlusSquare } from '@fortawesome/free-solid-svg-icons'
 import styles from '../../styles/sentences/CreateSentenceStyles'
 import '../../styles/sentences/CreateSentenceForm.css'
 
-
 // Redux
 import { connect } from 'react-redux'
 import { postSentence } from '../../redux/actions/dataActions'
@@ -58,7 +57,6 @@ export class CreateSentence extends Component {
 
   handleSubmit(evt) {
     evt.preventDefault();
-    console.log(this.state)
     const newWord = {
       sentence: this.state.sentence,
       translation: this.state.translation,

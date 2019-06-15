@@ -25,7 +25,6 @@ export const loginUser = (userData) => (dispatch) => {
   axios
   .post('/login', userData)
   .then(res => {
-    console.log(res.data);
     const FBIdToken = `Bearer ${res.data.token}`;
     localStorage.setItem('FBIdToken', FBIdToken);
     axios.defaults.headers.common['Authorization'] = FBIdToken;
@@ -33,7 +32,6 @@ export const loginUser = (userData) => (dispatch) => {
     dispatch({ type: CLEAR_ERRORS });
   })
   .catch((err) => {
-    console.log(err.response.data)
     dispatch({
       type: SET_ERRORS,
       payload: err.response.data

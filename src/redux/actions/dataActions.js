@@ -34,20 +34,6 @@ export const getSentences = (keyword) => (dispatch) => {
     })
 }
 
-// export const getSentence = (sentenceId) => (dispatch) => {
-//   dispatch({ type: LOADING_UI });
-//   axios
-//     .get(`/sentence/${sentenceId}`)
-//     .then(res => {
-//       dispatch({
-//         type: SET_SENTENCE,
-//         payload: res.data
-//       });
-//     })
-//     .catch(err => console.error(err))
-//     dispatch({ type: STOP_LOADING_UI})
-// }
-
 export const postSentence = (newSentence) => (dispatch) => {
   dispatch({ type: LOADING_UI })
   axios

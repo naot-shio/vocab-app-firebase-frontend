@@ -18,9 +18,7 @@ import { getUserData } from './redux/actions/userActions'
 const token = localStorage.FBIdToken;
 if (token) {
   const decodedToken = jwtDecode(token);
-  if (decodedToken.exp * 1000 < Date.now()) {
-    console.log('needa login')
-  } else {
+  if (decodedToken.exp * 10000 > Date.now()) {
     store.dispatch({ type: SET_AUTHENTICATED });
     axios.defaults.headers.common['Authorization'] = token;
     store.dispatch(getUserData())
