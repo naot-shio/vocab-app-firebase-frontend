@@ -62,13 +62,13 @@ class SentenceList extends Component {
     const { sentences, loading } = this.props.data;
 
     const displayLikeButton =  this.state.displayOnlyLikedSentences ? (
-      <Tooltip title="Display All of The Sentences" placement="right">
+      <Tooltip title="Display All of The Sentences" placement="bottom-end">
         <IconButton onClick={this.handleDisplayAllSentences}>
           <FontAwesomeIcon icon={faHeartSolid} color="red" />
         </IconButton>
       </Tooltip>
     ) : (
-      <Tooltip title="Display The Liked Sentences" placement="right">
+      <Tooltip title="Display The Liked Sentences" placement="bottom-end">
         <IconButton onClick={this.handleDisplayLikedSentences}>
           <FontAwesomeIcon icon={faHeartRegular} color="red" />
         </IconButton>
