@@ -5,6 +5,10 @@ const styles = {
     marginLeft: "auto",
     marginRight: "auto"
   },
+  button: {
+    marginTop: 20,
+    marginLeft: 20
+  },
   Card: {
     margin: 30,
     width: 700,

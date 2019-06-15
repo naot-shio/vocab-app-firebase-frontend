@@ -8,6 +8,7 @@ import withStyles from '@material-ui/core/styles/withStyles'
 import Grid from '@material-ui/core/Grid'
 import TextField from '@material-ui/core/TextField'
 import IconButton from '@material-ui/core/IconButton'
+import Tooltip from '@material-ui/core/Tooltip'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons'
 import { faHeart as faHeartRegular } from '@fortawesome/free-regular-svg-icons'
@@ -61,13 +62,17 @@ class SentenceList extends Component {
     const { sentences, loading } = this.props.data;
 
     const displayLikeButton =  this.state.displayOnlyLikedSentences ? (
-      <IconButton onClick={this.handleDisplayAllSentences}>
-        <FontAwesomeIcon icon={faHeartSolid} color="red" />
-      </IconButton>
+      <Tooltip title="Display All of The Sentences" placement="right">
+        <IconButton onClick={this.handleDisplayAllSentences}>
+          <FontAwesomeIcon icon={faHeartSolid} color="red" />
+        </IconButton>
+      </Tooltip>
     ) : (
-      <IconButton onClick={this.handleDisplayLikedSentences}>
-        <FontAwesomeIcon icon={faHeartRegular} color="red" />
-      </IconButton>
+      <Tooltip title="Display The Liked Sentences" placement="right">
+        <IconButton onClick={this.handleDisplayLikedSentences}>
+          <FontAwesomeIcon icon={faHeartRegular} color="red" />
+        </IconButton>
+      </Tooltip>
     )
     
     const isAuthenticated = authenticated ? <Profile /> : <AuthenticationIcon />;
@@ -78,7 +83,10 @@ class SentenceList extends Component {
     return (
       <Grid container>
         <Grid item sm={2} xs={1}>
-          {authenticated && displayLikeButton}
+          <div className={classes.button}>
+            {authenticated && displayLikeButton}
+          </div>
+          
         </Grid>
 
         <Grid item sm={8} xs={10}>
