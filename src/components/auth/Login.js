@@ -7,7 +7,7 @@ import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import Typography from '@material-ui/core/Typography'
-import styles from '../../styles/AuthenticationStyles'
+import styles from '../../styles/auth/AuthenticationStyles'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSignInAlt } from '@fortawesome/free-solid-svg-icons'
 

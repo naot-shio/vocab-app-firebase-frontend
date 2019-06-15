@@ -9,8 +9,8 @@ import DialogTitle from '@material-ui/core/DialogTitle'
 import DialogContent from '@material-ui/core/DialogContent'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlusSquare } from '@fortawesome/free-solid-svg-icons'
-import styles from '../../styles/CreateSentenceStyles'
-import '../../styles/CreateSentenceForm.css'
+import styles from '../../styles/sentences/CreateSentenceStyles'
+import '../../styles/sentences/CreateSentenceForm.css'
 
 
 // Redux

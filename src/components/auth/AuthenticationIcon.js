@@ -11,7 +11,7 @@ import withStyles from '@material-ui/core/styles/withStyles'
 import Fab from '@material-ui/core/Fab'
 import Tooltip from '@material-ui/core/Tooltip';
 import Dialog from '@material-ui/core/Dialog';
-import styles from '../../styles/AuthenticationIconStyles'
+import styles from '../../styles/auth/AuthenticationIconStyles'
 
 class AuthenticationIcon extends Component {
   constructor(props) {

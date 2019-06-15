@@ -1,7 +1,7 @@
 import React from 'react'
 import AuthenticationIcon from '../auth/AuthenticationIcon'
 
-import useStyles from '../../styles/HomeStyles'
+import useStyles from '../../styles/pages/HomeStyles'
 import Grid from '@material-ui/core/Grid'
 
 function Home() {

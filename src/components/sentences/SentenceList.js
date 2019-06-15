@@ -11,7 +11,7 @@ import IconButton from '@material-ui/core/IconButton'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons'
 import { faHeart as faHeartRegular } from '@fortawesome/free-regular-svg-icons'
-import styles from '../../styles/SentenceListStyles'
+import styles from '../../styles/sentences/SentenceListStyles'
 
 // Redux 
 import { connect } from 'react-redux'

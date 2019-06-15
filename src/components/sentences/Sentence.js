@@ -3,7 +3,7 @@ import SentenceDetails from './SentenceDetails'
 
 // styles
 import withStyles from '@material-ui/core/styles/withStyles'
-import styles from '../../styles/SentenceListStyles'
+import styles from '../../styles/sentences/SentenceListStyles'
 
 // Redux
 import { connect } from 'react-redux'
