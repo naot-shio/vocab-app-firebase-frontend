@@ -78,7 +78,7 @@ class SentenceList extends Component {
     return (
       <Grid container>
         <Grid item sm={2} xs={1}>
-          {displayLikeButton}
+          {authenticated && displayLikeButton}
         </Grid>
 
         <Grid item sm={8} xs={10}>
