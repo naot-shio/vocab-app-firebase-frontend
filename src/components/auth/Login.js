@@ -56,7 +56,7 @@ class Login extends Component {
         <DialogTitle id="sign-up-dialog-title">
           <span className={classes.dialogIcon}>
             <FontAwesomeIcon icon={faSignInAlt} />
-          </span>Sign Up
+          </span>Login
         </DialogTitle>
         <form noValidate onSubmit={this.handleSubmit}>
 
@@ -92,7 +92,7 @@ class Login extends Component {
             </Typography>
           )}
 
-          <Button type="submit" variant="contained" color="primary" className={classes.button}>Sign Up</Button>
+          <Button type="submit" variant="contained" color="primary" className={classes.button}>Login</Button>
         </form>
       </div>
     )
