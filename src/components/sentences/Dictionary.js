@@ -7,6 +7,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 export class Dictionary extends Component {
   state = {
     loading: true,
+    notFound: false,
     verb: [],
     noun: [],
     adverb: [],
@@ -24,8 +25,18 @@ export class Dictionary extends Component {
     // Retrieve data and push them in the array and then set a corresponding state with it
     let searchedWord = this.props.word
     fetch(`https://googledictionaryapi.eu-gb.mybluemix.net/?define=${searchedWord}&lang=en`)
-      .then(res => res.json())
+      .then(res => {
+        if (res.status === 404) {
+          return 'Not found'
+        } else {
+          return res.json()
+        }
+      })
       .then(result => {
+        if(result === 'Not found') {
+          this.setState({ notFound: true })
+        }
+
         if (result[0].meaning) {
           let dataLength, example, exampleCapitalized;
           if (result[0].meaning.adverb) {
@@ -33,7 +44,6 @@ export class Dictionary extends Component {
             let adverbList = [];
             for (let i = 0; i < dataLength; i++) {
               example = result[0].meaning.adverb[i].example
-
               if (example) {
                 exampleCapitalized = example.charAt(0).toUpperCase() + example.slice(1)
                 adverbList.push({
@@ -226,6 +236,10 @@ export class Dictionary extends Component {
             })
           }
         }
+        return this.state
+      })
+      .then(found => {
+        console.log(found)
       })
       .then(() => {
         this.setState({ loading: false })
@@ -234,7 +248,9 @@ export class Dictionary extends Component {
   }
 
   render() {
-    const { noun, verb, adjective, adverb, conjugation, exclamation, preposition, loading, determiner, pronoun } = this.state;
+    const { notFound, noun, verb, adjective, adverb, conjugation, exclamation, preposition, loading, determiner, pronoun } = this.state;
+
+    const isNotFound = notFound && <DialogContentText>Sorry, not found</DialogContentText>
     const showWordAndMeanings = loading ? 
         <CircularProgress  size={150} /> : (
         <>
@@ -316,6 +332,7 @@ export class Dictionary extends Component {
     return (
       <>
         <DialogTitle>{this.props.word}</DialogTitle>
+        {isNotFound}
         {showWordAndMeanings}
       </>
     )
