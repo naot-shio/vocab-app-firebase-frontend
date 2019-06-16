@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import AuthenticationIcon from '../auth/AuthenticationIcon'
-import Profile from '../pages/Profile'
 import Sentence from './Sentence'
 
 // styles
@@ -9,6 +8,7 @@ import Grid from '@material-ui/core/Grid'
 import TextField from '@material-ui/core/TextField'
 import IconButton from '@material-ui/core/IconButton'
 import Tooltip from '@material-ui/core/Tooltip'
+import CircularProgress from '@material-ui/core/CircularProgress';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons'
 import { faHeart as faHeartRegular } from '@fortawesome/free-regular-svg-icons'
@@ -75,8 +75,34 @@ class SentenceList extends Component {
       </Tooltip>
     )
     
-    const isAuthenticated = authenticated ? <Profile /> : <AuthenticationIcon />;
-    let getAllSentences = !loading ? (
+    const isAuthenticated = !authenticated && <AuthenticationIcon />;
+
+    const buttonSearchBar = authenticated && <div className={classes.topField}>
+        <Grid container>
+          <Grid item xs={2}>
+            <div className={classes.button}>
+              {displayLikeButton}
+            </div>
+          </Grid>
+
+          <Grid item xs={10}>
+            <div className={classes.textField}>
+              <form onSubmit={this.handleSubmit}>
+                <TextField
+                  name="keyword"
+                  type="text"
+                  value={this.state.keyword}
+                  label="search"
+                  onChange={this.handleChange}
+                  fullWidth
+                />
+              </form>
+            </div>
+          </Grid>
+        </Grid>
+      </div>
+
+    let getAllSentences =!loading ? (
       sentences.map((sentence, i) => 
         <Sentence 
           key={sentence.sentenceId} 
@@ -84,29 +110,14 @@ class SentenceList extends Component {
           i={i} 
           displayOnlyLikedSentences={this.state.displayOnlyLikedSentences}  
         />)
-    ) : <p>Loading...</p>;
+    ) : <div className={classes.loading}><CircularProgress size={250} /></div>;
 
     return (
       <Grid container>
-        <Grid item sm={2} xs={1}>
-          <div className={classes.button}>
-            {authenticated && displayLikeButton}
-          </div>
-        </Grid>
+        <Grid item sm={2} xs={1} />
 
         <Grid item sm={8} xs={10}>
-          <div className={classes.textField}>
-            <form onSubmit={this.handleSubmit}>
-              <TextField
-                name="keyword"
-                type="text"
-                value={this.state.keyword}
-                label="search"
-                onChange={this.handleChange}
-                fullWidth
-              />
-            </form>
-          </div>
+          {buttonSearchBar}
           
           {getAllSentences}
         </Grid>

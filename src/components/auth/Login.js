@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { withRouter } from 'react-router'
 import PropTypes from 'prop-types'
 
 // styles
@@ -46,6 +47,7 @@ class Login extends Component {
       password: this.state.password
     }
     this.props.loginUser(userData)
+    this.props.history.push('/words')
   }
 
   render() {
@@ -111,4 +113,4 @@ const mapStateToProps = state => ({
   UI: state.UI
 })
 
-export default connect(mapStateToProps, { loginUser })(withStyles(styles)(Login))
+export default connect(mapStateToProps, { loginUser })(withStyles(styles)(withRouter(Login)))

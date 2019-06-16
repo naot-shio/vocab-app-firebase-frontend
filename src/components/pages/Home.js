@@ -1,11 +1,16 @@
 import React from 'react'
 import AuthenticationIcon from '../auth/AuthenticationIcon'
 
+// styles
 import useStyles from '../../styles/pages/HomeStyles'
 import Grid from '@material-ui/core/Grid'
 
-function Home() {
+// Redux
+import { connect } from 'react-redux'
+
+function Home(props) {
   const classes = useStyles();
+  const { authenticated } = props.user 
   return (
     <div className={classes.root}>
       <div className={classes.main}>
@@ -19,7 +24,7 @@ function Home() {
           </Grid>
           <Grid item sm={2} xs={1}>
             <div className={classes.auth}>
-              <AuthenticationIcon />
+              {!authenticated &&  <AuthenticationIcon />}
             </div>
           </Grid>
         </Grid>
@@ -28,4 +33,8 @@ function Home() {
   )
 }
 
-export default Home
+const mapStateToProps = state => ({
+  user: state.user
+})
+
+export default connect(mapStateToProps)(Home)

@@ -2,14 +2,12 @@ import React, { Component } from 'react'
 import SentenceForm from './SentenceForm'
 
 //styles 
-import withStyles from '@material-ui/core/styles/withStyles'
-import Button from '@material-ui/core/Button'
+import IconButton from '@material-ui/core/IconButton'
 import Dialog from '@material-ui/core/Dialog'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import DialogContent from '@material-ui/core/DialogContent'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlusSquare } from '@fortawesome/free-solid-svg-icons'
-import styles from '../../styles/sentences/CreateSentenceStyles'
 
 // Redux
 import { connect } from 'react-redux'
@@ -67,12 +65,11 @@ export class CreateSentence extends Component {
 
   render() {
     const { open } = this.state;
-    const { classes } = this.props;
     return (
       <>
-        <Button onClick={this.handleOpen} className={classes.button}>
+        <IconButton onClick={this.handleOpen}>
           <FontAwesomeIcon icon={faPlusSquare} />
-        </Button>
+        </IconButton>
 
         <Dialog
           open={open}
@@ -103,4 +100,4 @@ const mapStateToProps = state => ({
   loading: state.UI.loading
 })
 
-export default connect(mapStateToProps, { postSentence })(withStyles(styles)(CreateSentence))
+export default connect(mapStateToProps, { postSentence })(CreateSentence)

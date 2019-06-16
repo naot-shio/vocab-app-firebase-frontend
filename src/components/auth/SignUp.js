@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { withRouter } from 'react-router'
 import PropTypes from 'prop-types'
 
 // styles
@@ -50,6 +51,7 @@ class SignUp extends Component {
       confirmPassword: this.state.confirmPassword
     };
     this.props.signUpUser(newUserData)
+    this.props.history.push('/words')
   }
 
   render() {
@@ -93,7 +95,7 @@ class SignUp extends Component {
           <TextField 
             id="password"
             name="password"
-            type="text"
+            type="password"
             label="Password"
             className={classes.textField}
             helperText={errors.password}
@@ -106,7 +108,7 @@ class SignUp extends Component {
           <TextField 
             id="confirmPassword"
             name="confirmPassword"
-            type="text"
+            type="password"
             label="Confirm Password"
             className={classes.textField}
             helperText={errors.confirmPassword}
@@ -145,4 +147,4 @@ const mapActionsToProps = {
   signUpUser
 }
 
-export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(SignUp))
+export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(withRouter(SignUp)))
