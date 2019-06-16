@@ -24,7 +24,6 @@ function Home() {
           </Grid>
         </Grid>
       </div>
-      
     </div>
   )
 }

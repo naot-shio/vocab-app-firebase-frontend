@@ -77,7 +77,13 @@ class SentenceList extends Component {
     
     const isAuthenticated = authenticated ? <Profile /> : <AuthenticationIcon />;
     let getAllSentences = !loading ? (
-      sentences.map((sentence, i) => <Sentence key={sentence.sentenceId} sentence={sentence} i={i} displayOnlyLikedSentences={this.state.displayOnlyLikedSentences}  />)
+      sentences.map((sentence, i) => 
+        <Sentence 
+          key={sentence.sentenceId} 
+          sentence={sentence} 
+          i={i} 
+          displayOnlyLikedSentences={this.state.displayOnlyLikedSentences}  
+        />)
     ) : <p>Loading...</p>;
 
     return (
@@ -86,7 +92,6 @@ class SentenceList extends Component {
           <div className={classes.button}>
             {authenticated && displayLikeButton}
           </div>
-          
         </Grid>
 
         <Grid item sm={8} xs={10}>
