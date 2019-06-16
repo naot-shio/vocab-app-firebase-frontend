@@ -9,7 +9,7 @@ const styles = {
     "& a": {
       textDecoration: "none",
       color: "rgba(0,0,0,0.8)",
-      fontFamily: "Serif"
+      fontFamily: "Nico Moji"
     }
   },
   title: {
