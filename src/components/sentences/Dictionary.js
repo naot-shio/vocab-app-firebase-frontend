@@ -13,7 +13,9 @@ export class Dictionary extends Component {
     adjective: [],
     exclamation: [],
     preposition: [],
-    conjugation: []
+    conjugation: [],
+    pronoun: [],
+    determiner: []
   }
 
   componentDidMount() {
@@ -31,11 +33,18 @@ export class Dictionary extends Component {
             let adverbList = [];
             for (let i = 0; i < dataLength; i++) {
               example = result[0].meaning.adverb[i].example
-              exampleCapitalized = example.charAt(0).toUpperCase() + example.slice(1)
-              adverbList.push({
-                definition: result[0].meaning.adverb[i].definition,
-                example: exampleCapitalized
-              })
+
+              if (example) {
+                exampleCapitalized = example.charAt(0).toUpperCase() + example.slice(1)
+                adverbList.push({
+                  definition: result[0].meaning.adverb[i].definition,
+                  example: exampleCapitalized
+                })
+              } else {
+                adverbList.push({
+                  definition: result[0].meaning.adverb[i].definition,
+                })
+              }
             }
             this.setState({
               adverb: adverbList
@@ -47,11 +56,17 @@ export class Dictionary extends Component {
             let adjectiveList = [];
             for (let i = 0; i < dataLength; i++) {
               example = result[0].meaning.adjective[i].example
-              exampleCapitalized = example.charAt(0).toUpperCase() + example.slice(1)
-              adjectiveList.push({
-                definition: result[0].meaning.adjective[i].definition,
-                example: exampleCapitalized
-              })
+              if (example) {
+                exampleCapitalized = example.charAt(0).toUpperCase() + example.slice(1)
+                adjectiveList.push({
+                  definition: result[0].meaning.adjective[i].definition,
+                  example: exampleCapitalized
+                })
+              } else {
+                adjectiveList.push({
+                  definition: result[0].meaning.adjective[i].definition,
+                })
+              }
             }
             this.setState({
               adjective: adjectiveList
@@ -63,11 +78,17 @@ export class Dictionary extends Component {
             let verbList = [];
             for (let i = 0; i < dataLength; i++) {
               example = result[0].meaning.verb[i].example
-              exampleCapitalized = example.charAt(0).toUpperCase() + example.slice(1)
-              verbList.push({
-                definition: result[0].meaning.verb[i].definition,
-                example: exampleCapitalized
-              })
+              if (example) {
+                exampleCapitalized = example.charAt(0).toUpperCase() + example.slice(1)
+                verbList.push({
+                  definition: result[0].meaning.verb[i].definition,
+                  example: exampleCapitalized
+                })
+              } else {
+                verbList.push({
+                  definition: result[0].meaning.verb[i].definition,
+                })
+              }
             }
             this.setState({
               verb: verbList
@@ -79,11 +100,17 @@ export class Dictionary extends Component {
             let nounList = [];
             for (let i = 0; i < dataLength; i++) {
               example = result[0].meaning.noun[i].example
-              exampleCapitalized = example.charAt(0).toUpperCase() + example.slice(1)
-              nounList.push({
-                definition: result[0].meaning.noun[i].definition,
-                example: exampleCapitalized
-              })
+              if (example) {
+                exampleCapitalized = example.charAt(0).toUpperCase() + example.slice(1)
+                nounList.push({
+                  definition: result[0].meaning.noun[i].definition,
+                  example: exampleCapitalized
+                })
+              } else {
+                nounList.push({
+                  definition: result[0].meaning.noun[i].definition,
+                })
+              }
             }
             this.setState({
               noun: nounList
@@ -95,11 +122,17 @@ export class Dictionary extends Component {
             let exclamationList = [];
             for (let i = 0; i < dataLength; i++) {
               example = result[0].meaning.exclamation[i].example
-              exampleCapitalized = example.charAt(0).toUpperCase() + example.slice(1)
-              exclamationList.push({
-                definition: result[0].meaning.exclamation[i].definition,
-                example: exampleCapitalized
-              })
+              if (example) {
+                exampleCapitalized = example.charAt(0).toUpperCase() + example.slice(1)
+                exclamationList.push({
+                  definition: result[0].meaning.exclamation[i].definition,
+                  example: exampleCapitalized
+                })
+              } else {
+                exclamationList.push({
+                  definition: result[0].meaning.exclamation[i].definition,
+                })
+              }
             }
             this.setState({
               exclamation: exclamationList
@@ -111,11 +144,17 @@ export class Dictionary extends Component {
             let prepositionList = [];
             for (let i = 0; i < dataLength; i++) {
               example = result[0].meaning.preposition[i].example
-              exampleCapitalized = example.charAt(0).toUpperCase() + example.slice(1)
-              prepositionList.push({
-                definition: result[0].meaning.preposition[i].definition,
-                example: exampleCapitalized
-              })
+              if (example) {
+                exampleCapitalized = example.charAt(0).toUpperCase() + example.slice(1)
+                prepositionList.push({
+                  definition: result[0].meaning.preposition[i].definition,
+                  example: exampleCapitalized
+                })
+              } else {
+                prepositionList.push({
+                  definition: result[0].meaning.preposition[i].definition,
+                })
+              }
             }
             this.setState({
               preposition: prepositionList
@@ -127,14 +166,63 @@ export class Dictionary extends Component {
             let conjugationList = [];
             for (let i = 0; i < dataLength; i++) {
               example = result[0].meaning.conjugation[i].example
-              exampleCapitalized = example.charAt(0).toUpperCase() + example.slice(1)
-              conjugationList.push({
-                definition: result[0].meaning.conjugation[i].definition,
-                example: exampleCapitalized
-              })
+              if (example) {
+                exampleCapitalized = example.charAt(0).toUpperCase() + example.slice(1)
+                conjugationList.push({
+                  definition: result[0].meaning.conjugation[i].definition,
+                  example: exampleCapitalized
+                })
+              } else {
+                conjugationList.push({
+                  definition: result[0].meaning.conjugation[i].definition,
+                })
+              }
             }
             this.setState({
               conjugation: conjugationList
+            })
+          }
+
+          if (result[0].meaning.pronoun) {
+            dataLength = result[0].meaning.pronoun.length
+            let pronounList = [];
+            for (let i = 0; i < dataLength; i++) {
+              example = result[0].meaning.pronoun[i].example
+              if (example) {
+                exampleCapitalized = example.charAt(0).toUpperCase() + example.slice(1)
+                pronounList.push({
+                  definition: result[0].meaning.pronoun[i].definition,
+                  example: exampleCapitalized
+                })
+              } else {
+                pronounList.push({
+                  definition: result[0].meaning.pronoun[i].definition,
+                })
+              }
+            }
+            this.setState({
+              pronoun: pronounList
+            })
+          }
+          if (result[0].meaning.determiner) {
+            dataLength = result[0].meaning.determiner.length
+            let determinerList = [];
+            for (let i = 0; i < dataLength; i++) {
+              example = result[0].meaning.determiner[i].example
+              if (example) {
+                exampleCapitalized = example.charAt(0).toUpperCase() + example.slice(1)
+                determinerList.push({
+                  definition: result[0].meaning.determiner[i].definition,
+                  example: exampleCapitalized
+                })
+              } else {
+                determinerList.push({
+                  definition: result[0].meaning.determiner[i].definition,
+                })
+              }
+            }
+            this.setState({
+              determiner: determinerList
             })
           }
         }
@@ -146,67 +234,85 @@ export class Dictionary extends Component {
   }
 
   render() {
-    const showWordAndMeanings = this.state.loading ? 
-      <CircularProgress  size={150} /> : (
-      <>
-        {this.state.noun.length > 0 &&
-          this.state.noun.map((noun, i) => (
-            <DialogContent key={i}>
-            <DialogContentText>名詞{i+1}: {noun.definition}</DialogContentText>
-            <DialogContentText>例文{i+1}: {noun.example}</DialogContentText>
-            </DialogContent>
-          ))
-        }
-        {this.state.verb.length > 0 &&
-          this.state.verb.map((verb, i) => (
-            <DialogContent key={i}>
-            <DialogContentText>動詞{i+1}: {verb.definition}</DialogContentText>
-            <DialogContentText>例文{i+1}: {verb.example}</DialogContentText>
-            </DialogContent>
-          ))
-        }
-        {this.state.adjective.length > 0 &&
-          this.state.adjective.map((adjective, i) => (
-            <DialogContent key={i}>
-            <DialogContentText>形容詞{i+1}: {adjective.definition}</DialogContentText>
-            <DialogContentText>例文{i+1}: {adjective.example}</DialogContentText>
-            </DialogContent>
-          ))
-        }
-        {this.state.adverb.length > 0 &&
-          this.state.adverb.map((adverb, i) => (
-            <DialogContent key={i}>
-            <DialogContentText>副詞{i+1}: {adverb.definition}</DialogContentText>
-            <DialogContentText>例文{i+1}: {adverb.example}</DialogContentText>
-            </DialogContent>
-          ))
-        }
-        {this.state.conjugation.length > 0 &&
-          this.state.conjugation.map((conjugation, i) => (
-            <DialogContent key={i}>
-            <DialogContentText>接続し{i+1}: {conjugation.definition}</DialogContentText>
-            <DialogContentText>例文{i+1}: {conjugation.example}</DialogContentText>
-            </DialogContent>
-          ))
-        }
-        {this.state.exclamation.length > 0 &&
-          this.state.exclamation.map((exclamation, i) => (
-            <DialogContent key={i}>
-            <DialogContentText>感嘆{i+1}: {exclamation.definition}</DialogContentText>
-            <DialogContentText>例文{i+1}: {exclamation.example}</DialogContentText>
-            </DialogContent>
-          ))
-        }
-        {this.state.preposition.length > 0 &&
-          this.state.preposition.map((preposition, i) => (
-            <DialogContent key={i}>
-            <DialogContentText>前置詞{i+1}: {preposition.definition}</DialogContentText>
-            <DialogContentText>例文{i+1}: {preposition.example}</DialogContentText>
-            </DialogContent>
-          ))
-        }
-      </>
-    )
+    const { noun, verb, adjective, adverb, conjugation, exclamation, preposition, loading, determiner, pronoun } = this.state;
+    const showWordAndMeanings = loading ? 
+        <CircularProgress  size={150} /> : (
+        <>
+          {noun.length > 0 &&
+            noun.map((noun, i) => (
+              <DialogContent key={i}>
+                {noun.definition !== undefined && <DialogContentText>名詞{i+1}: {noun.definition}</DialogContentText>}
+                {noun.example && <DialogContentText>例文{i+1}: {noun.example}</DialogContentText>}
+              </DialogContent>
+            ))
+          }
+          {verb.length > 0 &&
+            verb.map((verb, i) => (
+              <DialogContent key={i}>
+                {verb.definition !== undefined && <DialogContentText>動詞{i+1}: {verb.definition}</DialogContentText>}
+                {verb.example && <DialogContentText>例文{i+1}: {verb.example}</DialogContentText>}
+              </DialogContent>
+            ))
+          }
+          {adjective.length > 0 &&
+            adjective.map((adjective, i) => (
+              <DialogContent key={i}>
+                {adjective.definition !== undefined && <DialogContentText>形容詞{i+1}: {adjective.definition}</DialogContentText>}
+                {adjective.example && <DialogContentText>例文{i+1}: {adjective.example}</DialogContentText>}
+              </DialogContent>
+            ))
+          }
+          {adverb.length > 0 &&
+            adverb.map((adverb, i) => (
+              <DialogContent key={i}>
+                {adverb.definition !== undefined && <DialogContentText>副詞{i+1}: {adverb.definition}</DialogContentText>}
+                {adverb.example && <DialogContentText>例文{i+1}: {adverb.example}</DialogContentText>}
+              </DialogContent>
+            ))
+          }
+          {conjugation.length > 0 &&
+            conjugation.map((conjugation, i) => (
+              <DialogContent key={i}>
+                {conjugation.definition !== undefined && <DialogContentText>接続詞{i+1}: {conjugation.definition}</DialogContentText>}
+                {conjugation.example && <DialogContentText>例文{i+1}: {conjugation.example}</DialogContentText>}
+              </DialogContent>
+            ))
+          }
+          {exclamation.length > 0 &&
+            exclamation.map((exclamation, i) => (
+              <DialogContent key={i}>
+                {exclamation.definition !== undefined && <DialogContentText>感嘆詞{i+1}: {exclamation.definition}</DialogContentText>}
+                {exclamation.example && <DialogContentText>例文{i+1}: {exclamation.example}</DialogContentText>}
+              </DialogContent>
+            ))
+          }
+          {preposition.length > 0 &&
+            preposition.map((preposition, i) => (
+              <DialogContent key={i}>
+                {preposition.definition !== undefined && <DialogContentText>前置詞{i+1}: {preposition.definition}</DialogContentText>}
+                {preposition.example && <DialogContentText>例文{i+1}: {preposition.example}</DialogContentText>}
+              </DialogContent>
+            ))
+          }
+          {determiner.length > 0 &&
+            determiner.map((determiner, i) => (
+              <DialogContent key={i}>
+                {determiner.definition !== undefined && <DialogContentText>前置詞{i+1}: {determiner.definition}</DialogContentText>}
+                {determiner.example && <DialogContentText>例文{i+1}: {determiner.example}</DialogContentText>}
+              </DialogContent>
+            ))
+          }
+          {pronoun.length > 0 &&
+            pronoun.map((pronoun, i) => (
+              <DialogContent key={i}>
+                {pronoun.definition !== undefined && <DialogContentText>前置詞{i+1}: {pronoun.definition}</DialogContentText>}
+                {pronoun.example && <DialogContentText>例文{i+1}: {pronoun.example}</DialogContentText>}
+              </DialogContent>
+            ))
+          }
+        </>
+      )
+
     return (
       <>
         <DialogTitle>{this.props.word}</DialogTitle>
