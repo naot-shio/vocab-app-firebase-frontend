@@ -239,9 +239,6 @@ export class Dictionary extends Component {
         }
         return this.state
       })
-      .then(found => {
-        console.log(found)
-      })
       .then(() => {
         this.setState({ loading: false })
       })

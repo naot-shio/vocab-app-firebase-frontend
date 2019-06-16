@@ -5,6 +5,7 @@ import Dictionary from './Dictionary'
 import Typography from '@material-ui/core/Typography'
 import IconButton from '@material-ui/core/IconButton'
 import Dialog from '@material-ui/core/Dialog'
+import Tooltip from '@material-ui/core/Tooltip'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import withStyles from '@material-ui/core/styles/withStyles'
@@ -27,9 +28,11 @@ export class WordMeaningList extends Component {
       <div key={index} className={classes.word}>
         <Typography className={classes.indices}>{i+1}-{index+1}</Typography>
         <Typography className={classes.english}>
-          <IconButton onClick={this.handleSearch}>
-            <FontAwesomeIcon icon={faInfoCircle} className={classes.infoIcon} />
-          </IconButton>
+          <Tooltip title="Google Dictionary" placement="top">
+            <IconButton onClick={this.handleSearch}>
+              <FontAwesomeIcon icon={faInfoCircle} color="black" />
+            </IconButton>
+          </Tooltip>
           
           {word.english}: 
         </Typography>
