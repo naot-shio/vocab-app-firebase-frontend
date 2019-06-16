@@ -95,7 +95,7 @@ class SignUp extends Component {
           <TextField 
             id="password"
             name="password"
-            type="text"
+            type="password"
             label="Password"
             className={classes.textField}
             helperText={errors.password}
@@ -108,7 +108,7 @@ class SignUp extends Component {
           <TextField 
             id="confirmPassword"
             name="confirmPassword"
-            type="text"
+            type="password"
             label="Confirm Password"
             className={classes.textField}
             helperText={errors.confirmPassword}
