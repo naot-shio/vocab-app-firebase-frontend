@@ -76,6 +76,32 @@ class SentenceList extends Component {
     )
     
     const isAuthenticated = !authenticated && <AuthenticationIcon />;
+
+    const buttonSearchBar = authenticated && <div className={classes.topField}>
+        <Grid container>
+          <Grid item xs={2}>
+            <div className={classes.button}>
+              {displayLikeButton}
+            </div>
+          </Grid>
+
+          <Grid item xs={10}>
+            <div className={classes.textField}>
+              <form onSubmit={this.handleSubmit}>
+                <TextField
+                  name="keyword"
+                  type="text"
+                  value={this.state.keyword}
+                  label="search"
+                  onChange={this.handleChange}
+                  fullWidth
+                />
+              </form>
+            </div>
+          </Grid>
+        </Grid>
+      </div>
+
     let getAllSentences = !loading ? (
       sentences.map((sentence, i) => 
         <Sentence 
@@ -91,30 +117,7 @@ class SentenceList extends Component {
         <Grid item sm={2} xs={1} />
 
         <Grid item sm={8} xs={10}>
-          <div className={classes.topField}>
-            <Grid container>
-              <Grid item xs={2}>
-                <div className={classes.button}>
-                  {authenticated && displayLikeButton}
-                </div>
-              </Grid>
-
-              <Grid item xs={10}>
-                <div className={classes.textField}>
-                  <form onSubmit={this.handleSubmit}>
-                    <TextField
-                      name="keyword"
-                      type="text"
-                      value={this.state.keyword}
-                      label="search"
-                      onChange={this.handleChange}
-                      fullWidth
-                    />
-                  </form>
-                </div>
-              </Grid>
-            </Grid>
-          </div>
+          {buttonSearchBar}
           
           {getAllSentences}
         </Grid>
