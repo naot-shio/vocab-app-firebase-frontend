@@ -16,6 +16,7 @@ import { connect } from 'react-redux'
 function Navbar (props){
   const {classes} = props;
   const { authenticated } = props.user
+  const { owner } = props.user.credentials
   return (
     <AppBar position="static" className={classes.AppBar} color="default">
       <Toolbar className={classes.root}>
@@ -23,7 +24,7 @@ function Navbar (props){
           <Link to="/words">VocabBuilder</Link>
         </Typography>
         
-        {authenticated && <CreateSentence />}
+        {authenticated && owner && <CreateSentence />}
         {authenticated && <Profile />}
       </Toolbar>
     </AppBar>
