@@ -17,6 +17,9 @@ export class Dictionary extends Component {
   }
 
   componentDidMount() {
+    // Conditions to retrieve response
+    // As google dictionary API returns data by parts of speech, conditional branches are done by the parts
+    // Retrieve data and push them in the array and then set a corresponding state with it
     let searchedWord = this.props.word
     fetch(`https://googledictionaryapi.eu-gb.mybluemix.net/?define=${searchedWord}&lang=en`)
       .then(res => res.json())

@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import axios from 'axios'
 import AuthenticationIcon from '../auth/AuthenticationIcon'
 import Profile from '../pages/Profile'
 import Sentence from './Sentence'
@@ -9,10 +8,11 @@ import withStyles from '@material-ui/core/styles/withStyles'
 import Grid from '@material-ui/core/Grid'
 import TextField from '@material-ui/core/TextField'
 import IconButton from '@material-ui/core/IconButton'
+import Tooltip from '@material-ui/core/Tooltip'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEdit, faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons'
+import { faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons'
 import { faHeart as faHeartRegular } from '@fortawesome/free-regular-svg-icons'
-import styles from '../../styles/SentenceListStyles'
+import styles from '../../styles/sentences/SentenceListStyles'
 
 // Redux 
 import { connect } from 'react-redux'
@@ -62,24 +62,36 @@ class SentenceList extends Component {
     const { sentences, loading } = this.props.data;
 
     const displayLikeButton =  this.state.displayOnlyLikedSentences ? (
-      <IconButton onClick={this.handleDisplayAllSentences}>
-        <FontAwesomeIcon icon={faHeartSolid} color="red" />
-      </IconButton>
+      <Tooltip title="Display All of The Sentences" placement="bottom-end">
+        <IconButton onClick={this.handleDisplayAllSentences}>
+          <FontAwesomeIcon icon={faHeartSolid} color="red" />
+        </IconButton>
+      </Tooltip>
     ) : (
-      <IconButton onClick={this.handleDisplayLikedSentences}>
-        <FontAwesomeIcon icon={faHeartRegular} color="red" />
-      </IconButton>
+      <Tooltip title="Display The Liked Sentences" placement="bottom-end">
+        <IconButton onClick={this.handleDisplayLikedSentences}>
+          <FontAwesomeIcon icon={faHeartRegular} color="red" />
+        </IconButton>
+      </Tooltip>
     )
     
     const isAuthenticated = authenticated ? <Profile /> : <AuthenticationIcon />;
     let getAllSentences = !loading ? (
-      sentences.map((sentence, i) => <Sentence key={sentence.sentenceId} sentence={sentence} i={i} displayOnlyLikedSentences={this.state.displayOnlyLikedSentences}  />)
+      sentences.map((sentence, i) => 
+        <Sentence 
+          key={sentence.sentenceId} 
+          sentence={sentence} 
+          i={i} 
+          displayOnlyLikedSentences={this.state.displayOnlyLikedSentences}  
+        />)
     ) : <p>Loading...</p>;
 
     return (
       <Grid container>
         <Grid item sm={2} xs={1}>
-          {displayLikeButton}
+          <div className={classes.button}>
+            {authenticated && displayLikeButton}
+          </div>
         </Grid>
 
         <Grid item sm={8} xs={10}>
@@ -100,7 +112,9 @@ class SentenceList extends Component {
         </Grid>
 
         <Grid item sm={2} xs={1}>
-          {isAuthenticated}
+          <div className={classes.isAuthenticated}>
+            {isAuthenticated}
+          </div>
         </Grid>
       </Grid>      
     )

@@ -7,7 +7,7 @@ import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import Typography from '@material-ui/core/Typography'
-import styles from '../../styles/AuthenticationStyles'
+import styles from '../../styles/auth/AuthenticationStyles'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSignInAlt } from '@fortawesome/free-solid-svg-icons'
 
@@ -53,10 +53,10 @@ class Login extends Component {
     const { errors } = this.state
     return (
       <div className={classes.root}>
-        <DialogTitle id="sign-up-dialog-title">
+        <DialogTitle id="login-dialog-title">
           <span className={classes.dialogIcon}>
             <FontAwesomeIcon icon={faSignInAlt} />
-          </span>Sign Up
+          </span>Login
         </DialogTitle>
         <form noValidate onSubmit={this.handleSubmit}>
 
@@ -92,7 +92,7 @@ class Login extends Component {
             </Typography>
           )}
 
-          <Button type="submit" variant="contained" color="primary" className={classes.button}>Sign Up</Button>
+          <Button type="submit" variant="contained" color="primary" className={classes.button}>Login</Button>
         </form>
       </div>
     )

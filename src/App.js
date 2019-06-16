@@ -13,13 +13,14 @@ import './App.css'
 import { Provider } from 'react-redux'
 import store from './redux/store'
 import { SET_AUTHENTICATED } from './redux/types'
-import { getUserData } from './redux/actions/userActions'
+import { getUserData, logout } from './redux/actions/userActions'
 
 const token = localStorage.FBIdToken;
 if (token) {
   const decodedToken = jwtDecode(token);
   if (decodedToken.exp * 1000 < Date.now()) {
-    console.log('needa login')
+    store.dispatch(logout());
+    window.location.href = '/'; 
   } else {
     store.dispatch({ type: SET_AUTHENTICATED });
     axios.defaults.headers.common['Authorization'] = token;

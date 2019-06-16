@@ -1,9 +1,11 @@
 const styles = {
-  textField:{
-    margin: 10,
-    width: "80%",
-    marginLeft: "auto",
-    marginRight: "auto"
+ icons: {
+    float: 'right',
+    paddingTop: 5,
+    paddingBottom: 5,
+    '& deleteIcon': {
+      paddingLeft: 5,
+    }
   },
   Card: {
     margin: 30,
@@ -19,32 +21,10 @@ const styles = {
     borderRadius: 5,
     marginBottom: 10 
   },
-  word: {
-    display: "flex",
-    alignItems: "center"
-  },
-  indices: {
-    width: "9%",
-    marginLeft: 15
-  },
-  english: {
-    fontSize: '1.1rem',
-    color: "blue",
-    width: "30%",
-    marginLeft: 15
-  },
   translation: {
-    marginTop: 10,
-    marginLeft: 15
-  },
-  icons: {
-    float: 'right',
-    paddingTop: 5,
-    paddingBottom: 5,
-    '& deleteIcon': {
-      paddingLeft: 5,
-    }
-  },
+      marginTop: 10,
+      marginLeft: 15
+    },
   "@media (max-width: 950px)": {
     Card: {
       width: 650,
@@ -66,5 +46,5 @@ const styles = {
     }
   }
 }
-  
+
 export default styles

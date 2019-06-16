@@ -6,7 +6,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons'
 import { faHeart as faHeartRegular } from '@fortawesome/free-regular-svg-icons'
 
-
 // Redux
 import { connect } from 'react-redux'
 import { likeSentence, unlikeSentence} from '../../redux/actions/dataActions'

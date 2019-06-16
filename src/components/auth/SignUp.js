@@ -7,7 +7,7 @@ import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import Typography from '@material-ui/core/Typography'
-import styles from '../../styles/AuthenticationStyles'
+import styles from '../../styles/auth/AuthenticationStyles'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons'
 
@@ -53,7 +53,7 @@ class SignUp extends Component {
   }
 
   render() {
-    const { classes, UI: { loading } } = this.props;
+    const { classes } = this.props;
     const { errors } = this.state;
     return (
       <div className={classes.root}>

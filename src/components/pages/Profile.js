@@ -11,7 +11,7 @@ import IconButton from '@material-ui/core/IconButton'
 import Tooltip from '@material-ui/core/Tooltip'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faIdCard, faImage, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
-import styles from '../../styles/ProfileStyles'
+import styles from '../../styles/pages/ProfileStyles'
 
 // Redux
 import { connect } from 'react-redux'

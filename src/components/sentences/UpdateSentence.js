@@ -5,7 +5,7 @@ import SentenceForm from './SentenceForm'
 // styles
 import Paper from '@material-ui/core/Paper'
 import withStyles from '@material-ui/core/styles/withStyles'
-import styles from '../../styles/UpdateSentenceStyles'
+import styles from '../../styles/sentences/UpdateSentenceStyles'
 
 // Redux
 import { connect } from 'react-redux'

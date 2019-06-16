@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 // styles
-import withStyles from '@material-ui/core/styles/withStyles';
 import Fab from '@material-ui/core/Fab';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -12,14 +11,6 @@ import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 // Redux
 import { connect } from 'react-redux';
 import { deleteSentence } from '../../redux/actions/dataActions';
-
-const styles = {
-  deleteButton: {
-    position: 'absolute',
-    left: '90%',
-    top: '10%'
-  }
-};
 
 class DeleteSentence extends Component {
   state = {
@@ -36,14 +27,11 @@ class DeleteSentence extends Component {
     this.setState({ open: false });
   };
   render() {
-    const { classes } = this.props;
-
     return (
       <>
         <Fab
           color="secondary"
           aria-label="Delete"
-          className={classes.deleteIcon}
           size="small"
           onClick={this.handleOpen}
         >
@@ -76,4 +64,4 @@ class DeleteSentence extends Component {
 export default connect(
   null,
   { deleteSentence }
-)(withStyles(styles)(DeleteSentence));
+)(DeleteSentence);
