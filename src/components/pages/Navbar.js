@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import CreateSentence from '../sentences/CreateSentence'
+import Profile from './Profile'
 
 // styles
 import AppBar from '@material-ui/core/AppBar'
@@ -21,7 +22,9 @@ function Navbar (props){
         <Typography variant="h6" className={classes.title}>
           <Link to="/words">VocabBuilder</Link>
         </Typography>
+        
         {authenticated && <CreateSentence />}
+        {authenticated && <Profile />}
       </Toolbar>
     </AppBar>
   );

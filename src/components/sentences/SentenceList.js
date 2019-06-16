@@ -75,7 +75,7 @@ class SentenceList extends Component {
       </Tooltip>
     )
     
-    const isAuthenticated = authenticated ? <Profile /> : <AuthenticationIcon />;
+    const isAuthenticated = !authenticated && <AuthenticationIcon />;
     let getAllSentences = !loading ? (
       sentences.map((sentence, i) => 
         <Sentence 
