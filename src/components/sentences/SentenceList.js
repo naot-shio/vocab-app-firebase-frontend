@@ -8,6 +8,7 @@ import Grid from '@material-ui/core/Grid'
 import TextField from '@material-ui/core/TextField'
 import IconButton from '@material-ui/core/IconButton'
 import Tooltip from '@material-ui/core/Tooltip'
+import CircularProgress from '@material-ui/core/CircularProgress';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons'
 import { faHeart as faHeartRegular } from '@fortawesome/free-regular-svg-icons'
@@ -83,7 +84,7 @@ class SentenceList extends Component {
           i={i} 
           displayOnlyLikedSentences={this.state.displayOnlyLikedSentences}  
         />)
-    ) : <p>Loading...</p>;
+    ) : <div className={classes.loading}><CircularProgress size={300} /></div>;
 
     return (
       <Grid container>

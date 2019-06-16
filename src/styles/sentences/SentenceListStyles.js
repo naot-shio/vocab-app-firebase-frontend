@@ -1,4 +1,10 @@
 const styles = {
+  loading: {
+    width: 200,
+    marginRight: 'auto',
+    marginLeft: 'auto',
+    marginTop: 50
+  },
   topField: {
     marginTop: 10,
     width: 700,
