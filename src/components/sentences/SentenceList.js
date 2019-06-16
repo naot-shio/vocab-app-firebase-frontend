@@ -112,7 +112,9 @@ class SentenceList extends Component {
         </Grid>
 
         <Grid item sm={2} xs={1}>
-          {isAuthenticated}
+          <div className={classes.isAuthenticated}>
+            {isAuthenticated}
+          </div>
         </Grid>
       </Grid>      
     )
