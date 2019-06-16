@@ -1,14 +1,14 @@
 const styles = {
   AppBar: {
     boxShadow: "none",
+    backgroundColor: "#fefefe",
     marginBottom: 0 
   },
   root: {
     flexGrow: 1,
-    backgroundColor: "rgba(0,0,0,0.8)",
     "& a": {
       textDecoration: "none",
-      color: "#fafafa",
+      color: "rgba(0,0,0,0.8)",
       fontFamily: "Serif"
     }
   },
@@ -22,3 +22,4 @@ const styles = {
 };
 
 export default styles;
+

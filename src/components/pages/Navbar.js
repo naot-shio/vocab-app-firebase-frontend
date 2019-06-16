@@ -7,7 +7,7 @@ import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import withStyles from '@material-ui/core/styles/withStyles'
-import styles from '../../styles/NavbarStyles'
+import styles from '../../styles/pages/NavbarStyles'
 
 // Redux
 import { connect } from 'react-redux'
@@ -16,7 +16,7 @@ function Navbar (props){
   const {classes} = props;
   const { authenticated } = props.user
   return (
-    <AppBar position="static" className={classes.AppBar}>
+    <AppBar position="static" className={classes.AppBar} color="default">
       <Toolbar className={classes.root}>
         <Typography variant="h6" className={classes.title}>
           <Link to="/words">VocabBuilder</Link>

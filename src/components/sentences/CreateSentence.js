@@ -3,7 +3,7 @@ import SentenceForm from './SentenceForm'
 
 //styles 
 import withStyles from '@material-ui/core/styles/withStyles'
-import Button from '@material-ui/core/Button'
+import IconButton from '@material-ui/core/IconButton'
 import Dialog from '@material-ui/core/Dialog'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import DialogContent from '@material-ui/core/DialogContent'
@@ -70,9 +70,9 @@ export class CreateSentence extends Component {
     const { classes } = this.props;
     return (
       <>
-        <Button onClick={this.handleOpen} className={classes.button}>
+        <IconButton onClick={this.handleOpen}>
           <FontAwesomeIcon icon={faPlusSquare} />
-        </Button>
+        </IconButton>
 
         <Dialog
           open={open}
