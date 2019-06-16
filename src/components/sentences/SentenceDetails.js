@@ -13,7 +13,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons'
 import { faEdit, faHeart as faHeartRegular } from '@fortawesome/free-regular-svg-icons'
 import withStyles from '@material-ui/core/styles/withStyles'
-import styles from '../../styles/sentences/SentenceListStyles'
+import styles from '../../styles/sentences/SentenceDetailsStyles'
 
 // Redux
 import { connect } from 'react-redux'

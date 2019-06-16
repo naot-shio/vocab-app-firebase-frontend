@@ -8,7 +8,7 @@ import Dialog from '@material-ui/core/Dialog'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import withStyles from '@material-ui/core/styles/withStyles'
-import styles from '../../styles/sentences/SentenceListStyles'
+import styles from '../../styles/sentences/WordMeaningListStyles'
 
 export class WordMeaningList extends Component {
   state = {

@@ -1,10 +1,6 @@
 import React, { Component } from 'react'
 import SentenceDetails from './SentenceDetails'
 
-// styles
-import withStyles from '@material-ui/core/styles/withStyles'
-import styles from '../../styles/sentences/SentenceListStyles'
-
 // Redux
 import { connect } from 'react-redux'
 
@@ -41,4 +37,4 @@ const mapStateToProps = state => ({
   user: state.user
 })
 
-export default connect(mapStateToProps)(withStyles(styles)(Sentence))
+export default connect(mapStateToProps)(Sentence)

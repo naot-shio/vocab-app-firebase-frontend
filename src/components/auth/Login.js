@@ -53,7 +53,7 @@ class Login extends Component {
     const { errors } = this.state
     return (
       <div className={classes.root}>
-        <DialogTitle id="sign-up-dialog-title">
+        <DialogTitle id="login-dialog-title">
           <span className={classes.dialogIcon}>
             <FontAwesomeIcon icon={faSignInAlt} />
           </span>Login

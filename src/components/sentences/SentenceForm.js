@@ -8,10 +8,8 @@ import Fab from '@material-ui/core/Fab'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import withStyles from '@material-ui/core/styles/withStyles'
-
-const styles = {
-
-}
+import styles from '../../styles/sentences/SentenceFormStyles'
+import '../../styles/sentences/CreateSentenceForm.css'
 
 class SentenceForm extends Component {
   render() {
@@ -82,14 +80,16 @@ class SentenceForm extends Component {
             </Grid>
           </Grid>
 
-          <Button 
-            type="submit" 
-            variant="contained" 
-            color="primary" 
-            className={classes.submitButton}
-          >
-            Submit!
-          </Button>
+          <div className={classes.submitButton}>
+            <Button 
+              type="submit" 
+              variant="contained" 
+              color="primary" 
+            >
+              Submit!
+            </Button>
+          </div>
+          
       </>
     )
   }
