@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogContentText from '@material-ui/core/DialogContentText'
-import CircularProgress from '@material-ui/core/CircularProgress';
+import CircularProgress from '@material-ui/core/CircularProgress'
+import '../../styles/sentences/Dictionary.css'
 
 export class Dictionary extends Component {
   state = {
@@ -251,8 +252,9 @@ export class Dictionary extends Component {
     const { notFound, noun, verb, adjective, adverb, conjugation, exclamation, preposition, loading, determiner, pronoun } = this.state;
 
     const isNotFound = notFound && <DialogContentText>Sorry, not found</DialogContentText>
+    
     const showWordAndMeanings = loading ? 
-        <CircularProgress  size={150} /> : (
+        <div className="loading"><CircularProgress size={150} /></div> : (
         <>
           {noun.length > 0 &&
             noun.map((noun, i) => (
@@ -330,11 +332,11 @@ export class Dictionary extends Component {
       )
 
     return (
-      <>
+      <div className="modal">
         <DialogTitle>{this.props.word}</DialogTitle>
         {isNotFound}
         {showWordAndMeanings}
-      </>
+      </div>
     )
   }
 }
