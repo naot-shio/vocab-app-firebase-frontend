@@ -5,12 +5,12 @@ import PropTypes from 'prop-types'
 import withStyles from '@material-ui/core/styles/withStyles'
 import DialogActions from '@material-ui/core/DialogActions'
 import Dialog from '@material-ui/core/Dialog'
-import Button from '@material-ui/core/Button'
 import Paper from '@material-ui/core/Paper'
 import IconButton from '@material-ui/core/IconButton'
 import Tooltip from '@material-ui/core/Tooltip'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faIdCard, faImage, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
+import { faWindowClose } from '@fortawesome/free-regular-svg-icons'
 import styles from '../../styles/pages/ProfileStyles'
 
 // Redux
@@ -22,8 +22,8 @@ class Profile extends Component {
     open: false,
   }
 
-  handleClickToggle = () => {
-    this.setState({ open: !this.state.open })
+  handleOpen = () => {
+    this.setState({ open: true })
   }
 
   handleImageUpload = (evt) => {
@@ -43,6 +43,10 @@ class Profile extends Component {
     this.props.logout();
   }
 
+  handleClose = () => {
+    this.setState({ open: false })
+  }
+
   render() {
     const { classes } = this.props;
     const { likes } = this.props.user
@@ -52,8 +56,8 @@ class Profile extends Component {
       <>
         <div className={classes.profileIcon}>
           <Tooltip title="Profile" placement="left">
-            <IconButton  onClick={this.handleClickToggle} className="button">
-              <FontAwesomeIcon icon={faIdCard} color="dodgerblue" />
+            <IconButton  onClick={this.handleOpen} className="button">
+              <FontAwesomeIcon icon={faIdCard} color="royalblue" />
             </IconButton>
           </Tooltip>
         </div>
@@ -75,28 +79,30 @@ class Profile extends Component {
                 />
                 <Tooltip title="Upload image" placement="top">
                   <IconButton onClick={this.handleEditImage} className="button" style={{marginLeft: 20, marginTop: 5 }}>
-                    <FontAwesomeIcon icon={faImage} />
+                    <FontAwesomeIcon icon={faImage} color="steelblue" />
                   </IconButton>
                 </Tooltip>
               </div>
               <hr />
-              <div className={classes.username}>
-                {name}
-              </div>
               <div>
-              {likes.length} likes
+                <h3>{name}</h3>
+                <h4>{likes.length} likes</h4>
               </div>
             </div>
           </Paper>
           <DialogActions>
-            <Tooltip title="Logout" placement="left">
+            <Tooltip title="Logout" placement="top">
               <IconButton onClick={this.handleLogout} className="button">
-                <FontAwesomeIcon icon={faSignOutAlt} />
+                <FontAwesomeIcon icon={faSignOutAlt} color="crimson" />
               </IconButton>
             </Tooltip>
-            <Button onClick={this.handleClickToggle} color="primary">
-              X
-            </Button>
+
+            <Tooltip title="Close profile" placement="top">
+              <IconButton  onClick={this.handleClose} className="button">
+                <FontAwesomeIcon icon={faWindowClose} color="crimson" />
+              </IconButton>
+            </Tooltip>
+        
           </DialogActions>
         </Dialog>
       </>
