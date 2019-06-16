@@ -102,7 +102,7 @@ class SentenceList extends Component {
         </Grid>
       </div>
 
-    let getAllSentences = !loading ? (
+    let getAllSentences =!loading ? (
       sentences.map((sentence, i) => 
         <Sentence 
           key={sentence.sentenceId} 
@@ -110,7 +110,7 @@ class SentenceList extends Component {
           i={i} 
           displayOnlyLikedSentences={this.state.displayOnlyLikedSentences}  
         />)
-    ) : <div className={classes.loading}><CircularProgress size={300} /></div>;
+    ) : <div className={classes.loading}><CircularProgress size={250} /></div>;
 
     return (
       <Grid container>

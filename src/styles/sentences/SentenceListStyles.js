@@ -28,6 +28,9 @@ const styles = {
     },
     topField: {
       width: "100%",
+    },
+    loading: {
+      marginLeft: 30,
     }
   },
   "@media (max-width: 400px)" :{
