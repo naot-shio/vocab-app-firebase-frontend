@@ -25,6 +25,9 @@ const styles = {
   "@media (max-width: 500px)" :{
     isAuthenticated: {
       marginLeft: -40
+    },
+    topField: {
+      width: "100%",
     }
   },
   "@media (max-width: 400px)" :{
@@ -43,11 +46,6 @@ const styles = {
     }
   },
   "@media (max-width: 650px)": {
-    topField: {
-      width: "100%",
-    }
-  },
-  "@media (max-width: 500px)": {
     topField: {
       width: "100%",
     }
