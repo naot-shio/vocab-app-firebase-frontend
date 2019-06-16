@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { withRouter } from 'react-router'
 import PropTypes from 'prop-types'
 
 // styles
@@ -50,6 +51,7 @@ class SignUp extends Component {
       confirmPassword: this.state.confirmPassword
     };
     this.props.signUpUser(newUserData)
+    this.props.history.push('/words')
   }
 
   render() {
@@ -145,4 +147,4 @@ const mapActionsToProps = {
   signUpUser
 }
 
-export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(SignUp))
+export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(withRouter(SignUp)))

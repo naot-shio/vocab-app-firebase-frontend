@@ -18,7 +18,7 @@ import { getUserData, logout } from './redux/actions/userActions'
 const token = localStorage.FBIdToken;
 if (token) {
   const decodedToken = jwtDecode(token);
-  if (decodedToken.exp * 1000 < Date.now()) {
+  if (decodedToken.exp * 10000 < Date.now()) {
     store.dispatch(logout());
     window.location.href = '/'; 
   } else {
@@ -35,7 +35,14 @@ class App extends Component {
         <BrowserRouter>
           <Navbar />
             <Switch>
-              <Route exact path="/" component={Home} />
+              <Route 
+                exact 
+                path="/"
+                render={routeProps => (
+                  <Home 
+                    {...routeProps}
+                  />)} 
+              />
               <Route 
                 exact 
                 path="/words" 
