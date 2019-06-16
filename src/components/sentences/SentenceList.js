@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import AuthenticationIcon from '../auth/AuthenticationIcon'
-import Profile from '../pages/Profile'
 import Sentence from './Sentence'
 
 // styles
@@ -88,24 +87,32 @@ class SentenceList extends Component {
 
     return (
       <Grid container>
-        <Grid item sm={2} xs={1}>
-          <div className={classes.button}>
-            {authenticated && displayLikeButton}
-          </div>
-        </Grid>
+        <Grid item sm={2} xs={1} />
 
         <Grid item sm={8} xs={10}>
-          <div className={classes.textField}>
-            <form onSubmit={this.handleSubmit}>
-              <TextField
-                name="keyword"
-                type="text"
-                value={this.state.keyword}
-                label="search"
-                onChange={this.handleChange}
-                fullWidth
-              />
-            </form>
+          <div className={classes.topField}>
+            <Grid container>
+              <Grid item xs={2}>
+                <div className={classes.button}>
+                  {authenticated && displayLikeButton}
+                </div>
+              </Grid>
+
+              <Grid item xs={10}>
+                <div className={classes.textField}>
+                  <form onSubmit={this.handleSubmit}>
+                    <TextField
+                      name="keyword"
+                      type="text"
+                      value={this.state.keyword}
+                      label="search"
+                      onChange={this.handleChange}
+                      fullWidth
+                    />
+                  </form>
+                </div>
+              </Grid>
+            </Grid>
           </div>
           
           {getAllSentences}

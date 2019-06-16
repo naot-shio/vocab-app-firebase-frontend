@@ -1,13 +1,12 @@
 const styles = {
-  textField:{
-    margin: 10,
-    width: "80%",
+  topField: {
+    marginTop: 10,
+    width: 700,
     marginLeft: "auto",
     marginRight: "auto"
   },
   button: {
-    marginTop: 20,
-    marginLeft: 20
+    marginTop: 10
   },
   isAuthenticated: {
     marginRight: 'auto'
@@ -27,6 +26,26 @@ const styles = {
       marginLeft: -50
     }
   },
+  "@media (max-width: 950px)": {
+    topField: {
+      width: 650,
+    }
+  },
+  "@media (max-width: 800px)": {
+    topField: {
+      width: 500,
+    }
+  },
+  "@media (max-width: 650px)": {
+    topField: {
+      width: "100%",
+    }
+  },
+  "@media (max-width: 500px)": {
+    topField: {
+      width: "100%",
+    }
+  }
 }
   
 export default styles
