@@ -1,6 +1,5 @@
 const styles = {
   AppBar: {
-    boxShadow: "none",
     backgroundColor: "#fefefe",
     marginBottom: 0 
   },
