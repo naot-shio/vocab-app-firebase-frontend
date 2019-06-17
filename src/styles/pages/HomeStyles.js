@@ -26,7 +26,33 @@ const useStyles = makeStyles(theme => ({
     fontFamily: "Yu Gothic"
   },
   button: {
-    marginTop: 40
+    marginTop: 30,
+    marginBottom: 20,
+  },
+  exampleImage: {
+    backgroundSize: 'cover',
+    width: 200,
+    height: 200,
+    paddingLeft: 100,
+    borderRadius: "30 30"
+  },
+  recommendation: {
+    margin: 0,
+    paddingLeft: 50,
+    paddingTop: 20,
+    paddingBottom: 20,
+    backgroundColor: "white"
+  },
+  recommendationTitle: {
+    marginTop: 0
+  },
+  recommendationBody: {
+    marginBottom: 0
+  },
+  profile: {
+    paddingLeft: 50,
+    paddingTop: 20,
+    paddingBottom: 20,
   },
   "@media (max-width: 970px)": {
     title: {
@@ -57,6 +83,14 @@ const useStyles = makeStyles(theme => ({
     },
     title: {
       fontSize: "2rem",
+    },
+    recommendation: {
+      paddingRight: 30,
+      paddingLeft: 30
+    },
+    profile: {
+      paddingRight: 30,
+      paddingLeft: 30
     }
   },
   "@media (max-width: 385px)" :{
