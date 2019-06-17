@@ -68,7 +68,7 @@ class UpdateSentence extends Component {
       words: this.state.words,
     }
     this.props.updateSentence(this.props.sentenceId, word);
-    this.props.history.push('/words');
+    this.props.history.push('/sentences');
   }
  
   render() {

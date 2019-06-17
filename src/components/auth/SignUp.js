@@ -51,7 +51,7 @@ class SignUp extends Component {
       confirmPassword: this.state.confirmPassword
     };
     this.props.signUpUser(newUserData)
-    this.props.history.push('/words')
+    this.props.history.push('/sentences')
   }
 
   render() {

@@ -45,7 +45,7 @@ class App extends Component {
               />
               <Route 
                 exact 
-                path="/words" 
+                path="/sentences" 
                 render={routeProps => (
                   <SentenceList 
                     {...routeProps}
@@ -53,7 +53,7 @@ class App extends Component {
               />
               <Route 
                 exact 
-                path="/word/:sentenceId" 
+                path="/sentence/:sentenceId" 
                 render={routeProps => 
                   <UpdateSentence 
                     sentenceId={routeProps.match.params.sentenceId}
