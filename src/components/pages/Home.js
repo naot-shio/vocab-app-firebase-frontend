@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import AuthenticationIcon from '../auth/AuthenticationIcon'
+import Footer from './Footer'
 
 // styles
 import useStyles from '../../styles/pages/HomeStyles'
@@ -37,6 +38,7 @@ function Home(props) {
           </Grid>
         </Grid>
       </div>
+      <Footer />
     </div>
   )
 }
