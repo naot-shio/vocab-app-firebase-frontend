@@ -47,7 +47,7 @@ class SentenceDetails extends Component {
           size="small"
         >
           <Link to={`/word/${sentence.sentenceId}`} onClick={e => e.stopPropagation()}>
-            <FontAwesomeIcon icon={faEdit} />
+            <FontAwesomeIcon icon={faEdit} color="white" />
           </Link>
         </Fab>
         <DeleteSentence sentenceId={sentence.sentenceId} />
