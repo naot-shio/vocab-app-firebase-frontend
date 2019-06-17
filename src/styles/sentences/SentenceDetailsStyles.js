@@ -17,9 +17,9 @@ const styles = {
     fontWeight: 500,
     fontSize: "1.5rem",
     paddingLeft: 5,
-    backgroundColor: "#E0FFFF",
     borderRadius: 5,
-    marginBottom: 10 
+    marginBottom: 10,
+    background: "linear-gradient(transparent 70%, #ffff00 60%)"
   },
   translation: {
       marginTop: 10,

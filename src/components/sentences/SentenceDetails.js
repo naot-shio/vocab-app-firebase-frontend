@@ -66,8 +66,8 @@ class SentenceDetails extends Component {
     return (
         <Card className={classes.Card} key={sentence.sentenceId}>
           <CardContent>
-            <Typography variant="h5" className={classes.sentence}>
-              {i + 1}. {sentence.sentence} 
+            <Typography variant="h5">
+              {i + 1}. <span className={classes.sentence}>{sentence.sentence}</span>
             </Typography>
 
             {authenticated && likeButton }
