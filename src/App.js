@@ -15,6 +15,8 @@ import store from './redux/store'
 import { SET_AUTHENTICATED } from './redux/types'
 import { getUserData, logout } from './redux/actions/userActions'
 
+axios.defaults.baseURL = "https://asia-northeast1-vocab-d8c5e.cloudfunctions.net/api"
+
 const token = localStorage.FBIdToken;
 if (token) {
   const decodedToken = jwtDecode(token);
