@@ -24,7 +24,7 @@ function Home(props) {
             <h3 className={classes.subtitle}>英語をもっと上手に</h3>
             <h3 className={classes.subtitle}>使えるようにしよう！</h3>
 
-            <Link to="/words">
+            <Link to="/sentences">
               <Button variant="contained" color="primary" className={classes.button}>
                 はじめてみる
               </Button>
