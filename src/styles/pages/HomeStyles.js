@@ -25,6 +25,9 @@ const useStyles = makeStyles(theme => ({
     fontSize: "2rem",
     fontFamily: "Yu Gothic"
   },
+  button: {
+    marginTop: 40
+  },
   "@media (max-width: 970px)": {
     title: {
       fontSize: "3.5rem",
@@ -57,6 +60,9 @@ const useStyles = makeStyles(theme => ({
     }
   },
   "@media (max-width: 385px)" :{
+    root: {
+      height: "90vh"
+    },
     main: {
       backgroundPosition: "33%"
     },

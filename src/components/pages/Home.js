@@ -1,9 +1,11 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import AuthenticationIcon from '../auth/AuthenticationIcon'
 
 // styles
 import useStyles from '../../styles/pages/HomeStyles'
 import Grid from '@material-ui/core/Grid'
+import Button from '@material-ui/core/Button'
 
 // Redux
 import { connect } from 'react-redux'
@@ -21,6 +23,12 @@ function Home(props) {
             <h3 className={classes.subtitle}>ボキャブラリーを増やして</h3>
             <h3 className={classes.subtitle}>英語をもっと上手に</h3>
             <h3 className={classes.subtitle}>使えるようにしよう！</h3>
+
+            <Link to="/words">
+              <Button variant="contained" color="primary" className={classes.button}>
+                はじめてみる
+              </Button>
+            </Link>
           </Grid>
           <Grid item sm={2} xs={1}>
             <div className={classes.auth}>
