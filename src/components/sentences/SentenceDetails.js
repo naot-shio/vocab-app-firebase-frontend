@@ -46,7 +46,7 @@ class SentenceDetails extends Component {
           aria-label="Edit"
           size="small"
         >
-          <Link to={`/word/${sentence.sentenceId}`} onClick={e => e.stopPropagation()}>
+          <Link to={`/sentence/${sentence.sentenceId}`} onClick={e => e.stopPropagation()}>
             <FontAwesomeIcon icon={faEdit} color="white" />
           </Link>
         </Fab>

@@ -19,7 +19,8 @@ const styles = {
     paddingLeft: 5,
     borderRadius: 5,
     marginBottom: 10,
-    background: "linear-gradient(transparent 70%, #ffff00 60%)"
+    background: "linear-gradient(transparent 70%, #ffff00 60%)",
+    userSelect: "none"
   },
   translation: {
       marginTop: 10,
