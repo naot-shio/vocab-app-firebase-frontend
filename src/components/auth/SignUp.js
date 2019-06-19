@@ -8,9 +8,11 @@ import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import Typography from '@material-ui/core/Typography'
-import styles from '../../styles/auth/AuthenticationStyles'
+import InputAdornment from '@material-ui/core/InputAdornment'
+import IconButton from '@material-ui/core/IconButton'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUserPlus } from '@fortawesome/free-solid-svg-icons'
+import { faUserPlus, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
+import styles from '../../styles/auth/AuthenticationStyles'
 
 // Redux
 import { connect } from 'react-redux';
@@ -25,9 +27,13 @@ class SignUp extends Component {
       password: '',
       confirmPassword: '',
       loading: false,
-      errors: {}
+      errors: {},
+      showPassword: false,
+      showPasswordConfirmation: false
     }
     this.handleChange = this.handleChange.bind(this);
+    this.handleClickShowPassword = this.handleClickShowPassword.bind(this)
+    this.handleClickShowPasswordConfirmation = this.handleClickShowPasswordConfirmation.bind(this)
   }
 
   componentWillReceiveProps(nextProps) {
@@ -40,6 +46,14 @@ class SignUp extends Component {
     this.setState({
       [evt.target.name]: evt.target.value
     });
+  }
+
+  handleClickShowPassword() {
+    this.setState({showPassword: !this.state.showPassword })
+  }
+
+  handleClickShowPasswordConfirmation() {
+    this.setState({showPasswordConfirmation: !this.state.showPasswordConfirmation })
   }
 
   handleSubmit = (evt) => {
@@ -95,7 +109,7 @@ class SignUp extends Component {
           <TextField 
             id="password"
             name="password"
-            type="password"
+            type={this.state.showPassword ? "text" : "password"}
             label="Password"
             className={classes.textField}
             helperText={errors.password}
@@ -103,12 +117,25 @@ class SignUp extends Component {
             value={this.state.password}
             onChange={this.handleChange}
             fullWidth
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    edge="end"
+                    aria-label="Toggle password visibility"
+                    onClick={this.handleClickShowPassword}
+                  >
+                    {this.state.showPassword ? <FontAwesomeIcon icon={faEyeSlash} color="black" /> :<FontAwesomeIcon icon={faEye} color="black" />}
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }} 
           />
 
           <TextField 
             id="confirmPassword"
             name="confirmPassword"
-            type="password"
+            type={this.state.showPasswordConfirmation ? "text" : "password"}
             label="Confirm Password"
             className={classes.textField}
             helperText={errors.confirmPassword}
@@ -116,6 +143,19 @@ class SignUp extends Component {
             value={this.state.confirmPassword}
             onChange={this.handleChange}
             fullWidth
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    edge="end"
+                    aria-label="Toggle password visibility"
+                    onClick={this.handleClickShowPasswordConfirmation}
+                  >
+                    {this.state.showPasswordConfirmation ? <FontAwesomeIcon icon={faEyeSlash} color="black" /> :<FontAwesomeIcon icon={faEye} color="black" />}
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }} 
           />
 
           {errors.general && (
