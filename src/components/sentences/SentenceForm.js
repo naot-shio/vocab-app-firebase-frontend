@@ -24,6 +24,8 @@ class SentenceForm extends Component {
             className={classes.textField}
             onChange={handleChange}
             fullWidth
+            multiline
+            rowsMax="3"
           />
 
           <TextField
@@ -34,6 +36,8 @@ class SentenceForm extends Component {
             className={classes.textField}
             onChange={handleChange}
             fullWidth
+            multiline
+            rowsMax="3"
           />
           <Grid container>
             <Grid item xs={9}>
