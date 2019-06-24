@@ -1,8 +1,8 @@
-import React from 'react'
-import BottomNavigation from '@material-ui/core/BottomNavigation'
-import IconButton from '@material-ui/core/IconButton'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTwitter } from '@fortawesome/free-brands-svg-icons'
+import React from "react";
+import BottomNavigation from "@material-ui/core/BottomNavigation";
+import IconButton from "@material-ui/core/IconButton";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTwitter } from "@fortawesome/free-brands-svg-icons";
 
 function Footer() {
   return (
@@ -14,7 +14,7 @@ function Footer() {
       </a>
       <p>お問い合わせはTwitterの方にお願いします。</p>
     </BottomNavigation>
-  )
+  );
 }
 
-export default Footer
+export default Footer;

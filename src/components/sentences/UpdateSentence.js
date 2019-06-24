@@ -1,26 +1,26 @@
-import React, { Component } from 'react'
-import axios from 'axios'
-import SentenceForm from './SentenceForm'
+import React, { Component } from "react";
+import axios from "axios";
+import SentenceForm from "./SentenceForm";
 
 // styles
-import Paper from '@material-ui/core/Paper'
-import withStyles from '@material-ui/core/styles/withStyles'
-import styles from '../../styles/sentences/UpdateSentenceStyles'
+import Paper from "@material-ui/core/Paper";
+import withStyles from "@material-ui/core/styles/withStyles";
+import styles from "../../styles/sentences/UpdateSentenceStyles";
 
 // Redux
-import { connect } from 'react-redux'
-import { updateSentence } from '../../redux/actions/dataActions'
+import { connect } from "react-redux";
+import { updateSentence } from "../../redux/actions/dataActions";
 
 class UpdateSentence extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      sentence: '',
-      translation: '',
-      words: [{english: "", japanese: ""}],
+      sentence: "",
+      translation: "",
+      words: [{ english: "", japanese: "" }],
       errors: {}
-    }
-    this.handleSubmit = this.handleSubmit.bind(this)
+    };
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -30,49 +30,49 @@ class UpdateSentence extends Component {
         let englishJapanesePair = [];
         for (let i = 0; i < res.data.words.length; i++) {
           englishJapanesePair.push({
-            english: res.data.words[i].english, 
-            japanese: res.data.words[i].japanese 
-          })
+            english: res.data.words[i].english,
+            japanese: res.data.words[i].japanese
+          });
         }
 
         this.setState({
           sentence: res.data.sentence,
           translation: res.data.translation,
           words: englishJapanesePair
-        })
+        });
       })
-      .catch(err => console.error(err))
+      .catch(err => console.error(err));
   }
 
-  handleChange = (evt) => {
-    if (evt.target.name === 'sentence' || evt.target.name === 'translation') {
-      this.setState({[evt.target.name]: evt.target.value})
+  handleChange = evt => {
+    if (evt.target.name === "sentence" || evt.target.name === "translation") {
+      this.setState({ [evt.target.name]: evt.target.value });
     } else {
-      let words = [...this.state.words]
-      words[evt.target.dataset.id][evt.target.className] = evt.target.value
-      this.setState({ words })
+      let words = [...this.state.words];
+      words[evt.target.dataset.id][evt.target.className] = evt.target.value;
+      this.setState({ words });
     }
-  }
+  };
 
   addWord = () => {
     this.setState(prevState => ({
-      words: [...prevState.words, {english: '', japanese: ''}]
-    }))
-  } 
+      words: [...prevState.words, { english: "", japanese: "" }]
+    }));
+  };
 
   handleSubmit(evt) {
     evt.preventDefault();
     const word = {
       sentence: this.state.sentence,
       translation: this.state.translation,
-      words: this.state.words,
-    }
+      words: this.state.words
+    };
     this.props.updateSentence(this.props.sentenceId, word);
-    this.props.history.push('/sentences');
+    this.props.history.push("/sentences");
   }
- 
+
   render() {
-    const { classes } = this.props
+    const { classes } = this.props;
     return (
       <Paper className={classes.Paper}>
         <form onSubmit={this.handleSubmit}>
@@ -86,13 +86,16 @@ class UpdateSentence extends Component {
           />
         </form>
       </Paper>
-    )
+    );
   }
 }
 
 const mapStateToProps = state => ({
   data: state.data,
   UI: state.UI
-})
+});
 
-export default connect(mapStateToProps, { updateSentence })(withStyles(styles)(UpdateSentence))
+export default connect(
+  mapStateToProps,
+  { updateSentence }
+)(withStyles(styles)(UpdateSentence));

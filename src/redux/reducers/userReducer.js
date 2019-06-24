@@ -1,4 +1,11 @@
-import { SET_USER, SET_AUTHENTICATED, SET_UNAUTHENTICATED, LOADING_USER, LIKE_SENTENCE, UNLIKE_SENTENCE } from '../types'
+import {
+  SET_USER,
+  SET_AUTHENTICATED,
+  SET_UNAUTHENTICATED,
+  LOADING_USER,
+  LIKE_SENTENCE,
+  UNLIKE_SENTENCE
+} from "../types";
 
 const initialState = {
   authenticated: false,
@@ -9,7 +16,7 @@ const initialState = {
 };
 
 export default function(state = initialState, action) {
-  switch(action.type) {
+  switch (action.type) {
     case SET_AUTHENTICATED:
       return {
         ...state,
@@ -42,8 +49,10 @@ export default function(state = initialState, action) {
     case UNLIKE_SENTENCE:
       return {
         ...state,
-        likes: state.likes.filter(like => like.sentenceId !== action.payload.sentenceId)
-      }
+        likes: state.likes.filter(
+          like => like.sentenceId !== action.payload.sentenceId
+        )
+      };
     default:
       return state;
   }

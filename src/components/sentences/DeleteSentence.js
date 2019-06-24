@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 // styles
-import Fab from '@material-ui/core/Fab';
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import DialogActions from '@material-ui/core/DialogActions';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
+import Fab from "@material-ui/core/Fab";
+import Button from "@material-ui/core/Button";
+import Dialog from "@material-ui/core/Dialog";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import DialogActions from "@material-ui/core/DialogActions";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 // Redux
-import { connect } from 'react-redux';
-import { deleteSentence } from '../../redux/actions/dataActions';
+import { connect } from "react-redux";
+import { deleteSentence } from "../../redux/actions/dataActions";
 
 class DeleteSentence extends Component {
   state = {
@@ -37,7 +37,7 @@ class DeleteSentence extends Component {
         >
           <FontAwesomeIcon icon={faTrashAlt} />
         </Fab>
-        
+
         <Dialog
           open={this.state.open}
           onClose={this.handleClose}
