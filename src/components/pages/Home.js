@@ -89,28 +89,6 @@ function Home(props) {
           </li>
         </ul>
       </div>
-      <div className={classes.recommendation}>
-        <h3>ユーザー登録すると何ができる？</h3>
-        <ul>
-          <li>
-            お気に入りボタンを使うことができ、お気に入りの文章だけを表示できます。
-          </li>
-          <li>また単語を検索することができます。</li>
-          <li>のちのちクイズ形式で問題を解けるようにしていきます。</li>
-        </ul>
-      </div>
-      <div className={classes.profile}>
-        <h3>管理人の英語力</h3>
-        <ul>
-          <li>
-            ニュージーランドのビクトリア大学ウェリントンという大学を卒業しています。
-          </li>
-          <li>留学前に受けたIELTSは7点でした。</li>
-          <li>
-            計７年ほど海外で生活をしていたのに、ネイティブとは程遠いところにいます。
-          </li>
-        </ul>
-      </div>
       <Footer />
     </div>
   );
