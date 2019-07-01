@@ -38,15 +38,15 @@ class Login extends Component {
     return null;
   }
 
-  handleChange = (evt) => {
+  handleChange = evt => {
     this.setState({
       [evt.target.name]: evt.target.value
     });
-  }
+  };
 
   handleClickShowPassword = () => {
     this.setState({ showPassword: !this.state.showPassword });
-  }
+  };
 
   handleSubmit = evt => {
     evt.preventDefault();
