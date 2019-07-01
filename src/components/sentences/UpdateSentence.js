@@ -12,16 +12,12 @@ import { connect } from "react-redux";
 import { updateSentence } from "../../redux/actions/dataActions";
 
 class UpdateSentence extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      sentence: "",
-      translation: "",
-      words: [{ english: "", japanese: "" }],
-      errors: {}
-    };
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+  state = {
+    sentence: "",
+    translation: "",
+    words: [{ english: "", japanese: "" }],
+    errors: {}
+  };
 
   componentDidMount() {
     axios
@@ -41,7 +37,7 @@ class UpdateSentence extends Component {
           words: englishJapanesePair
         });
       })
-      .catch(err => console.error(err));
+      .catch(err => this.setState({ errors: err }));
   }
 
   handleChange = evt => {
@@ -60,7 +56,7 @@ class UpdateSentence extends Component {
     }));
   };
 
-  handleSubmit(evt) {
+  handleSubmit = evt => {
     evt.preventDefault();
     const word = {
       sentence: this.state.sentence,

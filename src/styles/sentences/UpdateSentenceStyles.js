@@ -1,8 +1,8 @@
 const styles = {
   Paper: {
-    width: '60%',
-    marginLeft: 'auto',
-    marginRight: 'auto',
+    width: "60%",
+    marginLeft: "auto",
+    marginRight: "auto",
     marginTop: 30,
     padding: 20
   },
@@ -10,6 +10,6 @@ const styles = {
     marginLeft: 50,
     marginTop: 25
   }
-}
+};
 
-export default styles
+export default styles;
