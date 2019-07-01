@@ -3,7 +3,6 @@ import {
   SET_SENTENCES,
   POST_SENTENCE,
   UPDATE_SENTENCE,
-  SET_SENTENCE,
   DELETE_SENTENCE,
   LIKE_SENTENCE,
   UNLIKE_SENTENCE
@@ -30,11 +29,6 @@ export default function(state = initialState, action) {
         ...state,
         sentences: action.payload,
         loading: false
-      };
-    case SET_SENTENCE:
-      return {
-        ...state,
-        sentence: action.payload
       };
     case POST_SENTENCE:
       return {
