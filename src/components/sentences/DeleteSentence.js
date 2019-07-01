@@ -34,6 +34,7 @@ class DeleteSentence extends Component {
           aria-label="Delete"
           size="small"
           onClick={this.handleOpen}
+          style={{ marginLeft: 5 }}
         >
           <FontAwesomeIcon icon={faTrashAlt} />
         </Fab>
