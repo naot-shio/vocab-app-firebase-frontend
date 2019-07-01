@@ -56,17 +56,27 @@ export const getUserData = () => dispatch => {
         payload: res.data
       });
     })
-    .catch(err => console.error(err));
+    .catch(err => {
+      dispatch({
+        type: SET_ERRORS,
+        payload: err.response.data
+      });
+    });
 };
 
 export const uploadImage = formData => dispatch => {
   dispatch({ type: LOADING_USER });
   axios
     .post("user/image", formData)
-    .then(res => {
+    .then(() => {
       dispatch(getUserData());
     })
-    .catch(err => console.log(err));
+    .catch(err => {
+      dispatch({
+        type: SET_ERRORS,
+        payload: err.response.data
+      });
+    });
 };
 
 export const logout = () => dispatch => {

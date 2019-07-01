@@ -17,7 +17,8 @@ export class Dictionary extends Component {
     preposition: [],
     conjugation: [],
     pronoun: [],
-    determiner: []
+    determiner: [],
+    errors: {}
   };
 
   componentDidMount() {
@@ -253,7 +254,7 @@ export class Dictionary extends Component {
       .then(() => {
         this.setState({ loading: false });
       })
-      .catch(err => console.log(err));
+      .catch(err => this.setState({ errors: err }));
   }
 
   render() {
