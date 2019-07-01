@@ -8,10 +8,10 @@ const styles = {
     marginLeft: 15
   },
   english: {
-    fontSize: '1.1rem',
+    fontSize: "1.1rem",
     color: "blue",
     width: "30%",
-    marginLeft: 15,
+    marginLeft: 15
   },
   "@media (max-width: 430px)": {
     indices: {
@@ -23,6 +23,6 @@ const styles = {
       width: "40%"
     }
   }
-}
+};
 
-export default styles 
+export default styles;

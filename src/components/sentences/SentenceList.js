@@ -1,15 +1,13 @@
 import React, { Component } from "react";
 import AuthenticationIcon from "../auth/AuthenticationIcon";
 import Sentence from "./Sentence";
+import CustomizedIconButton from "../../utils/CustomizedIconButton";
 
 // styles
 import withStyles from "@material-ui/core/styles/withStyles";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
-import IconButton from "@material-ui/core/IconButton";
-import Tooltip from "@material-ui/core/Tooltip";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as faHeartSolid } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as faHeartRegular } from "@fortawesome/free-regular-svg-icons";
 import styles from "../../styles/sentences/SentenceListStyles";
@@ -19,14 +17,11 @@ import { connect } from "react-redux";
 import { getSentences, updateSentence } from "../../redux/actions/dataActions";
 
 class SentenceList extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      clicked: false,
-      keyword: "",
-      displayOnlyLikedSentences: false
-    };
-  }
+  state = {
+    clicked: false,
+    keyword: "",
+    displayOnlyLikedSentences: false
+  };
 
   componentDidMount() {
     this.props.getSentences(this.state.keyword);
@@ -38,15 +33,9 @@ class SentenceList extends Component {
     });
   };
 
-  handleDisplayLikedSentences = () => {
+  handleToggleDisplaySentences = () => {
     this.setState({
-      displayOnlyLikedSentences: true
-    });
-  };
-
-  handleDisplayAllSentences = () => {
-    this.setState({
-      displayOnlyLikedSentences: false
+      displayOnlyLikedSentences: !this.state.displayOnlyLikedSentences
     });
   };
 
@@ -62,17 +51,21 @@ class SentenceList extends Component {
     const { sentences, loading } = this.props.data;
 
     const displayLikeButton = this.state.displayOnlyLikedSentences ? (
-      <Tooltip title="Display All of The Sentences" placement="bottom-end">
-        <IconButton onClick={this.handleDisplayAllSentences}>
-          <FontAwesomeIcon icon={faHeartSolid} color="red" />
-        </IconButton>
-      </Tooltip>
+      <CustomizedIconButton
+        title="Display All of The Sentences"
+        placement="bottom-end"
+        onClick={this.handleToggleDisplaySentences}
+        icon={faHeartSolid}
+        color="red"
+      />
     ) : (
-      <Tooltip title="Display The Liked Sentences" placement="bottom-end">
-        <IconButton onClick={this.handleDisplayLikedSentences}>
-          <FontAwesomeIcon icon={faHeartRegular} color="red" />
-        </IconButton>
-      </Tooltip>
+      <CustomizedIconButton
+        title="Display The Liked Sentences"
+        placement="bottom-end"
+        onClick={this.handleToggleDisplaySentences}
+        icon={faHeartRegular}
+        color="red"
+      />
     );
 
     const isAuthenticated = !authenticated && <AuthenticationIcon />;

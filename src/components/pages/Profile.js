@@ -1,14 +1,12 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import CustomizedIconButton from "../../utils/CustomizedIconButton";
 
 // styles
 import withStyles from "@material-ui/core/styles/withStyles";
 import DialogActions from "@material-ui/core/DialogActions";
 import Dialog from "@material-ui/core/Dialog";
 import Paper from "@material-ui/core/Paper";
-import IconButton from "@material-ui/core/IconButton";
-import Tooltip from "@material-ui/core/Tooltip";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faIdCard,
   faImage,
@@ -30,6 +28,10 @@ class Profile extends Component {
     this.setState({ open: true });
   };
 
+  handleClose = () => {
+    this.setState({ open: false });
+  };
+
   handleImageUpload = evt => {
     evt.preventDefault();
     const image = evt.target.files[0];
@@ -47,10 +49,6 @@ class Profile extends Component {
     this.props.logout();
   };
 
-  handleClose = () => {
-    this.setState({ open: false });
-  };
-
   render() {
     const { classes } = this.props;
     const { likes } = this.props.user;
@@ -59,11 +57,13 @@ class Profile extends Component {
     return (
       <>
         <div className={classes.profileIcon}>
-          <Tooltip title="Profile" placement="left">
-            <IconButton onClick={this.handleOpen} className="button">
-              <FontAwesomeIcon icon={faIdCard} color="royalblue" />
-            </IconButton>
-          </Tooltip>
+          <CustomizedIconButton
+            title="Profile"
+            placement="bottom"
+            onClick={this.handleOpen}
+            icon={faIdCard}
+            color="royalblue"
+          />
         </div>
 
         <Dialog
@@ -81,15 +81,15 @@ class Profile extends Component {
                   hidden="hidden"
                   onChange={this.handleImageUpload}
                 />
-                <Tooltip title="Upload image" placement="top">
-                  <IconButton
-                    onClick={this.handleEditImage}
-                    className="button"
-                    style={{ marginLeft: 20, marginTop: 5 }}
-                  >
-                    <FontAwesomeIcon icon={faImage} color="steelblue" />
-                  </IconButton>
-                </Tooltip>
+
+                <CustomizedIconButton
+                  title="Upload image"
+                  placement="top"
+                  onClick={this.handleEditImage}
+                  className={classes.button}
+                  icon={faImage}
+                  color="steelblue"
+                />
               </div>
               <hr />
               <div>
@@ -99,17 +99,23 @@ class Profile extends Component {
             </div>
           </Paper>
           <DialogActions>
-            <Tooltip title="Logout" placement="top">
-              <IconButton onClick={this.handleLogout} className="button">
-                <FontAwesomeIcon icon={faSignOutAlt} color="crimson" />
-              </IconButton>
-            </Tooltip>
+            <CustomizedIconButton
+              title="Logout"
+              placement="top"
+              onClick={this.handleLogout}
+              className={classes.button}
+              icon={faSignOutAlt}
+              color="crimson"
+            />
 
-            <Tooltip title="Close profile" placement="top">
-              <IconButton onClick={this.handleClose} className="button">
-                <FontAwesomeIcon icon={faWindowClose} color="crimson" />
-              </IconButton>
-            </Tooltip>
+            <CustomizedIconButton
+              title="Close profile"
+              placement="top"
+              onClick={this.handleClose}
+              className={classes.button}
+              icon={faWindowClose}
+              color="crimson"
+            />
           </DialogActions>
         </Dialog>
       </>

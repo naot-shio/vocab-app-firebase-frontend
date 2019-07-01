@@ -78,7 +78,12 @@ export const deleteSentence = sentenceId => dispatch => {
     .then(() => {
       dispatch({ type: DELETE_SENTENCE, payload: sentenceId });
     })
-    .catch(err => console.log(err));
+    .catch(err => {
+      dispatch({
+        type: SET_ERRORS,
+        payload: err
+      });
+    });
 };
 
 export const likeSentence = sentenceId => dispatch => {
@@ -90,7 +95,12 @@ export const likeSentence = sentenceId => dispatch => {
         payload: res.data
       });
     })
-    .catch(err => console.log(err));
+    .catch(err => {
+      dispatch({
+        type: SET_ERRORS,
+        payload: err
+      });
+    });
 };
 
 export const unlikeSentence = sentenceId => dispatch => {
@@ -102,5 +112,10 @@ export const unlikeSentence = sentenceId => dispatch => {
         payload: res.data
       });
     })
-    .catch(err => console.log(err));
+    .catch(err => {
+      dispatch({
+        type: SET_ERRORS,
+        payload: err
+      });
+    });
 };

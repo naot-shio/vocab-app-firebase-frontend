@@ -23,39 +23,35 @@ import { connect } from "react-redux";
 import { loginUser } from "../../redux/actions/userActions";
 
 class Login extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      email: "",
-      password: "",
-      loading: false,
-      errors: {},
-      showPassword: false
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleClickShowPassword = this.handleClickShowPassword.bind(this);
-  }
+  state = {
+    email: "",
+    password: "",
+    loading: false,
+    errors: {},
+    showPassword: false
+  };
 
-  componentWillReceiveProps(nextProps) {
+  static getDerivedStateFromProps(nextProps) {
     if (nextProps.UI.errors) {
-      this.setState({ errors: nextProps.UI.errors });
+      return { errors: nextProps.UI.errors };
     }
+    return null;
   }
 
-  handleChange(evt) {
+  handleChange = evt => {
     this.setState({
       [evt.target.name]: evt.target.value
     });
-  }
+  };
 
-  handleClickShowPassword() {
+  handleClickShowPassword = () => {
     this.setState({ showPassword: !this.state.showPassword });
-  }
+  };
 
   handleSubmit = evt => {
     evt.preventDefault();
     const userData = {
-      email: this.state.email,
+      email: this.state.email.toLowerCase(),
       password: this.state.password
     };
     this.props.loginUser(userData);
@@ -118,7 +114,7 @@ class Login extends Component {
           />
 
           {errors.general && (
-            <Typography variant="body2" className={classes.error}>
+            <Typography variant="body1" className={classes.error}>
               {errors.general}
             </Typography>
           )}

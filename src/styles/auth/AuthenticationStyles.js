@@ -4,7 +4,7 @@ const styles = {
     paddingLeft: 30,
     paddingRight: 30,
     textAlign: "center",
-    backgroundColor: "#f5f5f5",
+    backgroundColor: "#f5f5f5"
   },
   textField: {
     marginBottom: 5
@@ -14,9 +14,13 @@ const styles = {
   },
   dialogIcon: {
     marginRight: 10,
-    color: "green",
+    color: "green"
   },
-  "@media (max-width: 320px)" :{
+  error: {
+    color: "red",
+    marginTop: 10
+  },
+  "@media (max-width: 320px)": {
     root: {
       width: 150
     },
@@ -24,6 +28,6 @@ const styles = {
       display: "none"
     }
   }
-}
+};
 
 export default styles;

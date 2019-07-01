@@ -11,8 +11,7 @@ const initialState = {
   authenticated: false,
   loading: false,
   credentials: {},
-  likes: [],
-  stocks: []
+  likes: []
 };
 
 export default function(state = initialState, action) {

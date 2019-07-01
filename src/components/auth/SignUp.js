@@ -7,7 +7,6 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import Typography from "@material-ui/core/Typography";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import IconButton from "@material-ui/core/IconButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -23,52 +22,45 @@ import { connect } from "react-redux";
 import { signUpUser } from "../../redux/actions/userActions";
 
 class SignUp extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      name: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
-      loading: false,
-      errors: {},
-      showPassword: false,
-      showPasswordConfirmation: false
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleClickShowPassword = this.handleClickShowPassword.bind(this);
-    this.handleClickShowPasswordConfirmation = this.handleClickShowPasswordConfirmation.bind(
-      this
-    );
-  }
+  state = {
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    loading: false,
+    errors: {},
+    showPassword: false,
+    showPasswordConfirmation: false
+  };
 
-  componentWillReceiveProps(nextProps) {
+  static getDerivedStateFromProps(nextProps) {
     if (nextProps.UI.errors) {
-      this.setState({ errors: nextProps.UI.errors });
+      return { errors: nextProps.UI.errors };
     }
+    return null;
   }
 
-  handleChange(evt) {
+  handleChange = evt => {
     this.setState({
       [evt.target.name]: evt.target.value
     });
-  }
+  };
 
-  handleClickShowPassword() {
+  handleClickShowPassword = () => {
     this.setState({ showPassword: !this.state.showPassword });
-  }
+  };
 
-  handleClickShowPasswordConfirmation() {
+  handleClickShowPasswordConfirmation = () => {
     this.setState({
       showPasswordConfirmation: !this.state.showPasswordConfirmation
     });
-  }
+  };
 
   handleSubmit = evt => {
     evt.preventDefault();
     const newUserData = {
       name: this.state.name,
-      email: this.state.email,
+      email: this.state.email.toLowerCase(),
       password: this.state.password,
       confirmPassword: this.state.confirmPassword
     };
@@ -175,12 +167,6 @@ class SignUp extends Component {
             }}
           />
 
-          {errors.general && (
-            <Typography variant="body2" className={classes.error}>
-              {errors.general}
-            </Typography>
-          )}
-
           <Button
             type="submit"
             variant="contained"
@@ -203,7 +189,6 @@ SignUp.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  user: state.user,
   UI: state.UI
 });
 

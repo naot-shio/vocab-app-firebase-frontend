@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import SentenceForm from "./SentenceForm";
+import CustomizedIconButton from "../../utils/CustomizedIconButton";
 
 //styles
-import IconButton from "@material-ui/core/IconButton";
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlusSquare } from "@fortawesome/free-solid-svg-icons";
 
 // Redux
@@ -14,27 +13,21 @@ import { connect } from "react-redux";
 import { postSentence } from "../../redux/actions/dataActions";
 
 export class CreateSentence extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      open: false,
-      sentence: "",
-      translation: "",
-      words: [{ english: "", japanese: "" }],
-      errors: {}
-    };
-    this.handleOpen = this.handleOpen.bind(this);
-    this.handleClose = this.handleClose.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+  state = {
+    open: false,
+    sentence: "",
+    translation: "",
+    words: [{ english: "", japanese: "" }],
+    errors: {}
+  };
 
-  handleOpen() {
+  handleOpen = () => {
     this.setState({ open: true });
-  }
+  };
 
-  handleClose() {
+  handleClose = () => {
     this.setState({ open: false });
-  }
+  };
 
   handleChange = evt => {
     if (evt.target.name === "sentence" || evt.target.name === "translation") {
@@ -52,7 +45,7 @@ export class CreateSentence extends Component {
     }));
   };
 
-  handleSubmit(evt) {
+  handleSubmit = evt => {
     evt.preventDefault();
     const newWord = {
       sentence: this.state.sentence,
@@ -61,15 +54,19 @@ export class CreateSentence extends Component {
     };
     this.props.postSentence(newWord);
     this.handleClose();
-  }
+  };
 
   render() {
     const { open } = this.state;
     return (
       <>
-        <IconButton onClick={this.handleOpen}>
-          <FontAwesomeIcon icon={faPlusSquare} />
-        </IconButton>
+        <CustomizedIconButton
+          title="Add sentence"
+          placement="bottom"
+          onClick={this.handleOpen}
+          icon={faPlusSquare}
+          color="green"
+        />
 
         <Dialog open={open} onClose={this.handleClose} fullWidth maxWidth="sm">
           <DialogTitle>Create a new sentence</DialogTitle>

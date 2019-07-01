@@ -18,34 +18,19 @@ import Dialog from "@material-ui/core/Dialog";
 import styles from "../../styles/auth/AuthenticationIconStyles";
 
 class AuthenticationIcon extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      open: false,
-      openSignUpForm: false,
-      openLoginForm: false
-    };
-    this.handleClickOpenSignUp = this.handleClickOpenSignUp.bind(this);
-    this.handleCloseSignUp = this.handleCloseSignUp.bind(this);
-    this.handleClickOpenLogin = this.handleClickOpenLogin.bind(this);
-    this.handleCloseLogin = this.handleCloseLogin.bind(this);
-  }
+  state = {
+    open: false,
+    openSignUpForm: false,
+    openLoginForm: false
+  };
 
-  handleClickOpenSignUp() {
-    this.setState({ openSignUpForm: true });
-  }
+  handleToggleSignUp = () => {
+    this.setState({ openSignUpForm: !this.state.openSignUpForm });
+  };
 
-  handleClickOpenLogin() {
-    this.setState({ openLoginForm: true });
-  }
-
-  handleCloseLogin() {
-    this.setState({ openLoginForm: false });
-  }
-
-  handleCloseSignUp() {
-    this.setState({ openSignUpForm: false });
-  }
+  handleToggleLogin = () => {
+    this.setState({ openLoginForm: !this.state.openLoginForm });
+  };
 
   render() {
     const { classes } = this.props;
@@ -70,7 +55,7 @@ class AuthenticationIcon extends Component {
             aria-label="Add"
             className={classes.hiddenIcon}
             style={{ display: open ? "block" : "none" }}
-            onClick={this.handleClickOpenSignUp}
+            onClick={this.handleToggleSignUp}
           >
             <FontAwesomeIcon icon={faUserPlus} />
           </Fab>
@@ -82,7 +67,7 @@ class AuthenticationIcon extends Component {
             aria-label="Add"
             className={classes.hiddenIcon}
             style={{ display: open ? "block" : "none" }}
-            onClick={this.handleClickOpenLogin}
+            onClick={this.handleToggleLogin}
           >
             <FontAwesomeIcon icon={faSignInAlt} />
           </Fab>
@@ -91,7 +76,7 @@ class AuthenticationIcon extends Component {
         <Dialog
           open={openSignUpForm}
           aria-labelledby="sign-up-dialog-title"
-          onClose={this.handleCloseSignUp}
+          onClose={this.handleToggleSignUp}
         >
           <SignUp />
         </Dialog>
@@ -99,7 +84,7 @@ class AuthenticationIcon extends Component {
         <Dialog
           open={openLoginForm}
           aria-labelledby="login-dialog-title"
-          onClose={this.handleCloseLogin}
+          onClose={this.handleToggleLogin}
         >
           <Login />
         </Dialog>

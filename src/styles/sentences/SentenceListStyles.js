@@ -1,8 +1,8 @@
 const styles = {
   loading: {
     width: 200,
-    marginRight: 'auto',
-    marginLeft: 'auto',
+    marginRight: "auto",
+    marginLeft: "auto",
     marginTop: 50
   },
   topField: {
@@ -15,41 +15,41 @@ const styles = {
     marginTop: 10
   },
   isAuthenticated: {
-    marginRight: 'auto'
+    marginRight: "auto"
   },
-  "@media (max-width: 600px)" :{
+  "@media (max-width: 600px)": {
     isAuthenticated: {
       marginLeft: 0
     }
   },
-  "@media (max-width: 500px)" :{
+  "@media (max-width: 500px)": {
     topField: {
-      width: "100%",
+      width: "100%"
     },
     loading: {
-      marginLeft: 30,
+      marginLeft: 30
     }
   },
-  "@media (max-width: 400px)" :{
+  "@media (max-width: 400px)": {
     isAuthenticated: {
       marginLeft: -5
     }
   },
   "@media (max-width: 950px)": {
     topField: {
-      width: 650,
+      width: 650
     }
   },
   "@media (max-width: 800px)": {
     topField: {
-      width: 500,
+      width: 500
     }
   },
   "@media (max-width: 650px)": {
     topField: {
-      width: "100%",
+      width: "100%"
     }
   }
-}
-  
-export default styles
+};
+
+export default styles;

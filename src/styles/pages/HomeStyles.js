@@ -1,9 +1,9 @@
-import { makeStyles } from '@material-ui/core/styles'
-import BackgroundImage from '../../images/background-min.png'
+import { makeStyles } from "@material-ui/core/styles";
+import BackgroundImage from "../../images/background-min.png";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    height: "100vh",
+    height: "100vh"
   },
   main: {
     height: "100%",
@@ -11,7 +11,7 @@ const useStyles = makeStyles(theme => ({
     backgroundPosition: "center",
     backgroundSize: "cover",
     textAlign: "center",
-    color: "rgba(0,0,0,0.87)",
+    color: "rgba(0,0,0,0.87)"
   },
   title: {
     fontSize: "4rem",
@@ -27,10 +27,10 @@ const useStyles = makeStyles(theme => ({
   },
   button: {
     marginTop: 30,
-    marginBottom: 20,
+    marginBottom: 20
   },
   exampleImage: {
-    backgroundSize: 'cover',
+    backgroundSize: "cover",
     width: 200,
     height: 200,
     paddingLeft: 100,
@@ -52,37 +52,37 @@ const useStyles = makeStyles(theme => ({
   profile: {
     paddingLeft: 50,
     paddingTop: 20,
-    paddingBottom: 20,
+    paddingBottom: 20
   },
   "@media (max-width: 970px)": {
     title: {
-      fontSize: "3.5rem",
+      fontSize: "3.5rem"
     }
   },
-  "@media (max-width: 840px)" :{
+  "@media (max-width: 840px)": {
     title: {
-      fontSize: "3rem",
+      fontSize: "3rem"
     }
   },
-  "@media (max-width: 720px)" :{
+  "@media (max-width: 720px)": {
     main: {
       backgroundPosition: "30%"
     },
     title: {
-      fontSize: "2.5rem",
+      fontSize: "2.5rem"
     }
   },
-  "@media (max-width: 600px)" :{
+  "@media (max-width: 600px)": {
     auth: {
       float: "right"
-    },
+    }
   },
-  "@media (max-width: 480px)" :{
+  "@media (max-width: 480px)": {
     main: {
       backgroundPosition: "20%"
     },
     title: {
-      fontSize: "2rem",
+      fontSize: "2rem"
     },
     recommendation: {
       paddingRight: 30,
@@ -93,7 +93,7 @@ const useStyles = makeStyles(theme => ({
       paddingLeft: 30
     }
   },
-  "@media (max-width: 385px)" :{
+  "@media (max-width: 385px)": {
     root: {
       height: "90vh"
     },
@@ -102,20 +102,20 @@ const useStyles = makeStyles(theme => ({
     },
     title: {
       marginTop: 50,
-      fontSize: "1.7rem",
+      fontSize: "1.7rem"
     }
   },
-  "@media (max-width: 330px)" :{
+  "@media (max-width: 330px)": {
     title: {
-      fontSize: "1.5rem",
+      fontSize: "1.5rem"
     }
   },
-  "@media (max-width: 432px)" :{
+  "@media (max-width: 432px)": {
     title: {
       paddingTop: 70
     },
     subtitle: {
-      fontSize: "1.3rem",
+      fontSize: "1.3rem"
     }
   }
 }));

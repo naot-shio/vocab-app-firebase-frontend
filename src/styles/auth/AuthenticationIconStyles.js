@@ -8,20 +8,20 @@ const styles = {
   },
   icon: {
     marginTop: 7,
-    display: "block",
+    display: "block"
   },
   hiddenIcon: {
-    marginTop: 7,
+    marginTop: 7
   },
-  "@media (max-width: 600px)" :{
+  "@media (max-width: 600px)": {
     icons: {
       width: 54,
       marginTop: -35,
       marginLeft: -30,
       zIndex: 5
-    },
+    }
   },
-  "@media (max-width: 430px)" :{
+  "@media (max-width: 430px)": {
     hiddenIcon: {
       opacity: "0.8"
     }
@@ -32,6 +32,6 @@ const styles = {
       marginLeft: -35
     }
   }
-}
+};
 
-export default styles
+export default styles;

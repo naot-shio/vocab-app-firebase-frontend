@@ -15,24 +15,24 @@ const reducers = combineReducers({
   UI: uiReducer
 });
 
-if (window.navigator.userAgent.includes('Chrome')) {
-  var store = createStore(
+let store;
+
+if (window.navigator.userAgent.includes("Chrome")) {
+  store = createStore(
     reducers,
     initialState,
     compose(
       applyMiddleware(...middleware),
-      window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+      window.__REDUX_DEVTOOLS_EXTENSION__ &&
+        window.__REDUX_DEVTOOLS_EXTENSION__()
     )
   );
 } else {
-  var store = createStore(
+  store = createStore(
     reducers,
     initialState,
-    compose(
-      applyMiddleware(...middleware)
-    )
+    compose(applyMiddleware(...middleware))
   );
 }
-
 
 export default store;
