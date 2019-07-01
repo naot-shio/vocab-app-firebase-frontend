@@ -35,6 +35,24 @@ export const getSentences = keyword => dispatch => {
     });
 };
 
+export const getRandomSentences = () => dispatch => {
+  dispatch({ type: LOADING_DATA });
+  axios
+    .get("/quiz")
+    .then(res => {
+      dispatch({
+        type: SET_SENTENCES,
+        payload: res.data
+      });
+    })
+    .catch(() => {
+      dispatch({
+        type: SET_SENTENCES,
+        payload: []
+      });
+    });
+};
+
 export const postSentence = newSentence => dispatch => {
   dispatch({ type: LOADING_UI });
   axios
