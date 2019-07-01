@@ -15,8 +15,10 @@ const reducers = combineReducers({
   UI: uiReducer
 });
 
+let store;
+
 if (window.navigator.userAgent.includes('Chrome')) {
-  var store = createStore(
+  store = createStore(
     reducers,
     initialState,
     compose(
@@ -25,7 +27,7 @@ if (window.navigator.userAgent.includes('Chrome')) {
     )
   );
 } else {
-  var store = createStore(
+  store = createStore(
     reducers,
     initialState,
     compose(
