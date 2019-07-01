@@ -60,7 +60,7 @@ class SignUp extends Component {
     evt.preventDefault();
     const newUserData = {
       name: this.state.name,
-      email: this.state.email,
+      email: this.state.email.toLowerCase(),
       password: this.state.password,
       confirmPassword: this.state.confirmPassword
     };

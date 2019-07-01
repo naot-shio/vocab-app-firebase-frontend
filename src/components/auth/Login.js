@@ -51,7 +51,7 @@ class Login extends Component {
   handleSubmit = evt => {
     evt.preventDefault();
     const userData = {
-      email: this.state.email,
+      email: this.state.email.toLowerCase(),
       password: this.state.password
     };
     this.props.loginUser(userData);
