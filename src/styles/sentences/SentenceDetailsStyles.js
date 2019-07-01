@@ -1,10 +1,10 @@
 const styles = {
- icons: {
-    float: 'right',
+  icons: {
+    float: "right",
     paddingTop: 5,
     paddingBottom: 5,
-    '& deleteIcon': {
-      paddingLeft: 5,
+    "& deleteIcon": {
+      paddingLeft: 5
     }
   },
   Card: {
@@ -23,29 +23,29 @@ const styles = {
     userSelect: "none"
   },
   translation: {
-      marginTop: 10,
-      marginLeft: 15
-    },
+    marginTop: 10,
+    marginLeft: 15
+  },
   "@media (max-width: 950px)": {
     Card: {
-      width: 650,
+      width: 650
     }
   },
   "@media (max-width: 800px)": {
     Card: {
-      width: 500,
+      width: 500
     }
   },
   "@media (max-width: 650px)": {
     Card: {
-      width: "100%",
+      width: "100%"
     }
   },
   "@media (max-width: 500px)": {
     Card: {
-      width: "100%",
+      width: "100%"
     }
   }
-}
+};
 
-export default styles
+export default styles;

@@ -1,7 +1,7 @@
 const styles = {
   AppBar: {
     backgroundColor: "#fefefe",
-    marginBottom: 0 
+    marginBottom: 0
   },
   root: {
     flexGrow: 1,
@@ -17,8 +17,7 @@ const styles = {
     "& a": {
       fontWeight: 600
     }
-  },
+  }
 };
 
 export default styles;
-

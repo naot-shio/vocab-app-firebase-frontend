@@ -8,9 +8,9 @@ const styles = {
   },
   submitButton: {
     marginTop: 5,
-    textAlign: 'center', 
-    marginLeft: 'auto',
-    marginRight: 'auto'
+    textAlign: "center",
+    marginLeft: "auto",
+    marginRight: "auto"
   },
   addWord: {
     marginLeft: 50,
@@ -18,19 +18,19 @@ const styles = {
   },
   "@media (max-width: 600px)": {
     addWord: {
-      marginLeft: 35,
-    },
+      marginLeft: 35
+    }
   },
   "@media (max-width: 500px)": {
     addWord: {
-      marginLeft: 25,
-    },
+      marginLeft: 25
+    }
   },
   "@media (max-width: 400px)": {
     addWord: {
-      marginLeft: 15,
-    },
-  },
-}
+      marginLeft: 15
+    }
+  }
+};
 
-export default styles
+export default styles;
