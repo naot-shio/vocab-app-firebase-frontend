@@ -86,7 +86,7 @@ class SentenceDetails extends Component {
           {authenticated && likeButton}
 
           {sentence.words.map((word, index) => (
-            <WordMeaningList index={index} i={i} word={word} />
+            <WordMeaningList index={index} i={i} word={word} key={index} />
           ))}
 
           <Typography variant="body1" className={classes.translation}>

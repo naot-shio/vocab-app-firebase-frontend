@@ -21,7 +21,7 @@ export class WordMeaningList extends Component {
   render() {
     const { index, i, word, classes } = this.props;
     return (
-      <div key={index} className={classes.word}>
+      <div className={classes.word}>
         <Typography className={classes.indices}>
           {i + 1}-{index + 1}
         </Typography>
