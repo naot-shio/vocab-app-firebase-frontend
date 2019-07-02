@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import PrivateRoute from "./utils/PrivateRoute";
 import axios from "axios";
 import jwtDecode from "jwt-decode";
 
@@ -7,6 +8,7 @@ import jwtDecode from "jwt-decode";
 import Navbar from "./components/pages/Navbar";
 import Home from "./components/pages/Home";
 import SentenceList from "./components/sentences/SentenceList";
+import Question from "./components/questions/Question";
 import UpdateSentence from "./components/sentences/UpdateSentence";
 import "./App.css";
 // redux
@@ -58,6 +60,7 @@ class App extends Component {
                 />
               )}
             />
+            <PrivateRoute exact path="/question" component={Question} />
           </Switch>
         </BrowserRouter>
       </Provider>
