@@ -15,6 +15,7 @@ export class Question extends Component {
     answer: "",
     questionNumber: 0,
     wrongAnswers: [],
+    inputAnswers: [],
     correctAnswers: [],
     result: false,
     resultButton: true
@@ -37,6 +38,7 @@ export class Question extends Component {
     this.state.wrongAnswers.push(
       this.props.data.sentences[this.state.questionNumber]
     );
+    this.state.inputAnswers.push('Passed');
   };
 
   handleChange = evt => {
@@ -46,22 +48,30 @@ export class Question extends Component {
   };
 
   handleCheck = () => {
-    const { questionNumber, wrongAnswers, correctAnswers } = this.state;
+    const { questionNumber, wrongAnswers, correctAnswers, inputAnswers } = this.state;
     const regex = /\W/gi;
-    let inputAnswer = this.state.answer.replace(regex, "");
-    let answer = this.props.data.sentences[questionNumber].sentence.replace(
+    let inputAnswer = this.state.answer
+    let trimmedInputAnswer = inputAnswer.replace(regex, "");
+    let answer = this.props.data.sentences[questionNumber];
+    let trimmedAnswer = answer.sentence.replace(
       regex,
       ""
     );
 
-    if (inputAnswer === answer) {
-      correctAnswers.push(this.props.data.sentences[questionNumber]);
+    if (trimmedInputAnswer === trimmedAnswer) {
+      correctAnswers.push(answer);
     } else {
-      wrongAnswers.push(this.props.data.sentences[questionNumber]);
+      wrongAnswers.push(answer);
     }
     this.setState({
       questionNumber: questionNumber + 1
     });
+
+    if (inputAnswer) {
+      inputAnswers.push(inputAnswer)
+    } else {
+      inputAnswers.push("Passed")
+    }
   };
 
   handleCheckResult = () => {
@@ -76,14 +86,14 @@ export class Question extends Component {
       wrongAnswers,
       correctAnswers,
       result,
-      resultButton
+      resultButton,
+      inputAnswers
     } = this.state;
 
     let randomSentences = sentences.map((sentence, i) => (
         <Card style={{ display: i === questionNumber ? "block" : "none", padding: 40 }} key={sentence.sentenceId}>
           <h2>Question: {questionNumber + 1}</h2>
           <h3>{sentence.translation}</h3>
-          <h3>{sentence.sentence}</h3>
           <TextField
             id="question"
             label="Question"
@@ -135,6 +145,7 @@ export class Question extends Component {
             wrongAnswers={wrongAnswers}
             correctAnswers={correctAnswers}
             sentences={sentences}
+            inputAnswers={inputAnswers}
           />
         )}
       </div> 

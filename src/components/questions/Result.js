@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import SentenceDetails from "../sentences/SentenceDetails";
 
-function Result({ wrongAnswers, correctAnswers, sentences }) {
+function Result({ wrongAnswers, correctAnswers, sentences, inputAnswers }) {
   let displayCorrectAnswers =
     correctAnswers.length > 0 ? (
       correctAnswers.map((sentence, i) => (
@@ -21,6 +21,13 @@ function Result({ wrongAnswers, correctAnswers, sentences }) {
     ) : (
       <p>Perfect!</p>
     );
+  
+    let answers = inputAnswers.map((answer, i) => (
+      <div key={i} style={{style: 'inline-block', marginBottom: 10}}>
+        <h5 style={{display: 'inline'}}>Question {i + 1}:  </h5>
+        <p style={{color: 'red', display: 'inline'}}>{answer}</p>
+      </div>
+    ))
 
   let message;
   if (correctAnswers.length === sentences.length) {
@@ -39,6 +46,11 @@ function Result({ wrongAnswers, correctAnswers, sentences }) {
         <p>
           You got {correctAnswers.length} out of {sentences.length}
         </p>
+      </div>
+
+      <div>
+        <h3>Your answers</h3>
+        {answers}
       </div>
 
       <div>
