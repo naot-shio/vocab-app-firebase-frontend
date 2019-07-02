@@ -17,7 +17,8 @@ import { getRandomSentences } from "../../redux/actions/dataActions";
 
 class Profile extends Component {
   state = {
-    open: false
+    open: false,
+    inputNumberOfQuestions: 5,
   };
 
   handleOpen = () => {
@@ -29,7 +30,7 @@ class Profile extends Component {
   };
 
   handleClick = () => {
-    this.props.history.push("/question");
+    this.props.history.push("/question", { inputNumberOfQuestions: this.state.inputNumberOfQuestions  });
     this.handleClose();
   };
 

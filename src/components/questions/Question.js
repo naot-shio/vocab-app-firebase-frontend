@@ -7,28 +7,35 @@ import { getRandomSentences } from "../../redux/actions/dataActions";
 
 export class Question extends Component {
   state = {
-    quizNum: 0
+    questionNumber: 0
   };
   componentDidMount() {
-    this.props.getRandomSentences();
+    let numberOfQuestions;
+    if (this.props.location.state === undefined) {
+      numberOfQuestions = 10
+    } else {
+      numberOfQuestions = this.props.location.state.inputNumberOfQuestions
+    }
+    console.log(numberOfQuestions)
+    this.props.getRandomSentences(numberOfQuestions);
   }
 
   handleClick = () => {
     this.setState({
-      quizNum: this.state.quizNum + 1
+      questionNumber: this.state.questionNumber + 1
     });
   };
 
   render() {
     const { sentences } = this.props.data;
-    const { quizNum } = this.state;
+    const { questionNumber } = this.state;
 
     let randomSentences = sentences.map((sentence, i) => (
       <div key={i}>
-        <h3 style={{ display: i === quizNum ? "block" : "none" }}>
+        <h3 style={{ display: i === questionNumber ? "block" : "none" }}>
           {sentence.sentence}
         </h3>
-        <h3 style={{ display: i === quizNum ? "block" : "none" }}>
+        <h3 style={{ display: i === questionNumber ? "block" : "none" }}>
           {sentence.translation}
         </h3>
       </div>
@@ -37,14 +44,14 @@ export class Question extends Component {
     return (
       <div style={{ margin: "100px" }}>
         <Button
-          style={{ display: quizNum > sentences.length - 2 ? "none" : "block" }}
+          style={{ display: questionNumber > sentences.length - 2 ? "none" : "block" }}
           onClick={this.handleClick}
-          disabled={quizNum > sentences.length - 2 ? true : false}
+          disabled={questionNumber > sentences.length - 2 ? true : false}
         >
           Click me
         </Button>
         <div>{randomSentences}</div>
-        {quizNum > sentences.length - 2 && (
+        {questionNumber > sentences.length - 2 && (
           <Button>
             <Link to="/sentences">Go back home</Link>
           </Button>

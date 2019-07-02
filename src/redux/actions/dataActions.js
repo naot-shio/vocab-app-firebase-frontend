@@ -18,7 +18,7 @@ export const getSentences = keyword => dispatch => {
   axios
     .get("/sentences", {
       params: {
-        keyword: keyword
+        keyword
       }
     })
     .then(res => {
@@ -35,10 +35,14 @@ export const getSentences = keyword => dispatch => {
     });
 };
 
-export const getRandomSentences = () => dispatch => {
+export const getRandomSentences = numberOfQuestions => dispatch => {
   dispatch({ type: LOADING_DATA });
   axios
-    .get("/quiz")
+    .get("/quiz", {
+      params: {
+        numberOfQuestions
+      }
+    })
     .then(res => {
       dispatch({
         type: SET_SENTENCES,
