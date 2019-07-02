@@ -5,6 +5,7 @@ import CustomizedIconButton from "../../utils/CustomizedIconButton";
 
 // styles
 import withStyles from "@material-ui/core/styles/withStyles";
+import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import CircularProgress from "@material-ui/core/CircularProgress";
@@ -20,7 +21,8 @@ class SentenceList extends Component {
   state = {
     clicked: false,
     keyword: "",
-    displayOnlyLikedSentences: false
+    displayOnlyLikedSentences: false,
+    currentSentence: 1
   };
 
   componentDidMount() {
@@ -94,9 +96,16 @@ class SentenceList extends Component {
         </Grid>
       </div>
     );
+    
+    const sentencesPerPage = 3;
+    const indexOfLastSentence = this.state.currentSentence * sentencesPerPage;
+    const indexOfFirstSentence = indexOfLastSentence - sentencesPerPage
+    const currentSentences = sentences.slice(indexOfFirstSentence, indexOfLastSentence);
+
+    // const paginate = pageNumber => setCurrentPage(pageNumber);
 
     let getAllSentences = !loading ? (
-      sentences.map((sentence, i) => (
+      currentSentences.map((sentence, i) => (
         <Sentence
           key={sentence.sentenceId}
           sentence={sentence}
@@ -118,6 +127,9 @@ class SentenceList extends Component {
           {buttonSearchBar}
 
           {getAllSentences}
+
+          <Button onClick={() => this.setState({ currentSentence: this.state.currentSentence - 1 })}>Prev</Button>
+          <Button onClick={() => this.setState({ currentSentence: this.state.currentSentence + 1 })}>Next</Button>
         </Grid>
 
         <Grid item sm={2} xs={1}>
