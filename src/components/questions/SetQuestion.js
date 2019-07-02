@@ -13,11 +13,7 @@ import Button from "@material-ui/core/Button";
 import { faQuestion } from "@fortawesome/free-solid-svg-icons";
 import styles from "../../styles/pages/ProfileStyles";
 
-// Redux
-import { connect } from "react-redux";
-import { getRandomSentences } from "../../redux/actions/dataActions";
-
-class Profile extends Component {
+class SetQuestion extends Component {
   state = {
     open: false,
     inputNumberOfQuestions: 10
@@ -50,7 +46,7 @@ class Profile extends Component {
       <div>
         <div className={classes.profileIcon}>
           <CustomizedIconButton
-            title="Profile"
+            title="Question"
             placement="bottom"
             onClick={this.handleOpen}
             icon={faQuestion}
@@ -85,11 +81,4 @@ class Profile extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  user: state.user
-});
-
-export default connect(
-  mapStateToProps,
-  { getRandomSentences }
-)(withStyles(styles)(withRouter(Profile)));
+export default (withStyles(styles)(withRouter(SetQuestion)));
