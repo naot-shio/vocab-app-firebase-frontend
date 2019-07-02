@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import CreateSentence from "../sentences/CreateSentence";
+import SetQuestion from "../questions/SetQuestion";
 import Profile from "./Profile";
 
 // styles
@@ -25,6 +26,7 @@ function Navbar(props) {
         </Typography>
 
         {authenticated && owner && <CreateSentence />}
+        {<SetQuestion />}
         {authenticated && <Profile />}
       </Toolbar>
     </AppBar>

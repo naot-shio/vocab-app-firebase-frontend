@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 // Redux
 import { connect } from "react-redux";
@@ -43,6 +44,11 @@ export class Question extends Component {
           Click me
         </Button>
         <div>{randomSentences}</div>
+        {quizNum > sentences.length - 2 && (
+          <Button>
+            <Link to="/sentences">Go back home</Link>
+          </Button>
+        )}
       </div>
     );
   }
