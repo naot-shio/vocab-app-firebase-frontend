@@ -26,7 +26,7 @@ function Navbar(props) {
         </Typography>
 
         {authenticated && owner && <CreateSentence />}
-        {<SetQuestion />}
+        {authenticated && <SetQuestion />}
         {authenticated && <Profile />}
       </Toolbar>
     </AppBar>

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import PrivateRoute from './utils/PrivateRoute'
 import axios from "axios";
 import jwtDecode from "jwt-decode";
 
@@ -59,10 +60,10 @@ class App extends Component {
                 />
               )}
             />
-            <Route
+            <PrivateRoute
               exact
               path="/question"
-              render={routeProps => <Question {...routeProps} />}
+              component={Question}
             />
           </Switch>
         </BrowserRouter>
