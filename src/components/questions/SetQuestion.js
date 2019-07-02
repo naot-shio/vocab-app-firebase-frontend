@@ -81,4 +81,4 @@ class SetQuestion extends Component {
   }
 }
 
-export default (withStyles(styles)(withRouter(SetQuestion)));
+export default withStyles(styles)(withRouter(SetQuestion));

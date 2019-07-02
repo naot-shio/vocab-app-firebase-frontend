@@ -1,7 +1,10 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import Result from "./Result";
+
+// Styles
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+
 // Redux
 import { connect } from "react-redux";
 import { getRandomSentences } from "../../redux/actions/dataActions";
@@ -9,7 +12,11 @@ import { getRandomSentences } from "../../redux/actions/dataActions";
 export class Question extends Component {
   state = {
     answer: "",
-    questionNumber: 0
+    questionNumber: 0,
+    wrongAnswers: [],
+    correctAnswers: [],
+    result: false,
+    resultButton: true
   };
 
   componentDidMount() {
@@ -19,7 +26,6 @@ export class Question extends Component {
     } else {
       numberOfQuestions = this.props.location.state.inputNumberOfQuestions;
     }
-    console.log(numberOfQuestions);
     this.props.getRandomSentences(numberOfQuestions);
   }
 
@@ -27,6 +33,9 @@ export class Question extends Component {
     this.setState({
       questionNumber: this.state.questionNumber + 1
     });
+    this.state.wrongAnswers.push(
+      this.props.data.sentences[this.state.questionNumber]
+    );
   };
 
   handleChange = evt => {
@@ -36,25 +45,38 @@ export class Question extends Component {
   };
 
   handleCheck = () => {
+    const { questionNumber, wrongAnswers, correctAnswers } = this.state;
     const regex = /\W/gi;
     let inputAnswer = this.state.answer.replace(regex, "");
-    let answer = this.props.data.sentences[
-      this.state.questionNumber
-    ].sentence.replace(regex, "");
+    let answer = this.props.data.sentences[questionNumber].sentence.replace(
+      regex,
+      ""
+    );
 
     if (inputAnswer === answer) {
-      console.log("Correct");
+      correctAnswers.push(this.props.data.sentences[questionNumber]);
     } else {
-      console.log("Wrong");
+      wrongAnswers.push(this.props.data.sentences[questionNumber]);
     }
     this.setState({
-      questionNumber: this.state.questionNumber + 1
+      questionNumber: questionNumber + 1
     });
+  };
+
+  handleCheckResult = () => {
+    this.handleCheck();
+    this.setState({ result: true, resultButton: false });
   };
 
   render() {
     const { sentences } = this.props.data;
-    const { questionNumber } = this.state;
+    const {
+      questionNumber,
+      wrongAnswers,
+      correctAnswers,
+      result,
+      resultButton
+    } = this.state;
 
     let randomSentences = sentences.map((sentence, i) => (
       <div key={i}>
@@ -101,10 +123,16 @@ export class Question extends Component {
       <div style={{ margin: "100px" }}>
         <div>{randomSentences}</div>
 
-        {questionNumber > sentences.length - 2 && (
-          <Button>
-            <Link to="/sentences">Go back home</Link>
-          </Button>
+        {questionNumber > sentences.length - 2 && resultButton && (
+          <Button onClick={this.handleCheckResult}>Result</Button>
+        )}
+
+        {result && (
+          <Result
+            wrongAnswers={wrongAnswers}
+            correctAnswers={correctAnswers}
+            sentences={sentences}
+          />
         )}
       </div>
     );
