@@ -22,10 +22,20 @@ function Result({ wrongAnswers, correctAnswers, sentences }) {
       <p>Perfect!</p>
     );
 
+  let message;
+  if (correctAnswers.length === sentences.length) {
+    message = <p>Bravo</p>
+  } else if (correctAnswers.length / sentences.length >= 0.8) {
+    message = <p>Fantastic Job</p>
+  } else if (correctAnswers.length / sentences.length >= 0.5) {
+    message = <p>Keep it up</p>
+  } else {
+    message = <p>Nice try</p>
+  }
   return (
     <>
       <div style={{ textAlign: "center" }}>
-        <h3>Well done</h3>
+        <h3>{message}</h3>
         <p>
           You got {correctAnswers.length} out of {sentences.length}
         </p>
@@ -41,9 +51,14 @@ function Result({ wrongAnswers, correctAnswers, sentences }) {
         {displayWrongAnswers}
       </div>
 
-      <Button>
-        <Link to="/sentences">Go back home</Link>
-      </Button>
+      <div style={{ textAlign: "right"}}>
+      <Link to="/sentences" style={{ textDecoration: 'none'}}>
+        <Button color="primary">
+          Go back home
+        </Button>
+        </Link>
+      </div>
+      
     </>
   );
 }

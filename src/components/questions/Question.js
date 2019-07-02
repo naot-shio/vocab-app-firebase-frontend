@@ -4,6 +4,7 @@ import Result from "./Result";
 // Styles
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import Card from "@material-ui/core/Card";
 
 // Redux
 import { connect } from "react-redux";
@@ -79,9 +80,10 @@ export class Question extends Component {
     } = this.state;
 
     let randomSentences = sentences.map((sentence, i) => (
-      <div key={i}>
-        <div style={{ display: i === questionNumber ? "block" : "none" }}>
+        <Card style={{ display: i === questionNumber ? "block" : "none", padding: 40 }} key={sentence.sentenceId}>
+          <h2>Question: {questionNumber + 1}</h2>
           <h3>{sentence.translation}</h3>
+          <h3>{sentence.sentence}</h3>
           <TextField
             id="question"
             label="Question"
@@ -90,10 +92,10 @@ export class Question extends Component {
             margin="normal"
             fullWidth
           />
-          <h3>{sentence.sentence}</h3>
 
-          <div style={{ display: "block", textAlign: "right" }}>
+          <div style={{ display: "block", textAlign: "right" , marginTop: 20}}>
             <Button
+              variant="contained" color="primary" 
               onClick={this.handleCheck}
               style={{
                 display:
@@ -105,27 +107,28 @@ export class Question extends Component {
             </Button>
 
             <Button
+              variant="contained" color="secondary" 
               style={{
                 display:
-                  questionNumber > sentences.length - 2 ? "none" : "inline"
+                  questionNumber > sentences.length - 2 ? "none" : "inline",
+                  marginLeft: 10
               }}
               onClick={this.handleClick}
               disabled={questionNumber > sentences.length - 2 ? true : false}
             >
               Pass
             </Button>
+
+            {questionNumber > sentences.length - 2 && resultButton && (
+              <Button onClick={this.handleCheckResult} variant="contained" color="primary">Result</Button>
+            )}
           </div>
-        </div>
-      </div>
+        </Card>
     ));
 
     return (
       <div style={{ margin: "100px" }}>
-        <div>{randomSentences}</div>
-
-        {questionNumber > sentences.length - 2 && resultButton && (
-          <Button onClick={this.handleCheckResult}>Result</Button>
-        )}
+        {randomSentences}
 
         {result && (
           <Result
@@ -134,13 +137,12 @@ export class Question extends Component {
             sentences={sentences}
           />
         )}
-      </div>
+      </div> 
     );
   }
 }
 
 const mapStateToProps = state => ({
-  user: state.user,
   data: state.data
 });
 

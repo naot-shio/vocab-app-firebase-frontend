@@ -44,7 +44,6 @@ class SetQuestion extends Component {
     const { classes } = this.props;
     return (
       <div>
-        <div className={classes.profileIcon}>
           <CustomizedIconButton
             title="Question"
             placement="bottom"
@@ -52,7 +51,6 @@ class SetQuestion extends Component {
             icon={faQuestion}
             color="royalblue"
           />
-        </div>
 
         <Dialog
           open={this.state.open}
@@ -60,12 +58,12 @@ class SetQuestion extends Component {
           aria-labelledby="responsive-dialog-title"
         >
           <Paper className={classes.paper}>
-            <Typography variant="h5">
-              How many questions would you like to solve?
+            <Typography variant="h6">
+              How many questions would you like to attempt?
             </Typography>
             <TextField
               id="standard-number"
-              label="Number"
+              label="Number of Questions"
               onChange={this.handleChange}
               type="number"
               margin="normal"
@@ -73,7 +71,7 @@ class SetQuestion extends Component {
           </Paper>
 
           <DialogActions>
-            <Button onClick={this.handleClick}>Start</Button>
+            <Button onClick={this.handleClick} variant="contained" color="primary">Start</Button>
           </DialogActions>
         </Dialog>
       </div>
