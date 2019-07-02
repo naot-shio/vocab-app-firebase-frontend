@@ -44,13 +44,13 @@ class SetQuestion extends Component {
     const { classes } = this.props;
     return (
       <div>
-          <CustomizedIconButton
-            title="Question"
-            placement="bottom"
-            onClick={this.handleOpen}
-            icon={faQuestion}
-            color="royalblue"
-          />
+        <CustomizedIconButton
+          title="Question"
+          placement="bottom"
+          onClick={this.handleOpen}
+          icon={faQuestion}
+          color="royalblue"
+        />
 
         <Dialog
           open={this.state.open}
@@ -71,7 +71,13 @@ class SetQuestion extends Component {
           </Paper>
 
           <DialogActions>
-            <Button onClick={this.handleClick} variant="contained" color="primary">Start</Button>
+            <Button
+              onClick={this.handleClick}
+              variant="contained"
+              color="primary"
+            >
+              Start
+            </Button>
           </DialogActions>
         </Dialog>
       </div>

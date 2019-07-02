@@ -38,7 +38,7 @@ export class Question extends Component {
     this.state.wrongAnswers.push(
       this.props.data.sentences[this.state.questionNumber]
     );
-    this.state.inputAnswers.push('Skipped');
+    this.state.inputAnswers.push("Skipped");
   };
 
   handleChange = evt => {
@@ -48,15 +48,17 @@ export class Question extends Component {
   };
 
   handleCheck = () => {
-    const { questionNumber, wrongAnswers, correctAnswers, inputAnswers } = this.state;
+    const {
+      questionNumber,
+      wrongAnswers,
+      correctAnswers,
+      inputAnswers
+    } = this.state;
     const regex = /\W/gi;
-    let inputAnswer = this.state.answer
+    let inputAnswer = this.state.answer;
     let trimmedInputAnswer = inputAnswer.replace(regex, "");
     let answer = this.props.data.sentences[questionNumber];
-    let trimmedAnswer = answer.sentence.replace(
-      regex,
-      ""
-    );
+    let trimmedAnswer = answer.sentence.replace(regex, "");
 
     if (trimmedInputAnswer === trimmedAnswer) {
       correctAnswers.push(answer);
@@ -68,9 +70,9 @@ export class Question extends Component {
     });
 
     if (inputAnswer) {
-      inputAnswers.push(inputAnswer)
+      inputAnswers.push(inputAnswer);
     } else {
-      inputAnswers.push("Skipped")
+      inputAnswers.push("Skipped");
     }
   };
 
@@ -91,49 +93,62 @@ export class Question extends Component {
     } = this.state;
 
     let randomSentences = sentences.map((sentence, i) => (
-        <Card style={{ display: i === questionNumber ? "block" : "none", padding: 40 }} key={sentence.sentenceId}>
-          <h2>Question: {questionNumber + 1}</h2>
-          <h3>{sentence.translation}</h3>
-          <TextField
-            id="question"
-            label="Question"
-            onChange={this.handleChange}
-            type="text"
-            margin="normal"
-            fullWidth
-          />
+      <Card
+        style={{
+          display: i === questionNumber ? "block" : "none",
+          padding: 40
+        }}
+        key={sentence.sentenceId}
+      >
+        <h2>Question: {questionNumber + 1}</h2>
+        <h3>{sentence.translation}</h3>
+        <TextField
+          id="question"
+          label="Question"
+          onChange={this.handleChange}
+          type="text"
+          margin="normal"
+          fullWidth
+        />
 
-          <div style={{ display: "block", textAlign: "right" , marginTop: 20}}>
+        <div style={{ display: "block", textAlign: "right", marginTop: 20 }}>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={this.handleCheck}
+            style={{
+              display: questionNumber > sentences.length - 2 ? "none" : "inline"
+            }}
+            disabled={questionNumber > sentences.length - 2 ? true : false}
+          >
+            Check
+          </Button>
+
+          <Button
+            variant="contained"
+            color="secondary"
+            style={{
+              display:
+                questionNumber > sentences.length - 2 ? "none" : "inline",
+              marginLeft: 10
+            }}
+            onClick={this.handleClick}
+            disabled={questionNumber > sentences.length - 2 ? true : false}
+          >
+            Pass
+          </Button>
+
+          {questionNumber > sentences.length - 2 && resultButton && (
             <Button
-              variant="contained" color="primary" 
-              onClick={this.handleCheck}
-              style={{
-                display:
-                  questionNumber > sentences.length - 2 ? "none" : "inline"
-              }}
-              disabled={questionNumber > sentences.length - 2 ? true : false}
+              onClick={this.handleCheckResult}
+              variant="contained"
+              color="primary"
             >
-              Check
+              Result
             </Button>
-
-            <Button
-              variant="contained" color="secondary" 
-              style={{
-                display:
-                  questionNumber > sentences.length - 2 ? "none" : "inline",
-                  marginLeft: 10
-              }}
-              onClick={this.handleClick}
-              disabled={questionNumber > sentences.length - 2 ? true : false}
-            >
-              Pass
-            </Button>
-
-            {questionNumber > sentences.length - 2 && resultButton && (
-              <Button onClick={this.handleCheckResult} variant="contained" color="primary">Result</Button>
-            )}
-          </div>
-        </Card>
+          )}
+        </div>
+      </Card>
     ));
 
     return (
@@ -148,7 +163,7 @@ export class Question extends Component {
             inputAnswers={inputAnswers}
           />
         )}
-      </div> 
+      </div>
     );
   }
 }

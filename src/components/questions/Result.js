@@ -21,23 +21,23 @@ function Result({ wrongAnswers, correctAnswers, sentences, inputAnswers }) {
     ) : (
       <p>Perfect!</p>
     );
-  
-    let answers = inputAnswers.map((answer, i) => (
-      <div key={i} style={{style: 'inline-block', marginBottom: 10}}>
-        <h5 style={{display: 'inline'}}>Question {i + 1}:  </h5>
-        <p style={{color: 'red', display: 'inline'}}>{answer}</p>
-      </div>
-    ))
+
+  let answers = inputAnswers.map((answer, i) => (
+    <div key={i} style={{ style: "inline-block", marginBottom: 10 }}>
+      <h5 style={{ display: "inline" }}>Question {i + 1}: </h5>
+      <p style={{ color: "red", display: "inline" }}>{answer}</p>
+    </div>
+  ));
 
   let message;
   if (correctAnswers.length === sentences.length) {
-    message = <p>Bravo</p>
+    message = <p>Bravo</p>;
   } else if (correctAnswers.length / sentences.length >= 0.8) {
-    message = <p>Fantastic Job</p>
+    message = <p>Fantastic Job</p>;
   } else if (correctAnswers.length / sentences.length >= 0.5) {
-    message = <p>Keep it up</p>
+    message = <p>Keep it up</p>;
   } else {
-    message = <p>Nice try</p>
+    message = <p>Nice try</p>;
   }
   return (
     <>
@@ -63,14 +63,11 @@ function Result({ wrongAnswers, correctAnswers, sentences, inputAnswers }) {
         {displayWrongAnswers}
       </div>
 
-      <div style={{ textAlign: "right"}}>
-      <Link to="/sentences" style={{ textDecoration: 'none'}}>
-        <Button color="primary">
-          Go back home
-        </Button>
+      <div style={{ textAlign: "right" }}>
+        <Link to="/sentences" style={{ textDecoration: "none" }}>
+          <Button color="primary">Go back home</Button>
         </Link>
       </div>
-      
     </>
   );
 }
