@@ -7,7 +7,7 @@ import jwtDecode from "jwt-decode";
 import Navbar from "./components/pages/Navbar";
 import Home from "./components/pages/Home";
 import SentenceList from "./components/sentences/SentenceList";
-import Quiz from "./components/sentences/Quiz";
+import Quiz from "./components/quizzes/Quiz";
 import UpdateSentence from "./components/sentences/UpdateSentence";
 import "./App.css";
 // redux
