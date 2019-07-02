@@ -12,11 +12,11 @@ export class Question extends Component {
   componentDidMount() {
     let numberOfQuestions;
     if (this.props.location.state === undefined) {
-      numberOfQuestions = 10
+      numberOfQuestions = 10;
     } else {
-      numberOfQuestions = this.props.location.state.inputNumberOfQuestions
+      numberOfQuestions = this.props.location.state.inputNumberOfQuestions;
     }
-    console.log(numberOfQuestions)
+    console.log(numberOfQuestions);
     this.props.getRandomSentences(numberOfQuestions);
   }
 
@@ -44,7 +44,9 @@ export class Question extends Component {
     return (
       <div style={{ margin: "100px" }}>
         <Button
-          style={{ display: questionNumber > sentences.length - 2 ? "none" : "block" }}
+          style={{
+            display: questionNumber > sentences.length - 2 ? "none" : "block"
+          }}
           onClick={this.handleClick}
           disabled={questionNumber > sentences.length - 2 ? true : false}
         >
