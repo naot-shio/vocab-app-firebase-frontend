@@ -4,7 +4,7 @@ import Button from "@material-ui/core/Button";
 import { connect } from "react-redux";
 import { getRandomSentences } from "../../redux/actions/dataActions";
 
-export class Quiz extends Component {
+export class Question extends Component {
   state = {
     quizNum: 0
   };
@@ -60,4 +60,4 @@ const mapActionsToProps = {
 export default connect(
   mapStateToProps,
   mapActionsToProps
-)(Quiz);
+)(Question);

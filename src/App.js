@@ -7,7 +7,7 @@ import jwtDecode from "jwt-decode";
 import Navbar from "./components/pages/Navbar";
 import Home from "./components/pages/Home";
 import SentenceList from "./components/sentences/SentenceList";
-import Quiz from "./components/quizzes/Quiz";
+import Question from "./components/questions/Question";
 import UpdateSentence from "./components/sentences/UpdateSentence";
 import "./App.css";
 // redux
@@ -61,8 +61,8 @@ class App extends Component {
             />
             <Route
               exact
-              path="/quiz"
-              render={routeProps => <Quiz {...routeProps} />}
+              path="/question"
+              render={routeProps => <Question {...routeProps} />}
             />
           </Switch>
         </BrowserRouter>
