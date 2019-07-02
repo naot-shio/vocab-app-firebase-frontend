@@ -38,7 +38,7 @@ export class Question extends Component {
     this.state.wrongAnswers.push(
       this.props.data.sentences[this.state.questionNumber]
     );
-    this.state.inputAnswers.push('Passed');
+    this.state.inputAnswers.push('Skipped');
   };
 
   handleChange = evt => {
@@ -70,7 +70,7 @@ export class Question extends Component {
     if (inputAnswer) {
       inputAnswers.push(inputAnswer)
     } else {
-      inputAnswers.push("Passed")
+      inputAnswers.push("Skipped")
     }
   };
 
