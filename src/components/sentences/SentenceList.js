@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import AuthenticationIcon from "../auth/AuthenticationIcon";
 import SentenceDetails from "./SentenceDetails";
+import Pagination from "../pages/Pagination";
 import CustomizedIconButton from "../../utils/CustomizedIconButton";
 
 // styles
@@ -108,6 +109,12 @@ class SentenceList extends Component {
       indexOfFirstSentence,
       indexOfLastSentence
     );
+    const paginate = page => {
+      this.setState({
+        currentSentence: page / 10,
+        baseIndex: page - 10
+      });
+    };
 
     let getAllSentences = !loading ? (
       <>
@@ -150,7 +157,13 @@ class SentenceList extends Component {
 
     return (
       <Grid container>
-        <Grid item sm={2} xs={1} />
+        <Grid item sm={2} xs={1}>
+          <Pagination
+            sentencesPerPage={sentencesPerPage}
+            totalSentences={sentences.length}
+            paginate={paginate}
+          />
+        </Grid>
 
         <Grid item sm={8} xs={10}>
           {buttonSearchBar}
