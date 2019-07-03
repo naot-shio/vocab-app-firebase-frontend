@@ -20,7 +20,8 @@ import { getSentences, updateSentence } from "../../redux/actions/dataActions";
 class SentenceList extends Component {
   state = {
     keyword: "",
-    currentSentence: 1
+    currentSentence: 1,
+    baseIndex: 0
   };
 
   componentDidMount() {
@@ -37,6 +38,24 @@ class SentenceList extends Component {
     evt.preventDefault();
     this.props.getSentences(this.state.keyword);
     this.setState({ keyword: "" });
+  };
+
+  // Adding and subtracting 10 on baseIndex is to set the proper index on each word.
+  // As this is not a typical pagination but just that an array of sentences is sliced up into a set of vocabulary
+  // that contains 10 words. (I should name a 'baseIndex' state something better, but no good names come to my mind)
+
+  handleClickNext = () => {
+    this.setState({
+      currentSentence: this.state.currentSentence + 1,
+      baseIndex: this.state.baseIndex + 10
+    });
+  };
+
+  handleClickPrevious = () => {
+    this.setState({
+      currentSentence: this.state.currentSentence - 1,
+      baseIndex: this.state.baseIndex - 10
+    });
   };
 
   render() {
@@ -82,7 +101,7 @@ class SentenceList extends Component {
       </div>
     );
 
-    const sentencesPerPage = 3;
+    const sentencesPerPage = 10;
     const indexOfLastSentence = this.state.currentSentence * sentencesPerPage;
     const indexOfFirstSentence = indexOfLastSentence - sentencesPerPage;
     const currentSentences = sentences.slice(
@@ -91,9 +110,38 @@ class SentenceList extends Component {
     );
 
     let getAllSentences = !loading ? (
-      currentSentences.map((sentence, i) => (
-        <SentenceDetails key={sentence.sentenceId} sentence={sentence} i={i} />
-      ))
+      <>
+        {currentSentences.map((sentence, i) => (
+          <SentenceDetails
+            key={sentence.sentenceId}
+            sentence={sentence}
+            i={i + this.state.baseIndex}
+          />
+        ))}
+        <div className={classes.buttonToPaginate}>
+          <Button
+            color="secondary"
+            onClick={this.handleClickPrevious}
+            disabled={this.state.currentSentence - 2 < 0 ? true : false}
+            style={{
+              display: this.state.currentSentence - 2 < 0 ? "none" : "inline"
+            }}
+          >
+            Prev
+          </Button>
+          <Button
+            color="primary"
+            onClick={this.handleClickNext}
+            disabled={sentences.length < indexOfLastSentence ? true : false}
+            style={{
+              display:
+                sentences.length < indexOfLastSentence ? "none" : "inline"
+            }}
+          >
+            Next
+          </Button>
+        </div>
+      </>
     ) : (
       <div className={classes.loading}>
         <CircularProgress size={250} />
@@ -108,21 +156,6 @@ class SentenceList extends Component {
           {buttonSearchBar}
 
           {getAllSentences}
-
-          <Button
-            onClick={() =>
-              this.setState({ currentSentence: this.state.currentSentence - 1 })
-            }
-          >
-            Prev
-          </Button>
-          <Button
-            onClick={() =>
-              this.setState({ currentSentence: this.state.currentSentence + 1 })
-            }
-          >
-            Next
-          </Button>
         </Grid>
 
         <Grid item sm={2} xs={1}>

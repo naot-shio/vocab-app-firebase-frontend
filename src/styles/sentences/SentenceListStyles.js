@@ -14,6 +14,10 @@ const styles = {
   button: {
     marginTop: 10
   },
+  buttonToPaginate: {
+    textAlign: "center",
+    marginBottom: 20
+  },
   isAuthenticated: {
     marginRight: "auto"
   },
