@@ -5,7 +5,6 @@ import CustomizedIconButton from "../../utils/CustomizedIconButton";
 
 // styles
 import withStyles from "@material-ui/core/styles/withStyles";
-import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
@@ -18,13 +17,9 @@ import {
   updateSentence
 } from "../../redux/actions/dataActions";
 
-class SentenceList extends Component {
-  state = {
-    currentSentence: 1
-  };
-
+class LikedSentenceList extends Component {
   componentDidMount() {
-    this.props.getLikedSentences(this.state.keyword);
+    this.props.getLikedSentences();
   }
 
   render() {
@@ -42,16 +37,8 @@ class SentenceList extends Component {
       </Link>
     );
 
-    const sentencesPerPage = 3;
-    const indexOfLastSentence = this.state.currentSentence * sentencesPerPage;
-    const indexOfFirstSentence = indexOfLastSentence - sentencesPerPage;
-    const currentSentences = sentences.slice(
-      indexOfFirstSentence,
-      indexOfLastSentence
-    );
-
     let getAllSentences = !loading ? (
-      currentSentences.map((sentence, i) => (
+      sentences.map((sentence, i) => (
         <SentenceDetails key={sentence.sentenceId} sentence={sentence} i={i} />
       ))
     ) : (
@@ -68,21 +55,6 @@ class SentenceList extends Component {
 
         <Grid item sm={8} xs={10}>
           {getAllSentences}
-
-          <Button
-            onClick={() =>
-              this.setState({ currentSentence: this.state.currentSentence - 1 })
-            }
-          >
-            Prev
-          </Button>
-          <Button
-            onClick={() =>
-              this.setState({ currentSentence: this.state.currentSentence + 1 })
-            }
-          >
-            Next
-          </Button>
         </Grid>
 
         <Grid item sm={2} xs={1} />
@@ -103,4 +75,4 @@ const mapActionsToProps = {
 export default connect(
   mapStateToProps,
   mapActionsToProps
-)(withStyles(styles)(SentenceList));
+)(withStyles(styles)(LikedSentenceList));
