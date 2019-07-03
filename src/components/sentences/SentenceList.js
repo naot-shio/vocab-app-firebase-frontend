@@ -109,6 +109,10 @@ class SentenceList extends Component {
       indexOfFirstSentence,
       indexOfLastSentence
     );
+
+    // paginate function is passed down to the Pagination component and when elements of pageNumbers are pushed,
+    // elements are multiplied by 10, as this way is easier to adjust indices on words in the pagination.
+    // Ergo, page argument needs to be divided by 10 to set the currentSentence, and subtracts 10 to set a correct baseIndex 
     const paginate = page => {
       this.setState({
         currentSentence: page / 10,
