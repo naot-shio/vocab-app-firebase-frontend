@@ -19,13 +19,21 @@ class Pagination extends Component {
         <Button onClick={() => this.setState({ open: !this.state.open })}>
           Open
         </Button>
-        {pageNumbers.map(number => (
+        {pageNumbers.map((number, i) => (
           <Button
             style={{ display: this.state.open ? "block" : "none" }}
             key={number}
             onClick={() => paginate(number)}
           >
-            {number - 9} ~ {number}
+            {pageNumbers.length - 1 === i ? (
+              <>
+                {number - 9} ~ {totalSentences}{" "}
+              </>
+            ) : (
+              <>
+                {number - 9} ~ {number}
+              </>
+            )}
           </Button>
         ))}
       </div>
