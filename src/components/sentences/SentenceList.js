@@ -22,11 +22,16 @@ class SentenceList extends Component {
   state = {
     keyword: "",
     currentSentence: 1,
-    baseIndex: 0
+    baseIndex: 0,
+    open: false
   };
 
   componentDidMount() {
     this.props.getSentences(this.state.keyword);
+  }
+
+  handleTogglePagination = () => {
+    this.setState({ open: !this.state.open })
   }
 
   handleChange = evt => {
@@ -161,15 +166,17 @@ class SentenceList extends Component {
 
     return (
       <Grid container>
-        <Grid item sm={2} xs={1}>
+        <Grid item sm={2} xs={1} className={this.state.open ? classes.showPagination : classes.hidePagination}>
           <Pagination
             sentencesPerPage={sentencesPerPage}
             totalSentences={sentences.length}
             paginate={this.paginate}
+            handleToggle={this.handleTogglePagination}
+            open={this.state.open}
           />
         </Grid>
 
-        <Grid item sm={8} xs={10}>
+        <Grid item sm={8} xs={10} className={classes.content}>
           {buttonSearchBar}
 
           {getAllSentences}
