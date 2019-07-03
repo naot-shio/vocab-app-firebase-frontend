@@ -59,6 +59,16 @@ class SentenceList extends Component {
     });
   };
 
+  // paginate function is passed down to the Pagination component and when elements of pageNumbers are pushed,
+  // elements are multiplied by 10, as this way is easier to adjust indices on words in the pagination.
+  // Ergo, page argument needs to be divided by 10 to set the currentSentence, and subtracts 10 to set a correct baseIndex 
+  paginate = page => {
+    this.setState({
+      currentSentence: page / 10,
+      baseIndex: page - 10
+    });
+  };
+
   render() {
     const { classes } = this.props;
     const { authenticated } = this.props.user;
@@ -110,16 +120,6 @@ class SentenceList extends Component {
       indexOfLastSentence
     );
 
-    // paginate function is passed down to the Pagination component and when elements of pageNumbers are pushed,
-    // elements are multiplied by 10, as this way is easier to adjust indices on words in the pagination.
-    // Ergo, page argument needs to be divided by 10 to set the currentSentence, and subtracts 10 to set a correct baseIndex 
-    const paginate = page => {
-      this.setState({
-        currentSentence: page / 10,
-        baseIndex: page - 10
-      });
-    };
-
     let getAllSentences = !loading ? (
       <>
         {currentSentences.map((sentence, i) => (
@@ -165,7 +165,7 @@ class SentenceList extends Component {
           <Pagination
             sentencesPerPage={sentencesPerPage}
             totalSentences={sentences.length}
-            paginate={paginate}
+            paginate={this.paginate}
           />
         </Grid>
 
