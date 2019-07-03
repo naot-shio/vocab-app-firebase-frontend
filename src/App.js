@@ -8,6 +8,7 @@ import jwtDecode from "jwt-decode";
 import Navbar from "./components/pages/Navbar";
 import Home from "./components/pages/Home";
 import SentenceList from "./components/sentences/SentenceList";
+import LikedSentenceList from "./components/sentences/LikedSentenceList";
 import Question from "./components/questions/Question";
 import UpdateSentence from "./components/sentences/UpdateSentence";
 import "./App.css";
@@ -49,6 +50,11 @@ class App extends Component {
               exact
               path="/sentences"
               render={routeProps => <SentenceList {...routeProps} />}
+            />
+            <PrivateRoute
+              exact
+              path="/sentences/likes"
+              component={LikedSentenceList}
             />
             <Route
               exact

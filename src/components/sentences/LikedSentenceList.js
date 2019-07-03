@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import AuthenticationIcon from "../auth/AuthenticationIcon";
 import SentenceDetails from "./SentenceDetails";
 import CustomizedIconButton from "../../utils/CustomizedIconButton";
 
@@ -8,44 +7,32 @@ import CustomizedIconButton from "../../utils/CustomizedIconButton";
 import withStyles from "@material-ui/core/styles/withStyles";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
-import TextField from "@material-ui/core/TextField";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import { faHeart } from "@fortawesome/free-regular-svg-icons";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import styles from "../../styles/sentences/SentenceListStyles";
 
 // Redux
 import { connect } from "react-redux";
-import { getSentences, updateSentence } from "../../redux/actions/dataActions";
+import {
+  getLikedSentences,
+  updateSentence
+} from "../../redux/actions/dataActions";
 
 class SentenceList extends Component {
   state = {
-    keyword: "",
     currentSentence: 1
   };
 
   componentDidMount() {
-    this.props.getSentences(this.state.keyword);
+    this.props.getLikedSentences(this.state.keyword);
   }
-
-  handleChange = evt => {
-    this.setState({
-      [evt.target.name]: evt.target.value
-    });
-  };
-
-  handleSubmit = evt => {
-    evt.preventDefault();
-    this.props.getSentences(this.state.keyword);
-    this.setState({ keyword: "" });
-  };
 
   render() {
     const { classes } = this.props;
-    const { authenticated } = this.props.user;
-    const { sentences, loading } = this.props.data;
+    const { loading, sentences } = this.props.data;
 
     const displayLikeButton = (
-      <Link to="/sentences/likes">
+      <Link to="/sentences">
         <CustomizedIconButton
           title="Display All of The Sentences"
           placement="bottom-end"
@@ -53,33 +40,6 @@ class SentenceList extends Component {
           color="red"
         />
       </Link>
-    );
-
-    const isAuthenticated = !authenticated && <AuthenticationIcon />;
-
-    const buttonSearchBar = authenticated && (
-      <div className={classes.topField}>
-        <Grid container>
-          <Grid item xs={2}>
-            <div className={classes.button}>{displayLikeButton}</div>
-          </Grid>
-
-          <Grid item xs={10}>
-            <div className={classes.textField}>
-              <form onSubmit={this.handleSubmit}>
-                <TextField
-                  name="keyword"
-                  type="text"
-                  value={this.state.keyword}
-                  label="search"
-                  onChange={this.handleChange}
-                  fullWidth
-                />
-              </form>
-            </div>
-          </Grid>
-        </Grid>
-      </div>
     );
 
     const sentencesPerPage = 3;
@@ -102,11 +62,11 @@ class SentenceList extends Component {
 
     return (
       <Grid container>
-        <Grid item sm={2} xs={1} />
+        <Grid item sm={2} xs={1}>
+          {displayLikeButton}
+        </Grid>
 
         <Grid item sm={8} xs={10}>
-          {buttonSearchBar}
-
           {getAllSentences}
 
           <Button
@@ -125,21 +85,18 @@ class SentenceList extends Component {
           </Button>
         </Grid>
 
-        <Grid item sm={2} xs={1}>
-          <div className={classes.isAuthenticated}>{isAuthenticated}</div>
-        </Grid>
+        <Grid item sm={2} xs={1} />
       </Grid>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  user: state.user,
   data: state.data
 });
 
 const mapActionsToProps = {
-  getSentences,
+  getLikedSentences,
   updateSentence
 };
 

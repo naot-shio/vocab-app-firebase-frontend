@@ -57,6 +57,25 @@ export const getRandomSentences = numberOfQuestions => dispatch => {
     });
 };
 
+export const getLikedSentences = () => dispatch => {
+  dispatch({ type: LOADING_DATA });
+  axios
+    .get("/sentences/likes")
+    .then(res => {
+      console.log(res);
+      dispatch({
+        type: SET_SENTENCES,
+        payload: res.data
+      });
+    })
+    .catch(() => {
+      dispatch({
+        type: SET_SENTENCES,
+        payload: []
+      });
+    });
+};
+
 export const postSentence = newSentence => dispatch => {
   dispatch({ type: LOADING_UI });
   axios
