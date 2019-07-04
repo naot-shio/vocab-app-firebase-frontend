@@ -37,9 +37,13 @@ function LikedSentenceList(props) {
   );
 
   let getAllSentences = !loading ? (
-    sentences.map((sentence, i) => (
-      <SentenceDetails key={sentence.sentenceId} sentence={sentence} i={i} />
-    ))
+    sentences.length === 0 ? (
+      <p>You have not liked any sentences yet</p>
+    ) : (
+      sentences.map((sentence, i) => (
+        <SentenceDetails key={sentence.sentenceId} sentence={sentence} i={i} />
+      ))
+    )
   ) : (
     <div className={classes.loading}>
       <CircularProgress size={250} />
