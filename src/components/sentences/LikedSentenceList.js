@@ -1,11 +1,9 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import SentenceDetails from "./SentenceDetails";
 import AllSentences from "./AllSentences";
 import CustomizedIconButton from "../../utils/CustomizedIconButton";
 
 // styles
-import CircularProgress from "@material-ui/core/CircularProgress";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import useStyles from "../../styles/sentences/LikedSentenceListStyles";
 
@@ -45,7 +43,11 @@ function LikedSentenceList(props) {
           {displayLikeButton}
           <h3 className={classes.subtitle}>Sentences you have liked!</h3>
         </div>
-        <AllSentences sentences={sentences} loading={loading} baseIndex={null} />
+        <AllSentences
+          sentences={sentences}
+          loading={loading}
+          baseIndex={null}
+        />
       </div>
       <div />
     </div>

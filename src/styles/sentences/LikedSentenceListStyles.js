@@ -17,7 +17,7 @@ const useStyles = makeStyles(() => ({
     marginTop: 20,
     display: "grid",
     gridTemplateColumns: "20% 80%"
-  },
+  }
 }));
 
 export default useStyles;

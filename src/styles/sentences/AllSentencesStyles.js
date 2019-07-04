@@ -14,8 +14,7 @@ const useStyles = makeStyles(() => ({
     marginRight: "auto",
     marginLeft: "auto",
     marginTop: 50
-  },
-
+  }
 }));
 
 export default useStyles;

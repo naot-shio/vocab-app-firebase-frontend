@@ -35,7 +35,7 @@ class SentenceList extends Component {
 
   handleClickClosePagination = () => {
     this.setState({ open: false });
-  }
+  };
 
   handleChange = evt => {
     this.setState({
@@ -111,7 +111,11 @@ class SentenceList extends Component {
           </form>
         </div>
       </div>
-    ) : <div className={classes.space}><br /></div>
+    ) : (
+      <div className={classes.space}>
+        <br />
+      </div>
+    );
 
     const indexOfLastSentence =
       this.state.currentSentence * this.state.sentencesPerPage;
@@ -149,7 +153,7 @@ class SentenceList extends Component {
           Next
         </Button>
       </div>
-    )
+    );
 
     return (
       <div className={classes.container}>
@@ -170,7 +174,11 @@ class SentenceList extends Component {
         <div onClick={this.handleClickClosePagination}>
           {likeButtonAndSearch}
 
-          <AllSentences sentences={currentSentences} loading={loading} baseIndex={this.state.baseIndex} />
+          <AllSentences
+            sentences={currentSentences}
+            loading={loading}
+            baseIndex={this.state.baseIndex}
+          />
 
           {paginationButtons}
         </div>
