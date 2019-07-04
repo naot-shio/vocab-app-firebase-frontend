@@ -1,4 +1,6 @@
-const styles = {
+import makeStyles from "@material-ui/core/styles/makeStyles";
+
+const useStyles = makeStyles(() => ({
   container: {
     display: "grid",
     gridTemplateColumns: "10% 80% 10%"
@@ -15,6 +17,6 @@ const styles = {
     marginTop: 20,
     marginLeft: "auto"
   }
-};
+}));
 
-export default styles;
+export default useStyles;
