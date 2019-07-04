@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import SentenceDetails from "./SentenceDetails";
+import AllSentences from "./AllSentences";
 import CustomizedIconButton from "../../utils/CustomizedIconButton";
 
 // styles
@@ -36,24 +37,16 @@ function LikedSentenceList(props) {
     </Link>
   );
 
-  let getAllSentences = !loading ? (
-    sentences.length === 0 ? (
-      <p>You have not liked any sentences yet</p>
-    ) : (
-      sentences.map((sentence, i) => (
-        <SentenceDetails key={sentence.sentenceId} sentence={sentence} i={i} />
-      ))
-    )
-  ) : (
-    <div className={classes.loading}>
-      <CircularProgress size={250} />
-    </div>
-  );
-
   return (
     <div className={classes.container}>
-      <div className={classes.likeButton}>{displayLikeButton}</div>
-      <div className={classes.sentences}>{getAllSentences}</div>
+      <div />
+      <div>
+        <div className={classes.likeButton}>
+          {displayLikeButton}
+          <h3 className={classes.subtitle}>Sentences you have liked!</h3>
+        </div>
+        <AllSentences sentences={sentences} loading={loading} baseIndex={null} />
+      </div>
       <div />
     </div>
   );

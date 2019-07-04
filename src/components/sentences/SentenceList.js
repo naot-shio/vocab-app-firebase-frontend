@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import AuthenticationIcon from "../auth/AuthenticationIcon";
-import SentenceDetails from "./SentenceDetails";
+import AllSentences from "./AllSentences";
 import Pagination from "../pages/Pagination";
 import CustomizedIconButton from "../../utils/CustomizedIconButton";
 
@@ -9,7 +9,6 @@ import CustomizedIconButton from "../../utils/CustomizedIconButton";
 import withStyles from "@material-ui/core/styles/withStyles";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-import CircularProgress from "@material-ui/core/CircularProgress";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import styles from "../../styles/sentences/SentenceListStyles";
 
@@ -123,7 +122,7 @@ class SentenceList extends Component {
       indexOfLastSentence
     );
 
-    let paginationButtons = !loading && (
+    const paginationButtons = !loading && (
       <div className={classes.buttonToPaginate}>
         <Button
           color="secondary"
@@ -152,22 +151,6 @@ class SentenceList extends Component {
       </div>
     )
 
-    let getAllSentences = !loading ? (
-      <div className={classes.sentences}>
-        {currentSentences.map((sentence, i) => (
-          <SentenceDetails
-            key={sentence.sentenceId}
-            sentence={sentence}
-            i={i + this.state.baseIndex}
-          />
-        ))}
-      </div>
-    ) : (
-      <div className={classes.loading}>
-        <CircularProgress size={250} />
-      </div>
-    );
-
     return (
       <div className={classes.container}>
         <div
@@ -187,7 +170,7 @@ class SentenceList extends Component {
         <div onClick={this.handleClickClosePagination}>
           {likeButtonAndSearch}
 
-          {getAllSentences}
+          <AllSentences sentences={currentSentences} loading={loading} baseIndex={this.state.baseIndex} />
 
           {paginationButtons}
         </div>
