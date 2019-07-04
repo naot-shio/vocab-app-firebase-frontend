@@ -61,7 +61,7 @@ function Home(props) {
             <div>
               <h5>
                 &#x203B; ユーザ登録すると文の検索とお気に入り登録ができます。
-                英訳の問題を解くことができます。
+                また英訳の問題を解くことができます。
               </h5>
             </div>
           </Grid>
@@ -77,9 +77,7 @@ function Home(props) {
           こんな人におすすめです。
         </h3>
         <ul className={classes.recommendationBody}>
-          <li>
-            TOEICでいい点数取れるのにネイティブの英語がなかなか理解できない
-          </li>
+          <li>語彙力を強化したい</li>
           <li>英語力を上げたい</li>
           <li>英語で勉強してみたい</li>
           <li>国際結婚したい</li>
