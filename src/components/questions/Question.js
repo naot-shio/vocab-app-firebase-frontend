@@ -115,6 +115,8 @@ class Question extends Component {
             type="text"
             margin="normal"
             fullWidth
+            multiline
+            rowsMax="3"
           />
 
           <div className={classes.buttons}>
