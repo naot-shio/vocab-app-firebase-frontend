@@ -1,22 +1,19 @@
 import makeStyles from "@material-ui/core/styles/makeStyles";
 
 const useStyles = makeStyles(() => ({
-  container: {
-    display: "grid",
-    gridTemplateColumns: "10% 80% 10%"
-  },
   sentences: {
-    marginTop: 30,
+    marginTop: 20,
     maxWidth: 700,
     marginRight: "auto",
     marginLeft: "auto",
-    height: "90vh",
+    height: "70vh",
     overflowY: "scroll"
   },
-  likeButton: {
-    marginTop: 20,
-    display: "grid",
-    gridTemplateColumns: "20% 80%"
+  loading: {
+    width: 200,
+    marginRight: "auto",
+    marginLeft: "auto",
+    marginTop: 50
   }
 }));
 

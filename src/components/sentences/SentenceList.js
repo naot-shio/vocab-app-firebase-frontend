@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import AuthenticationIcon from "../auth/AuthenticationIcon";
-import SentenceDetails from "./SentenceDetails";
+import AllSentences from "./AllSentences";
 import Pagination from "../pages/Pagination";
 import CustomizedIconButton from "../../utils/CustomizedIconButton";
 
@@ -9,7 +9,6 @@ import CustomizedIconButton from "../../utils/CustomizedIconButton";
 import withStyles from "@material-ui/core/styles/withStyles";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-import CircularProgress from "@material-ui/core/CircularProgress";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import styles from "../../styles/sentences/SentenceListStyles";
 
@@ -36,7 +35,7 @@ class SentenceList extends Component {
 
   handleClickClosePagination = () => {
     this.setState({ open: false });
-  }
+  };
 
   handleChange = evt => {
     this.setState({
@@ -85,7 +84,7 @@ class SentenceList extends Component {
 
     const isAuthenticated = !authenticated && <AuthenticationIcon />;
 
-    const likeButtonAndSearch = authenticated && (
+    const likeButtonAndSearch = authenticated ? (
       <div className={classes.likeSearchContainer}>
         <div className={classes.button}>
           <Link to="/sentences/likes">
@@ -112,6 +111,10 @@ class SentenceList extends Component {
           </form>
         </div>
       </div>
+    ) : (
+      <div className={classes.space}>
+        <br />
+      </div>
     );
 
     const indexOfLastSentence =
@@ -123,45 +126,32 @@ class SentenceList extends Component {
       indexOfLastSentence
     );
 
-    let getAllSentences = !loading ? (
-      <div className={classes.sentences}>
-        {currentSentences.map((sentence, i) => (
-          <SentenceDetails
-            key={sentence.sentenceId}
-            sentence={sentence}
-            i={i + this.state.baseIndex}
-          />
-        ))}
-        <div className={classes.buttonToPaginate}>
-          <Button
-            color="secondary"
-            onClick={this.handleClickPrevious}
-            className={
-              this.state.currentSentence - 2 < 0
-                ? classes.hideButton
-                : classes.displayButton
-            }
-            disabled={this.state.currentSentence - 2 < 0 ? true : false}
-          >
-            Prev
-          </Button>
-          <Button
-            color="primary"
-            onClick={this.handleClickNext}
-            className={
-              sentences.length < indexOfLastSentence
-                ? classes.hideButton
-                : classes.displayButton
-            }
-            disabled={sentences.length < indexOfLastSentence ? true : false}
-          >
-            Next
-          </Button>
-        </div>
-      </div>
-    ) : (
-      <div className={classes.loading}>
-        <CircularProgress size={250} />
+    const paginationButtons = !loading && (
+      <div className={classes.buttonToPaginate}>
+        <Button
+          color="secondary"
+          onClick={this.handleClickPrevious}
+          className={
+            this.state.currentSentence - 2 < 0
+              ? classes.hideButton
+              : classes.displayButton
+          }
+          disabled={this.state.currentSentence - 2 < 0 ? true : false}
+        >
+          Prev
+        </Button>
+        <Button
+          color="primary"
+          onClick={this.handleClickNext}
+          className={
+            sentences.length < indexOfLastSentence
+              ? classes.hideButton
+              : classes.displayButton
+          }
+          disabled={sentences.length < indexOfLastSentence ? true : false}
+        >
+          Next
+        </Button>
       </div>
     );
 
@@ -184,7 +174,13 @@ class SentenceList extends Component {
         <div onClick={this.handleClickClosePagination}>
           {likeButtonAndSearch}
 
-          {getAllSentences}
+          <AllSentences
+            sentences={currentSentences}
+            loading={loading}
+            baseIndex={this.state.baseIndex}
+          />
+
+          {paginationButtons}
         </div>
 
         <div onClick={this.handleClickClosePagination}>

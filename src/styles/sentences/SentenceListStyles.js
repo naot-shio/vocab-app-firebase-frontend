@@ -9,20 +9,6 @@ const styles = {
     overflowY: "scroll",
     zIndex: 5
   },
-  sentences: {
-    marginTop: 20,
-    maxWidth: 700,
-    marginRight: "auto",
-    marginLeft: "auto",
-    height: "80vh",
-    overflowY: "scroll"
-  },
-  loading: {
-    width: 200,
-    marginRight: "auto",
-    marginLeft: "auto",
-    marginTop: 50
-  },
   likeSearchContainer: {
     marginTop: 20,
     maxWidth: 700,
@@ -34,12 +20,16 @@ const styles = {
   textField: {
     marginRight: 10
   },
+  space: {
+    marginTop: 20
+  },
   button: {
     marginTop: 10
   },
   buttonToPaginate: {
     textAlign: "center",
-    marginBottom: 20
+    marginBottom: 10,
+    marginTop: 10
   },
   isAuthenticated: {
     marginRight: "auto"
@@ -58,9 +48,6 @@ const styles = {
   "@media (max-width: 650px)": {
     container: {
       gridTemplateColumns: "10% 80% 10%"
-    },
-    sentences: {
-      width: "100%"
     },
     showPagination: {
       width: "220%"
