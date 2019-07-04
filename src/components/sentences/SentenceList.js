@@ -85,7 +85,7 @@ class SentenceList extends Component {
 
     const isAuthenticated = !authenticated && <AuthenticationIcon />;
 
-    const likeButtonAndSearch = authenticated && (
+    const likeButtonAndSearch = authenticated ? (
       <div className={classes.likeSearchContainer}>
         <div className={classes.button}>
           <Link to="/sentences/likes">
@@ -112,7 +112,7 @@ class SentenceList extends Component {
           </form>
         </div>
       </div>
-    );
+    ) : <div className={classes.space}><br /></div>
 
     const indexOfLastSentence =
       this.state.currentSentence * this.state.sentencesPerPage;
@@ -123,6 +123,35 @@ class SentenceList extends Component {
       indexOfLastSentence
     );
 
+    let paginationButtons = !loading && (
+      <div className={classes.buttonToPaginate}>
+        <Button
+          color="secondary"
+          onClick={this.handleClickPrevious}
+          className={
+            this.state.currentSentence - 2 < 0
+              ? classes.hideButton
+              : classes.displayButton
+          }
+          disabled={this.state.currentSentence - 2 < 0 ? true : false}
+        >
+          Prev
+        </Button>
+        <Button
+          color="primary"
+          onClick={this.handleClickNext}
+          className={
+            sentences.length < indexOfLastSentence
+              ? classes.hideButton
+              : classes.displayButton
+          }
+          disabled={sentences.length < indexOfLastSentence ? true : false}
+        >
+          Next
+        </Button>
+      </div>
+    )
+
     let getAllSentences = !loading ? (
       <div className={classes.sentences}>
         {currentSentences.map((sentence, i) => (
@@ -132,32 +161,6 @@ class SentenceList extends Component {
             i={i + this.state.baseIndex}
           />
         ))}
-        <div className={classes.buttonToPaginate}>
-          <Button
-            color="secondary"
-            onClick={this.handleClickPrevious}
-            className={
-              this.state.currentSentence - 2 < 0
-                ? classes.hideButton
-                : classes.displayButton
-            }
-            disabled={this.state.currentSentence - 2 < 0 ? true : false}
-          >
-            Prev
-          </Button>
-          <Button
-            color="primary"
-            onClick={this.handleClickNext}
-            className={
-              sentences.length < indexOfLastSentence
-                ? classes.hideButton
-                : classes.displayButton
-            }
-            disabled={sentences.length < indexOfLastSentence ? true : false}
-          >
-            Next
-          </Button>
-        </div>
       </div>
     ) : (
       <div className={classes.loading}>
@@ -185,6 +188,8 @@ class SentenceList extends Component {
           {likeButtonAndSearch}
 
           {getAllSentences}
+
+          {paginationButtons}
         </div>
 
         <div onClick={this.handleClickClosePagination}>

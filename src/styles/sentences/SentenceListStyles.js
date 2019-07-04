@@ -14,7 +14,7 @@ const styles = {
     maxWidth: 700,
     marginRight: "auto",
     marginLeft: "auto",
-    height: "80vh",
+    height: "70vh",
     overflowY: "scroll"
   },
   loading: {
@@ -34,12 +34,16 @@ const styles = {
   textField: {
     marginRight: 10
   },
+  space: {
+    marginTop: 20
+  },
   button: {
     marginTop: 10
   },
   buttonToPaginate: {
     textAlign: "center",
-    marginBottom: 20
+    marginBottom: 10,
+    marginTop: 10
   },
   isAuthenticated: {
     marginRight: "auto"
