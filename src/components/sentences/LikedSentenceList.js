@@ -48,13 +48,9 @@ class LikedSentenceList extends Component {
 
     return (
       <div className={classes.container}>
-        <div className={classes.likeButton}> 
-          {displayLikeButton}
-        </div>
+        <div className={classes.likeButton}>{displayLikeButton}</div>
 
-        <div className={classes.sentences}>
-          {getAllSentences}
-        </div>
+        <div className={classes.sentences}>{getAllSentences}</div>
 
         <div />
       </div>

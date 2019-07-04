@@ -3,20 +3,20 @@ const styles = {
     padding: 30
   },
   displayQuestion: {
-    display: 'block',
+    display: "block"
   },
   displayButton: {
-    display: 'inline',
+    display: "inline",
     marginLeft: 5
   },
   hideContent: {
-    display: 'none',
+    display: "none"
   },
   buttons: {
-    display: "block", 
-    textAlign: "right", 
+    display: "block",
+    textAlign: "right",
     marginTop: 20
   }
-}
+};
 
-export default styles
+export default styles;

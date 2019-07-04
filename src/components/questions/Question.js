@@ -6,7 +6,7 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
-import withStyles from '@material-ui/core/styles/withStyles'
+import withStyles from "@material-ui/core/styles/withStyles";
 import styles from "../../styles/questions/QuestionStyles";
 
 // Redux
@@ -98,53 +98,64 @@ class Question extends Component {
 
     let randomSentences = sentences.map((sentence, i) => (
       <Card
-        className={i === questionNumber ? classes.displayQuestion : classes.hideContent }
+        className={
+          i === questionNumber ? classes.displayQuestion : classes.hideContent
+        }
         key={sentence.sentenceId}
       >
         <CardContent className={classes.cardContent}>
-        
-        <h2>Question {questionNumber + 1}: Translate the sentence into English</h2>
-        <h3>{sentence.translation}</h3>
-        <TextField
-          id="answer"
-          label="Answer"
-          onChange={this.handleChange}
-          type="text"
-          margin="normal"
-          fullWidth
-        />
+          <h2>
+            Question {questionNumber + 1}: Translate the sentence into English
+          </h2>
+          <h3>{sentence.translation}</h3>
+          <TextField
+            id="answer"
+            label="Answer"
+            onChange={this.handleChange}
+            type="text"
+            margin="normal"
+            fullWidth
+          />
 
-        <div className={classes.buttons}>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={this.handleCheck}
-            className={questionNumber > sentences.length - 2 ? classes.hideContent : classes.displayButton}
-            disabled={questionNumber > sentences.length - 2 ? true : false}
-          >
-            Check
-          </Button>
-
-          <Button
-            variant="contained"
-            color="secondary"
-            className={questionNumber > sentences.length - 2 ? classes.hideContent : classes.displayButton}
-            onClick={this.handleClick}
-            disabled={questionNumber > sentences.length - 2 ? true : false}
-          >
-            Pass
-          </Button>
-
-          {questionNumber > sentences.length - 2 && resultButton && (
+          <div className={classes.buttons}>
             <Button
-              onClick={this.handleCheckResult}
               variant="contained"
               color="primary"
+              onClick={this.handleCheck}
+              className={
+                questionNumber > sentences.length - 2
+                  ? classes.hideContent
+                  : classes.displayButton
+              }
+              disabled={questionNumber > sentences.length - 2 ? true : false}
             >
-              Result
+              Check
             </Button>
-          )}
-        </div>
+
+            <Button
+              variant="contained"
+              color="secondary"
+              className={
+                questionNumber > sentences.length - 2
+                  ? classes.hideContent
+                  : classes.displayButton
+              }
+              onClick={this.handleClick}
+              disabled={questionNumber > sentences.length - 2 ? true : false}
+            >
+              Pass
+            </Button>
+
+            {questionNumber > sentences.length - 2 && resultButton && (
+              <Button
+                onClick={this.handleCheckResult}
+                variant="contained"
+                color="primary"
+              >
+                Result
+              </Button>
+            )}
+          </div>
         </CardContent>
       </Card>
     ));

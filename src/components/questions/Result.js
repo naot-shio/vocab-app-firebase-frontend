@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import SentenceDetails from "../sentences/SentenceDetails";
-import useStyles from '../../styles/questions/ResultStyles'
+import useStyles from "../../styles/questions/ResultStyles";
 
 function Result({ wrongAnswers, correctAnswers, sentences, inputAnswers }) {
   const classes = useStyles();

@@ -61,10 +61,10 @@ class SetQuestion extends Component {
             <Typography variant="h6">
               How many questions would you like to attempt?
             </Typography>
-            <Typography variant="body2"> 
+            <Typography variant="body2">
               If you don't input any number, 10 questions will be given.
             </Typography>
-            
+
             <TextField
               id="standard-number"
               label="Number of Questions"

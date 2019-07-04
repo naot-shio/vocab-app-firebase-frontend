@@ -5,6 +5,6 @@ const styles = {
   input: {
     marginTop: 10
   }
-}
+};
 
-export default styles
+export default styles;

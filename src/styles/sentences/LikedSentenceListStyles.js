@@ -13,8 +13,8 @@ const styles = {
   },
   likeButton: {
     marginTop: 20,
-    marginLeft: 'auto'
+    marginLeft: "auto"
   }
-}
+};
 
 export default styles;
