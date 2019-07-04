@@ -5,10 +5,9 @@ import CustomizedIconButton from "../../utils/CustomizedIconButton";
 
 // styles
 import withStyles from "@material-ui/core/styles/withStyles";
-import Grid from "@material-ui/core/Grid";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
-import styles from "../../styles/sentences/SentenceListStyles";
+import styles from "../../styles/sentences/LikedSentenceListStyles";
 
 // Redux
 import { connect } from "react-redux";
@@ -48,17 +47,17 @@ class LikedSentenceList extends Component {
     );
 
     return (
-      <Grid container>
-        <Grid item sm={2} xs={1}>
+      <div className={classes.container}>
+        <div className={classes.likeButton}> 
           {displayLikeButton}
-        </Grid>
+        </div>
 
-        <Grid item sm={8} xs={10}>
+        <div className={classes.sentences}>
           {getAllSentences}
-        </Grid>
+        </div>
 
-        <Grid item sm={2} xs={1} />
-      </Grid>
+        <div />
+      </div>
     );
   }
 }
