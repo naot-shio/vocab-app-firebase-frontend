@@ -12,10 +12,20 @@ import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 
 // Redux
 import { connect } from "react-redux";
+import { loginUser } from "../../redux/actions/userActions";
 
 function Home(props) {
   const classes = useStyles();
   const { authenticated } = props.user;
+
+  const handleClick = () => {
+    const userData = {
+      email: "test@example.com",
+      password: "password"
+    };
+    props.loginUser(userData);
+    props.history.push("/sentences");
+  };
   return (
     <div className={classes.root}>
       <div className={classes.main}>
@@ -34,13 +44,24 @@ function Home(props) {
                 size="large"
                 className={classes.button}
               >
-                はじめる
+                単語一覧に行く
               </Button>
             </Link>
+
+            <Button
+              variant="contained"
+              color="secondary"
+              size="large"
+              className={classes.button}
+              onClick={handleClick}
+            >
+              簡単ログイン
+            </Button>
 
             <div>
               <h5>
                 &#x203B; ユーザ登録すると文の検索とお気に入り登録ができます。
+                また英訳の問題を解くことができます。
               </h5>
             </div>
           </Grid>
@@ -56,13 +77,10 @@ function Home(props) {
           こんな人におすすめです。
         </h3>
         <ul className={classes.recommendationBody}>
-          <li>
-            TOEICでいい点数取れるのにネイティブの英語がなかなか理解できない
-          </li>
+          <li>語彙力を強化したい</li>
           <li>英語力を上げたい</li>
           <li>英語で勉強してみたい</li>
           <li>国際結婚したい</li>
-          <li>市販の単語帳では簡単すぎる</li>
         </ul>
       </div>
 
@@ -72,7 +90,6 @@ function Home(props) {
           <li>
             管理人が英単語とその英単語を使った文章を適当にあげていく英単語帳です。
           </li>
-          <li>毎日５文くらい追加していく予定です。</li>
           <li>
             基本的に外国のドラマを見たり、本やwebサイトなどを読んだりしているときに出会った英語表現を載せていきます。
           </li>
@@ -98,4 +115,7 @@ const mapStateToProps = state => ({
   user: state.user
 });
 
-export default connect(mapStateToProps)(Home);
+export default connect(
+  mapStateToProps,
+  { loginUser }
+)(Home);

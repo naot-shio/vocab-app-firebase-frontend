@@ -12,7 +12,7 @@ import { faPlusSquare } from "@fortawesome/free-solid-svg-icons";
 import { connect } from "react-redux";
 import { postSentence } from "../../redux/actions/dataActions";
 
-export class CreateSentence extends Component {
+class CreateSentence extends Component {
   state = {
     open: false,
     sentence: "",

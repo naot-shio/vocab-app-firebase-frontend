@@ -2,8 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import SentenceDetails from "../sentences/SentenceDetails";
+import useStyles from "../../styles/questions/ResultStyles";
 
 function Result({ wrongAnswers, correctAnswers, sentences, inputAnswers }) {
+  const classes = useStyles();
+
   let displayCorrectAnswers =
     correctAnswers.length > 0 ? (
       correctAnswers.map((sentence, i) => (
@@ -23,9 +26,9 @@ function Result({ wrongAnswers, correctAnswers, sentences, inputAnswers }) {
     );
 
   let answers = inputAnswers.map((answer, i) => (
-    <div key={i} style={{ style: "inline-block", marginBottom: 10 }}>
-      <h5 style={{ display: "inline" }}>Question {i + 1}: </h5>
-      <p style={{ color: "red", display: "inline" }}>{answer}</p>
+    <div key={i} className={classes.inputAnswers}>
+      <h5>Question {i + 1}: </h5>
+      <p className={classes.inputAnswer}>{answer}</p>
     </div>
   ));
 
@@ -41,7 +44,7 @@ function Result({ wrongAnswers, correctAnswers, sentences, inputAnswers }) {
   }
   return (
     <>
-      <div style={{ textAlign: "center" }}>
+      <div className={classes.message}>
         <h3>{message}</h3>
         <p>
           You got {correctAnswers.length} out of {sentences.length}
@@ -63,8 +66,8 @@ function Result({ wrongAnswers, correctAnswers, sentences, inputAnswers }) {
         {displayWrongAnswers}
       </div>
 
-      <div style={{ textAlign: "right" }}>
-        <Link to="/sentences" style={{ textDecoration: "none" }}>
+      <div className={classes.homeButton}>
+        <Link to="/sentences">
           <Button color="primary">Go back home</Button>
         </Link>
       </div>

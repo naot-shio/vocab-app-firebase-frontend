@@ -1,6 +1,8 @@
-const styles = {
+import makeStyles from "@material-ui/core/styles/makeStyles";
+
+const useStyles = makeStyles(() => ({
   showPagination: {
-    hight: '100%'
+    hight: "100%"
   },
   hamburgerButton: {
     marginLeft: 20,
@@ -17,7 +19,17 @@ const styles = {
   crossButton: {
     marginLeft: 20,
     marginTop: 20
+  },
+  "@media (max-width: 550px)": {
+    hamburgerButton: {
+      marginLeft: 10
+    }
+  },
+  "@media (max-width: 400px)": {
+    hamburgerButton: {
+      marginLeft: 5
+    }
   }
-}
+}));
 
-export default styles 
+export default useStyles;

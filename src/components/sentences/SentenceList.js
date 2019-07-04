@@ -8,7 +8,6 @@ import CustomizedIconButton from "../../utils/CustomizedIconButton";
 // styles
 import withStyles from "@material-ui/core/styles/withStyles";
 import Button from "@material-ui/core/Button";
-import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
@@ -23,7 +22,8 @@ class SentenceList extends Component {
     keyword: "",
     currentSentence: 1,
     baseIndex: 0,
-    open: false
+    open: false,
+    sentencesPerPage: 10
   };
 
   componentDidMount() {
@@ -31,7 +31,11 @@ class SentenceList extends Component {
   }
 
   handleTogglePagination = () => {
-    this.setState({ open: !this.state.open })
+    this.setState({ open: !this.state.open });
+  };
+
+  handleClickClosePagination = () => {
+    this.setState({ open: false });
   }
 
   handleChange = evt => {
@@ -53,24 +57,24 @@ class SentenceList extends Component {
   handleClickNext = () => {
     this.setState({
       currentSentence: this.state.currentSentence + 1,
-      baseIndex: this.state.baseIndex + 10
+      baseIndex: this.state.baseIndex + this.state.sentencesPerPage
     });
   };
 
   handleClickPrevious = () => {
     this.setState({
       currentSentence: this.state.currentSentence - 1,
-      baseIndex: this.state.baseIndex - 10
+      baseIndex: this.state.baseIndex - this.state.sentencesPerPage
     });
   };
 
   // paginate function is passed down to the Pagination component and when elements of pageNumbers are pushed,
   // elements are multiplied by 10, as this way is easier to adjust indices on words in the pagination.
-  // Ergo, page argument needs to be divided by 10 to set the currentSentence, and subtracts 10 to set a correct baseIndex 
+  // Ergo, page argument needs to be divided by 10 to set the currentSentence, and subtracts 10 to set a correct baseIndex
   paginate = page => {
     this.setState({
-      currentSentence: page / 10,
-      baseIndex: page - 10
+      currentSentence: page / this.state.sentencesPerPage,
+      baseIndex: page - this.state.sentencesPerPage
     });
   };
 
@@ -79,54 +83,48 @@ class SentenceList extends Component {
     const { authenticated } = this.props.user;
     const { sentences, loading } = this.props.data;
 
-    const displayLikeButton = (
-      <Link to="/sentences/likes">
-        <CustomizedIconButton
-          title="Display All of The Sentences"
-          placement="bottom-end"
-          icon={faHeart}
-          color="red"
-        />
-      </Link>
-    );
-
     const isAuthenticated = !authenticated && <AuthenticationIcon />;
 
-    const buttonSearchBar = authenticated && (
-      <div className={classes.topField}>
-        <Grid container>
-          <Grid item xs={2}>
-            <div className={classes.button}>{displayLikeButton}</div>
-          </Grid>
+    const likeButtonAndSearch = authenticated && (
+      <div className={classes.likeSearchContainer}>
+        <div className={classes.button}>
+          <Link to="/sentences/likes">
+            <CustomizedIconButton
+              title="Display All of The Sentences"
+              placement="bottom-end"
+              icon={faHeart}
+              color="red"
+            />
+          </Link>
+        </div>
 
-          <Grid item xs={10}>
-            <div className={classes.textField}>
-              <form onSubmit={this.handleSubmit}>
-                <TextField
-                  name="keyword"
-                  type="text"
-                  value={this.state.keyword}
-                  label="search"
-                  onChange={this.handleChange}
-                  fullWidth
-                />
-              </form>
-            </div>
-          </Grid>
-        </Grid>
+        <div className={classes.textField}>
+          <form onSubmit={this.handleSubmit}>
+            <TextField
+              name="keyword"
+              type="text"
+              value={this.state.keyword}
+              label="search"
+              onChange={this.handleChange}
+              fullWidth
+              placeholder="Click Enter to Search"
+            />
+          </form>
+        </div>
       </div>
     );
 
-    const sentencesPerPage = 10;
-    const indexOfLastSentence = this.state.currentSentence * sentencesPerPage;
-    const indexOfFirstSentence = indexOfLastSentence - sentencesPerPage;
+    const indexOfLastSentence =
+      this.state.currentSentence * this.state.sentencesPerPage;
+    const indexOfFirstSentence =
+      indexOfLastSentence - this.state.sentencesPerPage;
     const currentSentences = sentences.slice(
       indexOfFirstSentence,
       indexOfLastSentence
     );
 
     let getAllSentences = !loading ? (
-      <>
+      <div className={classes.sentences}>
         {currentSentences.map((sentence, i) => (
           <SentenceDetails
             key={sentence.sentenceId}
@@ -138,26 +136,29 @@ class SentenceList extends Component {
           <Button
             color="secondary"
             onClick={this.handleClickPrevious}
+            className={
+              this.state.currentSentence - 2 < 0
+                ? classes.hideButton
+                : classes.displayButton
+            }
             disabled={this.state.currentSentence - 2 < 0 ? true : false}
-            style={{
-              display: this.state.currentSentence - 2 < 0 ? "none" : "inline"
-            }}
           >
             Prev
           </Button>
           <Button
             color="primary"
             onClick={this.handleClickNext}
+            className={
+              sentences.length < indexOfLastSentence
+                ? classes.hideButton
+                : classes.displayButton
+            }
             disabled={sentences.length < indexOfLastSentence ? true : false}
-            style={{
-              display:
-                sentences.length < indexOfLastSentence ? "none" : "inline"
-            }}
           >
             Next
           </Button>
         </div>
-      </>
+      </div>
     ) : (
       <div className={classes.loading}>
         <CircularProgress size={250} />
@@ -165,27 +166,31 @@ class SentenceList extends Component {
     );
 
     return (
-      <Grid container>
-        <Grid item sm={2} xs={1} className={this.state.open ? classes.showPagination : classes.hidePagination}>
+      <div className={classes.container}>
+        <div
+          className={
+            this.state.open ? classes.showPagination : classes.hidePagination
+          }
+        >
           <Pagination
-            sentencesPerPage={sentencesPerPage}
+            sentencesPerPage={this.state.sentencesPerPage}
             totalSentences={sentences.length}
             paginate={this.paginate}
             handleToggle={this.handleTogglePagination}
             open={this.state.open}
           />
-        </Grid>
+        </div>
 
-        <Grid item sm={8} xs={10} className={classes.content}>
-          {buttonSearchBar}
+        <div onClick={this.handleClickClosePagination}>
+          {likeButtonAndSearch}
 
           {getAllSentences}
-        </Grid>
+        </div>
 
-        <Grid item sm={2} xs={1}>
+        <div onClick={this.handleClickClosePagination}>
           <div className={classes.isAuthenticated}>{isAuthenticated}</div>
-        </Grid>
-      </Grid>
+        </div>
+      </div>
     );
   }
 }

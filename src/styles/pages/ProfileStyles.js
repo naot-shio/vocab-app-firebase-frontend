@@ -1,4 +1,6 @@
-const styles = {
+import makeStyles from "@material-ui/core/styles/makeStyles";
+
+const useStyles = makeStyles(() => ({
   paper: {
     padding: 20
   },
@@ -24,6 +26,6 @@ const styles = {
     marginLeft: 20,
     marginTop: 5
   }
-};
+}));
 
-export default styles;
+export default useStyles;

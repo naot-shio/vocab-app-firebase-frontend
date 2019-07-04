@@ -62,7 +62,6 @@ export const getLikedSentences = () => dispatch => {
   axios
     .get("/sentences/likes")
     .then(res => {
-      console.log(res);
       dispatch({
         type: SET_SENTENCES,
         payload: res.data

@@ -1,14 +1,12 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import SentenceDetails from "./SentenceDetails";
 import CustomizedIconButton from "../../utils/CustomizedIconButton";
 
 // styles
-import withStyles from "@material-ui/core/styles/withStyles";
-import Grid from "@material-ui/core/Grid";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
-import styles from "../../styles/sentences/SentenceListStyles";
+import useStyles from "../../styles/sentences/LikedSentenceListStyles";
 
 // Redux
 import { connect } from "react-redux";
@@ -17,50 +15,48 @@ import {
   updateSentence
 } from "../../redux/actions/dataActions";
 
-class LikedSentenceList extends Component {
-  componentDidMount() {
-    this.props.getLikedSentences();
-  }
+function LikedSentenceList(props) {
+  const classes = useStyles();
+  const { getLikedSentences } = props;
+  const { loading, sentences } = props.data;
 
-  render() {
-    const { classes } = this.props;
-    const { loading, sentences } = this.props.data;
+  useEffect(() => {
+    getLikedSentences();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-    const displayLikeButton = (
-      <Link to="/sentences">
-        <CustomizedIconButton
-          title="Display All of The Sentences"
-          placement="bottom-end"
-          icon={faHeart}
-          color="red"
-        />
-      </Link>
-    );
+  const displayLikeButton = (
+    <Link to="/sentences">
+      <CustomizedIconButton
+        title="Display All of The Sentences"
+        placement="bottom-end"
+        icon={faHeart}
+        color="red"
+      />
+    </Link>
+  );
 
-    let getAllSentences = !loading ? (
+  let getAllSentences = !loading ? (
+    sentences.length === 0 ? (
+      <p>You have not liked any sentences yet</p>
+    ) : (
       sentences.map((sentence, i) => (
         <SentenceDetails key={sentence.sentenceId} sentence={sentence} i={i} />
       ))
-    ) : (
-      <div className={classes.loading}>
-        <CircularProgress size={250} />
-      </div>
-    );
+    )
+  ) : (
+    <div className={classes.loading}>
+      <CircularProgress size={250} />
+    </div>
+  );
 
-    return (
-      <Grid container>
-        <Grid item sm={2} xs={1}>
-          {displayLikeButton}
-        </Grid>
-
-        <Grid item sm={8} xs={10}>
-          {getAllSentences}
-        </Grid>
-
-        <Grid item sm={2} xs={1} />
-      </Grid>
-    );
-  }
+  return (
+    <div className={classes.container}>
+      <div className={classes.likeButton}>{displayLikeButton}</div>
+      <div className={classes.sentences}>{getAllSentences}</div>
+      <div />
+    </div>
+  );
 }
 
 const mapStateToProps = state => ({
@@ -75,4 +71,4 @@ const mapActionsToProps = {
 export default connect(
   mapStateToProps,
   mapActionsToProps
-)(withStyles(styles)(LikedSentenceList));
+)(LikedSentenceList);

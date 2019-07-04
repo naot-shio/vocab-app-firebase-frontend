@@ -1,4 +1,6 @@
-const styles = {
+import makeStyles from "@material-ui/core/styles/makeStyles";
+
+const useStyles = makeStyles(() => ({
   englishJapaneseInputForm: {
     paddingRight: "none"
   },
@@ -31,6 +33,6 @@ const styles = {
       marginLeft: 15
     }
   }
-};
+}));
 
-export default styles;
+export default useStyles;

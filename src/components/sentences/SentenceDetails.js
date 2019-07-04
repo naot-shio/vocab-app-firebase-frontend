@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import DeleteSentence from "./DeleteSentence";
 import WordMeaningList from "./WordMeaningList";
@@ -15,89 +15,86 @@ import {
   faEdit,
   faHeart as faHeartRegular
 } from "@fortawesome/free-regular-svg-icons";
-import withStyles from "@material-ui/core/styles/withStyles";
-import styles from "../../styles/sentences/SentenceDetailsStyles";
+import useStyles from "../../styles/sentences/SentenceDetailsStyles";
 
 // Redux
 import { connect } from "react-redux";
 import { likeSentence, unlikeSentence } from "../../redux/actions/dataActions";
 
-class SentenceDetails extends Component {
-  sentenceLiked = () => {
+function SentenceDetails(props) {
+  const classes = useStyles();
+  const sentenceLiked = () => {
     if (
-      this.props.user.likes &&
-      this.props.user.likes.find(
-        like => like.sentenceId === this.props.sentence.sentenceId
+      props.user.likes &&
+      props.user.likes.find(
+        like => like.sentenceId === props.sentence.sentenceId
       )
     )
       return true;
     return false;
   };
 
-  likeSentence = () => {
-    this.props.likeSentence(this.props.sentence.sentenceId);
+  const likeSentence = () => {
+    props.likeSentence(props.sentence.sentenceId);
   };
 
-  unlikeSentence = () => {
-    this.props.unlikeSentence(this.props.sentence.sentenceId);
+  const unlikeSentence = () => {
+    props.unlikeSentence(props.sentence.sentenceId);
   };
 
-  render() {
-    const { classes, sentence, i } = this.props;
-    const {
-      authenticated,
-      credentials: { name }
-    } = this.props.user;
+  const { sentence, i } = props;
+  const {
+    authenticated,
+    credentials: { name }
+  } = props.user;
 
-    const editDeleteButton = sentence =>
-      authenticated &&
-      sentence.userName === name && (
-        <div className={classes.icons}>
-          <Fab color="primary" aria-label="Edit" size="small">
-            <Link
-              to={`/sentence/${sentence.sentenceId}`}
-              onClick={e => e.stopPropagation()}
-            >
-              <FontAwesomeIcon icon={faEdit} color="white" />
-            </Link>
-          </Fab>
-          <DeleteSentence sentenceId={sentence.sentenceId} />
-        </div>
-      );
-
-    const likeButton = this.sentenceLiked() ? (
-      <IconButton onClick={this.unlikeSentence}>
-        <FontAwesomeIcon icon={faHeartSolid} color="red" />
-      </IconButton>
-    ) : (
-      <IconButton onClick={this.likeSentence}>
-        <FontAwesomeIcon icon={faHeartRegular} color="red" />
-      </IconButton>
+  const editDeleteButton = sentence =>
+    authenticated &&
+    sentence.userName === name && (
+      <div className={classes.icons}>
+        <Fab color="primary" aria-label="Edit" size="small">
+          <Link
+            to={`/sentence/${sentence.sentenceId}`}
+            onClick={e => e.stopPropagation()}
+          >
+            <FontAwesomeIcon icon={faEdit} color="white" />
+          </Link>
+        </Fab>
+        <DeleteSentence sentenceId={sentence.sentenceId} />
+      </div>
     );
 
-    return (
-      <Card className={classes.Card} key={sentence.sentenceId}>
-        <CardContent>
-          <Typography variant="h5">
-            {i + 1}.{" "}
-            <span className={classes.sentence}>{sentence.sentence}</span>
-          </Typography>
+  const likeButton = sentenceLiked() ? (
+    <IconButton onClick={unlikeSentence}>
+      <FontAwesomeIcon icon={faHeartSolid} color="red" />
+    </IconButton>
+  ) : (
+    <IconButton onClick={likeSentence}>
+      <FontAwesomeIcon icon={faHeartRegular} color="red" />
+    </IconButton>
+  );
 
-          {authenticated && likeButton}
+  return (
+    <Card className={classes.Card} key={sentence.sentenceId}>
+      <CardContent>
+        <Typography variant="h5">
+          {i + 1}. <span className={classes.sentence}>{sentence.sentence}</span>
+        </Typography>
 
-          {sentence.words.map((word, index) => (
-            <WordMeaningList index={index} i={i} word={word} key={index} />
-          ))}
+        {authenticated && likeButton}
 
-          <Typography variant="body1" className={classes.translation}>
-            訳: {sentence.translation}
-          </Typography>
+        {sentence.words.map((word, index) => (
+          <WordMeaningList index={index} i={i} word={word} key={index} />
+        ))}
 
-          {editDeleteButton(sentence)}
-        </CardContent>
-      </Card>
-    );
-  }
+        <Typography variant="body1" className={classes.translation}>
+          訳: {sentence.translation}
+        </Typography>
+
+        {editDeleteButton(sentence)}
+      </CardContent>
+    </Card>
+  );
 }
 
 const mapStateToProps = state => ({
@@ -112,4 +109,4 @@ const mapActionsToProps = {
 export default connect(
   mapStateToProps,
   mapActionsToProps
-)(withStyles(styles)(SentenceDetails));
+)(SentenceDetails);

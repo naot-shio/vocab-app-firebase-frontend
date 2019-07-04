@@ -1,4 +1,6 @@
-const styles = {
+import makeStyles from "@material-ui/core/styles/makeStyles";
+
+const useStyles = makeStyles(() => ({
   word: {
     display: "flex",
     alignItems: "center"
@@ -23,6 +25,6 @@ const styles = {
       width: "40%"
     }
   }
-};
+}));
 
-export default styles;
+export default useStyles;
