@@ -15,6 +15,12 @@ function Pagination(props) {
     open
   } = props;
 
+  const firstIndexOnPage = number => {
+    // number is the number of the page that is multiplied by sentencesPerPage
+    // Thus the first index of the page is number - sentencePerPage + 1 
+    return number - sentencesPerPage + 1;
+  }
+
   for (let i = 1; i <= Math.ceil(totalSentences / sentencesPerPage); i++) {
     pageNumbers.push(i * sentencesPerPage);
   }
@@ -47,11 +53,11 @@ function Pagination(props) {
           >
             {pageNumbers.length - 1 === i ? (
               <>
-                {number - 9} ~ {totalSentences}
+                {firstIndexOnPage(number)} ~ {totalSentences}
               </>
             ) : (
               <>
-                {number - 9} ~ {number}
+                {firstIndexOnPage(number)} ~ {number}
               </>
             )}
           </Button>
