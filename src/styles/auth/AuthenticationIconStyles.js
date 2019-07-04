@@ -1,4 +1,6 @@
-const styles = {
+import makeStyles from "@material-ui/core/styles/makeStyles";
+
+const useStyles = makeStyles(() => ({
   icons: {
     width: 54,
     marginTop: -35,
@@ -10,8 +12,12 @@ const styles = {
     marginTop: 7,
     display: "block"
   },
-  hiddenIcon: {
-    marginTop: 7
+  hiddenIcons: {
+    marginTop: 7,
+    display: "block"
+  },
+  hideIcons: {
+    display: 'none'
   },
   "@media (max-width: 600px)": {
     icons: {
@@ -32,6 +38,6 @@ const styles = {
       marginLeft: -35
     }
   }
-};
+}));
 
-export default styles;
+export default useStyles;

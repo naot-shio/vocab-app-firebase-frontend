@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import SignUp from "./SignUp";
 import Login from "./Login";
 
@@ -11,30 +11,16 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 // styles
-import withStyles from "@material-ui/core/styles/withStyles";
 import Fab from "@material-ui/core/Fab";
 import Tooltip from "@material-ui/core/Tooltip";
 import Dialog from "@material-ui/core/Dialog";
-import styles from "../../styles/auth/AuthenticationIconStyles";
+import useStyles from "../../styles/auth/AuthenticationIconStyles";
 
-class AuthenticationIcon extends Component {
-  state = {
-    open: false,
-    openSignUpForm: false,
-    openLoginForm: false
-  };
-
-  handleToggleSignUp = () => {
-    this.setState({ openSignUpForm: !this.state.openSignUpForm });
-  };
-
-  handleToggleLogin = () => {
-    this.setState({ openLoginForm: !this.state.openLoginForm });
-  };
-
-  render() {
-    const { classes } = this.props;
-    const { open, openSignUpForm, openLoginForm } = this.state;
+function AuthenticationIcon(props) {
+  const classes = useStyles();
+  const [open, setOpen] = useState(false)
+  const [openSignUpForm, setOpenSignUpForm] = useState(false)
+  const [openLoginForm, setOpenLoginForm] = useState(false)
 
     return (
       <div className={classes.icons}>
@@ -43,7 +29,7 @@ class AuthenticationIcon extends Component {
             color="secondary"
             aria-label="Add"
             className={classes.icon}
-            onClick={() => this.setState({ open: !open })}
+            onClick={() => setOpen(!open)}
           >
             <FontAwesomeIcon icon={faUser} />
           </Fab>
@@ -53,9 +39,8 @@ class AuthenticationIcon extends Component {
           <Fab
             color="secondary"
             aria-label="Add"
-            className={classes.hiddenIcon}
-            style={{ display: open ? "block" : "none" }}
-            onClick={this.handleToggleSignUp}
+            className={open ? classes.hiddenIcons : classes.hideIcons}
+            onClick={() => setOpenSignUpForm(!openSignUpForm)}
           >
             <FontAwesomeIcon icon={faUserPlus} />
           </Fab>
@@ -65,9 +50,8 @@ class AuthenticationIcon extends Component {
           <Fab
             color="secondary"
             aria-label="Add"
-            className={classes.hiddenIcon}
-            style={{ display: open ? "block" : "none" }}
-            onClick={this.handleToggleLogin}
+            className={open ? classes.hiddenIcons : classes.hideIcons}
+            onClick={() => setOpenLoginForm(!openLoginForm)}
           >
             <FontAwesomeIcon icon={faSignInAlt} />
           </Fab>
@@ -76,7 +60,7 @@ class AuthenticationIcon extends Component {
         <Dialog
           open={openSignUpForm}
           aria-labelledby="sign-up-dialog-title"
-          onClose={this.handleToggleSignUp}
+          onClose={() => setOpenSignUpForm(false)}
         >
           <SignUp />
         </Dialog>
@@ -84,13 +68,12 @@ class AuthenticationIcon extends Component {
         <Dialog
           open={openLoginForm}
           aria-labelledby="login-dialog-title"
-          onClose={this.handleToggleLogin}
+          onClose={() => setOpenLoginForm(false)}
         >
           <Login />
         </Dialog>
       </div>
     );
   }
-}
 
-export default withStyles(styles)(AuthenticationIcon);
+export default AuthenticationIcon;
