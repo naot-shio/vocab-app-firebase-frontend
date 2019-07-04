@@ -1,18 +1,21 @@
 const styles = {
+  container: {
+    display: "grid",
+    gridTemplateColumns: "15% 70% 15%"
+  },
   showPagination: {
     backgroundColor: "rgba(0,0,0,0.8)",
-    width: 250,
     height: "100vh",
-    overflowY: 'scroll',
+    overflowY: "scroll",
     zIndex: 5
   },
   sentences: {
-    marginTop: 30,
-    width: 700,
-    marginLeft: "auto",
+    marginTop: 20,
+    maxWidth: 700,
     marginRight: "auto",
-    height: '85vh',
-    overflowY: 'scroll'
+    marginLeft: "auto",
+    height: "80vh",
+    overflowY: "scroll"
   },
   loading: {
     width: 200,
@@ -20,14 +23,16 @@ const styles = {
     marginLeft: "auto",
     marginTop: 50
   },
-  topField: {
-    marginTop: 10,
-    width: 700,
+  likeSearchContainer: {
+    marginTop: 20,
+    maxWidth: 700,
+    marginRight: "auto",
     marginLeft: "auto",
-    marginRight: "auto"
+    display: "grid",
+    gridTemplateColumns: "10% 90%"
   },
   textField: {
-    paddingRight: 10
+    marginRight: 10
   },
   button: {
     marginTop: 10
@@ -45,28 +50,20 @@ const styles = {
   displayButton: {
     display: "inline"
   },
-  "@media (max-width: 950px)": {
-    topField: {
-      width: 650
-    },
-    sentences: {
-      width: 650
-    }
-  },
-  "@media (max-width: 800px)": {
-    topField: {
-      width: 500
-    },
-    sentences: {
-      width: 500
+  "@media (max-width: 750px)": {
+    container: {
+      gridTemplateColumns: "20% 70% 10%"
     }
   },
   "@media (max-width: 650px)": {
-    topField: {
-      width: "100%"
+    container: {
+      gridTemplateColumns: "10% 80% 10%"
     },
     sentences: {
-      width: '100%'
+      width: "100%"
+    },
+    showPagination: {
+      width: "220%"
     }
   },
   "@media (max-width: 600px)": {
@@ -74,17 +71,25 @@ const styles = {
       marginLeft: 0
     }
   },
+  "@media (max-width: 550px)": {
+    showPagination: {
+      width: "300%"
+    }
+  },
   "@media (max-width: 500px)": {
-    topField: {
-      width: "100%"
-    },
     loading: {
       marginLeft: 30
+    },
+    likeSearchContainer: {
+      gridTemplateColumns: "15% 85%"
     }
   },
   "@media (max-width: 400px)": {
     isAuthenticated: {
       marginLeft: -5
+    },
+    showPagination: {
+      width: "400%"
     }
   }
 };

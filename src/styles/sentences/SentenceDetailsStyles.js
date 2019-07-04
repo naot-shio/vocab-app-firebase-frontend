@@ -8,7 +8,7 @@ const styles = {
     }
   },
   Card: {
-    margin: '0 10px 30px',
+    margin: "0 10px 30px"
   },
   sentence: {
     fontWeight: 500,

@@ -8,7 +8,6 @@ import CustomizedIconButton from "../../utils/CustomizedIconButton";
 // styles
 import withStyles from "@material-ui/core/styles/withStyles";
 import Button from "@material-ui/core/Button";
-import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
@@ -82,8 +81,8 @@ class SentenceList extends Component {
     const isAuthenticated = !authenticated && <AuthenticationIcon />;
 
     const likeButtonAndSearch = authenticated && (
-      <Grid container className={classes.topField}>
-        <Grid item xs={2} className={classes.button}>
+      <div className={classes.likeSearchContainer}>
+        <div className={classes.button}>
           <Link to="/sentences/likes">
             <CustomizedIconButton
               title="Display All of The Sentences"
@@ -92,9 +91,9 @@ class SentenceList extends Component {
               color="red"
             />
           </Link>
-        </Grid>
+        </div>
 
-        <Grid item xs={10} className={classes.textField}>
+        <div className={classes.textField}>
           <form onSubmit={this.handleSubmit}>
             <TextField
               name="keyword"
@@ -106,8 +105,8 @@ class SentenceList extends Component {
               placeholder="Click Enter to Search"
             />
           </form>
-        </Grid>
-      </Grid>
+        </div>
+      </div>
     );
 
     const sentencesPerPage = 10;
@@ -161,11 +160,8 @@ class SentenceList extends Component {
     );
 
     return (
-      <Grid container>
-        <Grid
-          item
-          sm={2}
-          xs={1}
+      <div className={classes.container}>
+        <div
           className={
             this.state.open ? classes.showPagination : classes.hidePagination
           }
@@ -177,18 +173,18 @@ class SentenceList extends Component {
             handleToggle={this.handleTogglePagination}
             open={this.state.open}
           />
-        </Grid>
+        </div>
 
-        <Grid item sm={8} xs={10} className={classes.content}>
+        <div>
           {likeButtonAndSearch}
 
           {getAllSentences}
-        </Grid>
+        </div>
 
-        <Grid item sm={2} xs={1}>
+        <div>
           <div className={classes.isAuthenticated}>{isAuthenticated}</div>
-        </Grid>
-      </Grid>
+        </div>
+      </div>
     );
   }
 }

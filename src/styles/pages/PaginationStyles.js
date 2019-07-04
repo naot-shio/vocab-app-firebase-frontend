@@ -17,6 +17,16 @@ const styles = {
   crossButton: {
     marginLeft: 20,
     marginTop: 20
+  },
+  "@media (max-width: 550px)": {
+    hamburgerButton: {
+      marginLeft: 10
+    }
+  },
+  "@media (max-width: 400px)": {
+    hamburgerButton: {
+      marginLeft: 5
+    }
   }
 };
 
