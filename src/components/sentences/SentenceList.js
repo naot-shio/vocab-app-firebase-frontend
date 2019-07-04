@@ -34,6 +34,10 @@ class SentenceList extends Component {
     this.setState({ open: !this.state.open });
   };
 
+  handleClickClosePagination = () => {
+    this.setState({ open: false });
+  }
+
   handleChange = evt => {
     this.setState({
       [evt.target.name]: evt.target.value
@@ -177,13 +181,13 @@ class SentenceList extends Component {
           />
         </div>
 
-        <div>
+        <div onClick={this.handleClickClosePagination}>
           {likeButtonAndSearch}
 
           {getAllSentences}
         </div>
 
-        <div>
+        <div onClick={this.handleClickClosePagination}>
           <div className={classes.isAuthenticated}>{isAuthenticated}</div>
         </div>
       </div>
