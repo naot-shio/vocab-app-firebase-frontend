@@ -11,7 +11,7 @@ import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import { faQuestion } from "@fortawesome/free-solid-svg-icons";
-import styles from "../../styles/pages/ProfileStyles";
+import styles from "../../styles/questions/SetQuestionStyles";
 
 class SetQuestion extends Component {
   state = {
@@ -61,12 +61,18 @@ class SetQuestion extends Component {
             <Typography variant="h6">
               How many questions would you like to attempt?
             </Typography>
+            <Typography variant="body2"> 
+              If you don't input any number, 10 questions will be given.
+            </Typography>
+            
             <TextField
               id="standard-number"
               label="Number of Questions"
               onChange={this.handleChange}
               type="number"
               margin="normal"
+              className={classes.input}
+              inputProps={{ min: "1" }}
             />
           </Paper>
 
