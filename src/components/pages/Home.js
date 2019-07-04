@@ -12,10 +12,20 @@ import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 
 // Redux
 import { connect } from "react-redux";
+import { loginUser } from "../../redux/actions/userActions";
 
 function Home(props) {
   const classes = useStyles();
   const { authenticated } = props.user;
+
+  const handleClick = () => {
+    const userData = {
+      email: 'test@example.com',
+      password: 'password'
+    }
+    props.loginUser(userData);
+    props.history.push("/sentences")
+  }
   return (
     <div className={classes.root}>
       <div className={classes.main}>
@@ -34,9 +44,19 @@ function Home(props) {
                 size="large"
                 className={classes.button}
               >
-                はじめる
+                単語一覧に行く
               </Button>
             </Link>
+
+            <Button
+              variant="contained"
+              color="secondary"
+              size="large"
+              className={classes.button}
+              onClick={handleClick}
+            >
+              簡単ログイン
+            </Button>
 
             <div>
               <h5>
@@ -98,4 +118,4 @@ const mapStateToProps = state => ({
   user: state.user
 });
 
-export default connect(mapStateToProps)(Home);
+export default connect(mapStateToProps, { loginUser })(Home);

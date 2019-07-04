@@ -26,8 +26,7 @@ const useStyles = makeStyles(theme => ({
     fontFamily: "Yu Gothic"
   },
   button: {
-    marginTop: 30,
-    marginBottom: 20
+    margin: "30px 5px 20px"
   },
   exampleImage: {
     backgroundSize: "cover",
