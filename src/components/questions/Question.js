@@ -161,7 +161,7 @@ class Question extends Component {
     ));
 
     return (
-      <div style={{ margin: "100px" }}>
+      <div className={classes.questions}>
         {randomSentences}
 
         {result && (
