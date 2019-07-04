@@ -1,16 +1,9 @@
 const styles = {
-  main: {
-    display: 'inline-block'
-  },
   showPagination: {
     backgroundColor: 'rgba(0,0,0,0.8)',
     width: 250,
     height:'100vh',
     zIndex: 5,
-    position: 'fixed'
-  },
-  sentences: {
-    width: '100%'
   },
   loading: {
     width: 200,
@@ -33,6 +26,12 @@ const styles = {
   },
   isAuthenticated: {
     marginRight: "auto"
+  },
+  hideButton: {
+    display: "none"
+  },
+  displayButton: {
+    display: "inline"
   },
   "@media (max-width: 950px)": {
     topField: {

@@ -138,21 +138,16 @@ class SentenceList extends Component {
           <Button
             color="secondary"
             onClick={this.handleClickPrevious}
+            className={this.state.currentSentence - 2 < 0 ? classes.hideButton : classes.displayButton}
             disabled={this.state.currentSentence - 2 < 0 ? true : false}
-            style={{
-              display: this.state.currentSentence - 2 < 0 ? "none" : "inline"
-            }}
           >
             Prev
           </Button>
           <Button
             color="primary"
             onClick={this.handleClickNext}
+            className={sentences.length < indexOfLastSentence ? classes.hideButton : classes.displayButton}
             disabled={sentences.length < indexOfLastSentence ? true : false}
-            style={{
-              display:
-                sentences.length < indexOfLastSentence ? "none" : "inline"
-            }}
           >
             Next
           </Button>
