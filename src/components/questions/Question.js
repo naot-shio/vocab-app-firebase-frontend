@@ -5,12 +5,15 @@ import Result from "./Result";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
+import withStyles from '@material-ui/core/styles/withStyles'
+import styles from "../../styles/questions/QuestionStyles";
 
 // Redux
 import { connect } from "react-redux";
 import { getRandomSentences } from "../../redux/actions/dataActions";
 
-export class Question extends Component {
+class Question extends Component {
   state = {
     answer: "",
     questionNumber: 0,
@@ -82,6 +85,7 @@ export class Question extends Component {
   };
 
   render() {
+    const { classes } = this.props;
     const { sentences } = this.props.data;
     const {
       questionNumber,
@@ -94,31 +98,28 @@ export class Question extends Component {
 
     let randomSentences = sentences.map((sentence, i) => (
       <Card
-        style={{
-          display: i === questionNumber ? "block" : "none",
-          padding: 40
-        }}
+        className={i === questionNumber ? classes.displayQuestion : classes.hideContent }
         key={sentence.sentenceId}
       >
-        <h2>Question: {questionNumber + 1}</h2>
+        <CardContent className={classes.cardContent}>
+        
+        <h2>Question {questionNumber + 1}: Translate the sentence into English</h2>
         <h3>{sentence.translation}</h3>
         <TextField
-          id="question"
-          label="Question"
+          id="answer"
+          label="Answer"
           onChange={this.handleChange}
           type="text"
           margin="normal"
           fullWidth
         />
 
-        <div style={{ display: "block", textAlign: "right", marginTop: 20 }}>
+        <div className={classes.buttons}>
           <Button
             variant="contained"
             color="primary"
             onClick={this.handleCheck}
-            style={{
-              display: questionNumber > sentences.length - 2 ? "none" : "inline"
-            }}
+            className={questionNumber > sentences.length - 2 ? classes.hideContent : classes.displayButton}
             disabled={questionNumber > sentences.length - 2 ? true : false}
           >
             Check
@@ -127,11 +128,7 @@ export class Question extends Component {
           <Button
             variant="contained"
             color="secondary"
-            style={{
-              display:
-                questionNumber > sentences.length - 2 ? "none" : "inline",
-              marginLeft: 10
-            }}
+            className={questionNumber > sentences.length - 2 ? classes.hideContent : classes.displayButton}
             onClick={this.handleClick}
             disabled={questionNumber > sentences.length - 2 ? true : false}
           >
@@ -148,6 +145,7 @@ export class Question extends Component {
             </Button>
           )}
         </div>
+        </CardContent>
       </Card>
     ));
 
@@ -179,4 +177,4 @@ const mapActionsToProps = {
 export default connect(
   mapStateToProps,
   mapActionsToProps
-)(Question);
+)(withStyles(styles)(Question));
