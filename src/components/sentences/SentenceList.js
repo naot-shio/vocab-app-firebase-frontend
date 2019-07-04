@@ -31,8 +31,8 @@ class SentenceList extends Component {
   }
 
   handleTogglePagination = () => {
-    this.setState({ open: !this.state.open })
-  }
+    this.setState({ open: !this.state.open });
+  };
 
   handleChange = evt => {
     this.setState({
@@ -66,7 +66,7 @@ class SentenceList extends Component {
 
   // paginate function is passed down to the Pagination component and when elements of pageNumbers are pushed,
   // elements are multiplied by 10, as this way is easier to adjust indices on words in the pagination.
-  // Ergo, page argument needs to be divided by 10 to set the currentSentence, and subtracts 10 to set a correct baseIndex 
+  // Ergo, page argument needs to be divided by 10 to set the currentSentence, and subtracts 10 to set a correct baseIndex
   paginate = page => {
     this.setState({
       currentSentence: page / 10,
@@ -79,42 +79,34 @@ class SentenceList extends Component {
     const { authenticated } = this.props.user;
     const { sentences, loading } = this.props.data;
 
-    const displayLikeButton = (
-      <Link to="/sentences/likes">
-        <CustomizedIconButton
-          title="Display All of The Sentences"
-          placement="bottom-end"
-          icon={faHeart}
-          color="red"
-        />
-      </Link>
-    );
-
     const isAuthenticated = !authenticated && <AuthenticationIcon />;
 
-    const buttonSearchBar = authenticated && (
-      <div className={classes.topField}>
-        <Grid container>
-          <Grid item xs={2}>
-            <div className={classes.button}>{displayLikeButton}</div>
-          </Grid>
-
-          <Grid item xs={10}>
-            <div className={classes.textField}>
-              <form onSubmit={this.handleSubmit}>
-                <TextField
-                  name="keyword"
-                  type="text"
-                  value={this.state.keyword}
-                  label="search"
-                  onChange={this.handleChange}
-                  fullWidth
-                />
-              </form>
-            </div>
-          </Grid>
+    const likeButtonAndSearch = authenticated && (
+      <Grid container className={classes.topField}>
+        <Grid item xs={2} className={classes.button}>
+          <Link to="/sentences/likes">
+            <CustomizedIconButton
+              title="Display All of The Sentences"
+              placement="bottom-end"
+              icon={faHeart}
+              color="red"
+            />
+          </Link>
         </Grid>
-      </div>
+
+        <Grid item xs={10} className={classes.textField}>
+          <form onSubmit={this.handleSubmit}>
+            <TextField
+              name="keyword"
+              type="text"
+              value={this.state.keyword}
+              label="search"
+              onChange={this.handleChange}
+              fullWidth
+            />
+          </form>
+        </Grid>
+      </Grid>
     );
 
     const sentencesPerPage = 10;
@@ -138,7 +130,11 @@ class SentenceList extends Component {
           <Button
             color="secondary"
             onClick={this.handleClickPrevious}
-            className={this.state.currentSentence - 2 < 0 ? classes.hideButton : classes.displayButton}
+            className={
+              this.state.currentSentence - 2 < 0
+                ? classes.hideButton
+                : classes.displayButton
+            }
             disabled={this.state.currentSentence - 2 < 0 ? true : false}
           >
             Prev
@@ -146,7 +142,11 @@ class SentenceList extends Component {
           <Button
             color="primary"
             onClick={this.handleClickNext}
-            className={sentences.length < indexOfLastSentence ? classes.hideButton : classes.displayButton}
+            className={
+              sentences.length < indexOfLastSentence
+                ? classes.hideButton
+                : classes.displayButton
+            }
             disabled={sentences.length < indexOfLastSentence ? true : false}
           >
             Next
@@ -161,7 +161,14 @@ class SentenceList extends Component {
 
     return (
       <Grid container>
-        <Grid item sm={2} xs={1} className={this.state.open ? classes.showPagination : classes.hidePagination}>
+        <Grid
+          item
+          sm={2}
+          xs={1}
+          className={
+            this.state.open ? classes.showPagination : classes.hidePagination
+          }
+        >
           <Pagination
             sentencesPerPage={sentencesPerPage}
             totalSentences={sentences.length}
@@ -172,7 +179,7 @@ class SentenceList extends Component {
         </Grid>
 
         <Grid item sm={8} xs={10} className={classes.content}>
-          {buttonSearchBar}
+          {likeButtonAndSearch}
 
           {getAllSentences}
         </Grid>
