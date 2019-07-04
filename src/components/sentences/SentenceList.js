@@ -103,6 +103,7 @@ class SentenceList extends Component {
               label="search"
               onChange={this.handleChange}
               fullWidth
+              placeholder="Click Enter to Search"
             />
           </form>
         </Grid>
@@ -118,7 +119,7 @@ class SentenceList extends Component {
     );
 
     let getAllSentences = !loading ? (
-      <>
+      <div className={classes.sentences}>
         {currentSentences.map((sentence, i) => (
           <SentenceDetails
             key={sentence.sentenceId}
@@ -152,7 +153,7 @@ class SentenceList extends Component {
             Next
           </Button>
         </div>
-      </>
+      </div>
     ) : (
       <div className={classes.loading}>
         <CircularProgress size={250} />

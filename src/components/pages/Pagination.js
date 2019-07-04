@@ -1,14 +1,21 @@
 import React, { Component } from "react";
-import CustomizedIconButton from "../../utils/CustomizedIconButton"
-import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
+import CustomizedIconButton from "../../utils/CustomizedIconButton";
+import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 import Button from "@material-ui/core/Button";
-import withStyles from '@material-ui/core/styles/withStyles';
-import styles from '../../styles/pages/PaginationStyles'
+import withStyles from "@material-ui/core/styles/withStyles";
+import styles from "../../styles/pages/PaginationStyles";
 
 class Pagination extends Component {
   render() {
     const pageNumbers = [];
-    const { sentencesPerPage, totalSentences, paginate, handleToggle, open, classes } = this.props;
+    const {
+      sentencesPerPage,
+      totalSentences,
+      paginate,
+      handleToggle,
+      open,
+      classes
+    } = this.props;
 
     for (let i = 1; i <= Math.ceil(totalSentences / sentencesPerPage); i++) {
       pageNumbers.push(i * 10);
@@ -25,7 +32,7 @@ class Pagination extends Component {
           className={open ? classes.hideContent : classes.hamburgerButton}
         />
 
-        <div className={open ? classes.showPagination : classes.hideContent}>  
+        <div className={open ? classes.showPagination : classes.hideContent}>
           <CustomizedIconButton
             title="Close"
             placement="right"

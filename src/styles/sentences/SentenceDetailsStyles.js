@@ -8,10 +8,7 @@ const styles = {
     }
   },
   Card: {
-    margin: 30,
-    width: 700,
-    marginLeft: "auto",
-    marginRight: "auto"
+    margin: '0 10px 30px',
   },
   sentence: {
     fontWeight: 500,
@@ -25,26 +22,6 @@ const styles = {
   translation: {
     marginTop: 10,
     marginLeft: 15
-  },
-  "@media (max-width: 950px)": {
-    Card: {
-      width: 650
-    }
-  },
-  "@media (max-width: 800px)": {
-    Card: {
-      width: 500
-    }
-  },
-  "@media (max-width: 650px)": {
-    Card: {
-      width: "100%"
-    }
-  },
-  "@media (max-width: 500px)": {
-    Card: {
-      width: "100%"
-    }
   }
 };
 

@@ -1,6 +1,6 @@
 const styles = {
   showPagination: {
-    hight: '100%'
+    hight: "100%"
   },
   hamburgerButton: {
     marginLeft: 20,
@@ -18,6 +18,6 @@ const styles = {
     marginLeft: 20,
     marginTop: 20
   }
-}
+};
 
-export default styles 
+export default styles;

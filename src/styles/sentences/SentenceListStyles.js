@@ -1,9 +1,18 @@
 const styles = {
   showPagination: {
-    backgroundColor: 'rgba(0,0,0,0.8)',
+    backgroundColor: "rgba(0,0,0,0.8)",
     width: 250,
-    height:'100vh',
-    zIndex: 5,
+    height: "100vh",
+    overflowY: 'scroll',
+    zIndex: 5
+  },
+  sentences: {
+    marginTop: 30,
+    width: 700,
+    marginLeft: "auto",
+    marginRight: "auto",
+    height: '85vh',
+    overflowY: 'scroll'
   },
   loading: {
     width: 200,
@@ -16,6 +25,9 @@ const styles = {
     width: 700,
     marginLeft: "auto",
     marginRight: "auto"
+  },
+  textField: {
+    paddingRight: 10
   },
   button: {
     marginTop: 10
@@ -36,22 +48,31 @@ const styles = {
   "@media (max-width: 950px)": {
     topField: {
       width: 650
+    },
+    sentences: {
+      width: 650
     }
   },
   "@media (max-width: 800px)": {
     topField: {
+      width: 500
+    },
+    sentences: {
       width: 500
     }
   },
   "@media (max-width: 650px)": {
     topField: {
       width: "100%"
+    },
+    sentences: {
+      width: '100%'
     }
   },
   "@media (max-width: 600px)": {
     isAuthenticated: {
       marginLeft: 0
-    },
+    }
   },
   "@media (max-width: 500px)": {
     topField: {
