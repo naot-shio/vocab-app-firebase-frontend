@@ -20,12 +20,12 @@ function Home(props) {
 
   const handleClick = () => {
     const userData = {
-      email: 'test@example.com',
-      password: 'password'
-    }
+      email: "test@example.com",
+      password: "password"
+    };
     props.loginUser(userData);
-    props.history.push("/sentences")
-  }
+    props.history.push("/sentences");
+  };
   return (
     <div className={classes.root}>
       <div className={classes.main}>
@@ -117,4 +117,7 @@ const mapStateToProps = state => ({
   user: state.user
 });
 
-export default connect(mapStateToProps, { loginUser })(Home);
+export default connect(
+  mapStateToProps,
+  { loginUser }
+)(Home);

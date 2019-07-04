@@ -14,7 +14,9 @@ function Footer() {
           <FontAwesomeIcon icon={faTwitter} color="#38A1F3" />
         </IconButton>
       </a>
-      <p className={classes.message}>お問い合わせはTwitterの方にお願いします。</p>
+      <p className={classes.message}>
+        お問い合わせはTwitterの方にお願いします。
+      </p>
     </div>
   );
 }

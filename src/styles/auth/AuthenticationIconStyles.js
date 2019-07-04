@@ -17,7 +17,7 @@ const useStyles = makeStyles(() => ({
     display: "block"
   },
   hideIcons: {
-    display: 'none'
+    display: "none"
   },
   "@media (max-width: 600px)": {
     icons: {

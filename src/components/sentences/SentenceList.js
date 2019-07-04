@@ -110,8 +110,10 @@ class SentenceList extends Component {
       </div>
     );
 
-    const indexOfLastSentence = this.state.currentSentence * this.state.sentencesPerPage;
-    const indexOfFirstSentence = indexOfLastSentence - this.state.sentencesPerPage;
+    const indexOfLastSentence =
+      this.state.currentSentence * this.state.sentencesPerPage;
+    const indexOfFirstSentence =
+      indexOfLastSentence - this.state.sentencesPerPage;
     const currentSentences = sentences.slice(
       indexOfFirstSentence,
       indexOfLastSentence
