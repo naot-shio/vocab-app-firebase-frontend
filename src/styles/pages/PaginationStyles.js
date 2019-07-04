@@ -1,4 +1,6 @@
-const styles = {
+import makeStyles from "@material-ui/core/styles/makeStyles";
+
+const useStyles = makeStyles(() => ({
   showPagination: {
     hight: "100%"
   },
@@ -28,6 +30,6 @@ const styles = {
       marginLeft: 5
     }
   }
-};
+}));
 
-export default styles;
+export default useStyles;
