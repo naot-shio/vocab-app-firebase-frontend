@@ -43,7 +43,7 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:5000/vocab-d8c5e/us-central1/api",
+  "proxy": "https://asia-northeast1-vocab-d8c5e.cloudfunctions.net/api",
   "devDependencies": {
     "prettier": "^1.18.2"
   }
