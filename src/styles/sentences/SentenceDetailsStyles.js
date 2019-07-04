@@ -1,4 +1,6 @@
-const styles = {
+import makeStyles from "@material-ui/core/styles/makeStyles";
+
+const useStyles = makeStyles(() => ({
   icons: {
     float: "right",
     paddingTop: 5,
@@ -23,6 +25,6 @@ const styles = {
     marginTop: 10,
     marginLeft: 15
   }
-};
+}));
 
-export default styles;
+export default useStyles;
