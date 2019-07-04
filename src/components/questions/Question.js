@@ -120,6 +120,7 @@ class Question extends Component {
           />
 
           <div className={classes.buttons}>
+            {/* These two buttons should be hidden when a user reaches the last question, which is the sentences.length - 1 */}
             <Button
               variant="contained"
               color="primary"
