@@ -22,7 +22,8 @@ class SentenceList extends Component {
     keyword: "",
     currentSentence: 1,
     baseIndex: 0,
-    open: false
+    open: false,
+    sentencesPerPage: 10
   };
 
   componentDidMount() {
@@ -52,14 +53,14 @@ class SentenceList extends Component {
   handleClickNext = () => {
     this.setState({
       currentSentence: this.state.currentSentence + 1,
-      baseIndex: this.state.baseIndex + 10
+      baseIndex: this.state.baseIndex + this.state.sentencesPerPage
     });
   };
 
   handleClickPrevious = () => {
     this.setState({
       currentSentence: this.state.currentSentence - 1,
-      baseIndex: this.state.baseIndex - 10
+      baseIndex: this.state.baseIndex - this.state.sentencesPerPage
     });
   };
 
@@ -68,8 +69,8 @@ class SentenceList extends Component {
   // Ergo, page argument needs to be divided by 10 to set the currentSentence, and subtracts 10 to set a correct baseIndex
   paginate = page => {
     this.setState({
-      currentSentence: page / 10,
-      baseIndex: page - 10
+      currentSentence: page / this.state.sentencesPerPage,
+      baseIndex: page - this.state.sentencesPerPage
     });
   };
 
@@ -109,9 +110,8 @@ class SentenceList extends Component {
       </div>
     );
 
-    const sentencesPerPage = 10;
-    const indexOfLastSentence = this.state.currentSentence * sentencesPerPage;
-    const indexOfFirstSentence = indexOfLastSentence - sentencesPerPage;
+    const indexOfLastSentence = this.state.currentSentence * this.state.sentencesPerPage;
+    const indexOfFirstSentence = indexOfLastSentence - this.state.sentencesPerPage;
     const currentSentences = sentences.slice(
       indexOfFirstSentence,
       indexOfLastSentence
@@ -167,7 +167,7 @@ class SentenceList extends Component {
           }
         >
           <Pagination
-            sentencesPerPage={sentencesPerPage}
+            sentencesPerPage={this.state.sentencesPerPage}
             totalSentences={sentences.length}
             paginate={this.paginate}
             handleToggle={this.handleTogglePagination}

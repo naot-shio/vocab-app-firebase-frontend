@@ -18,7 +18,7 @@ class Pagination extends Component {
     } = this.props;
 
     for (let i = 1; i <= Math.ceil(totalSentences / sentencesPerPage); i++) {
-      pageNumbers.push(i * 10);
+      pageNumbers.push(i * sentencesPerPage);
     }
 
     return (
