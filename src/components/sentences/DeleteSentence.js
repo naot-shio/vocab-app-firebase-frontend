@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 
 // styles
 import Fab from "@material-ui/core/Fab";
@@ -12,54 +12,46 @@ import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { connect } from "react-redux";
 import { deleteSentence } from "../../redux/actions/dataActions";
 
-class DeleteSentence extends Component {
-  state = {
-    open: false
-  };
-  handleOpen = () => {
-    this.setState({ open: true });
-  };
-  handleClose = () => {
-    this.setState({ open: false });
-  };
-  deleteSentence = () => {
-    this.props.deleteSentence(this.props.sentenceId);
-    this.setState({ open: false });
-  };
-  render() {
-    return (
-      <>
-        <Fab
-          color="secondary"
-          aria-label="Delete"
-          size="small"
-          onClick={this.handleOpen}
-          style={{ marginLeft: 5 }}
-        >
-          <FontAwesomeIcon icon={faTrashAlt} />
-        </Fab>
+function DeleteSentence(props) {
+  const [open, setOpen] = useState(false);
 
-        <Dialog
-          open={this.state.open}
-          onClose={this.handleClose}
-          fullWidth
-          maxWidth="sm"
-        >
-          <DialogTitle>
-            Are you sure you want to delete this sentence ?
-          </DialogTitle>
-          <DialogActions>
-            <Button onClick={this.handleClose} color="primary">
-              Cancel
-            </Button>
-            <Button onClick={this.deleteSentence} color="secondary">
-              Delete
-            </Button>
-          </DialogActions>
-        </Dialog>
-      </>
-    );
-  }
+  const handleDelete = () => {
+    props.deleteSentence(props.sentenceId);
+    setOpen(false);
+  };
+
+  return (
+    <>
+      <Fab
+        color="secondary"
+        aria-label="Delete"
+        size="small"
+        onClick={() => setOpen(true)}
+        style={{ marginLeft: 5 }}
+      >
+        <FontAwesomeIcon icon={faTrashAlt} />
+      </Fab>
+
+      <Dialog
+        open={open}
+        onClose={() => setOpen(false)}
+        fullWidth
+        maxWidth="sm"
+      >
+        <DialogTitle>
+          Are you sure you want to delete this sentence ?
+        </DialogTitle>
+        <DialogActions>
+          <Button onClick={() => setOpen(false)} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={handleDelete} color="secondary">
+            Delete
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </>
+  );
 }
 
 export default connect(
