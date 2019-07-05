@@ -17,6 +17,10 @@ const styles = {
     textAlign: "right",
     marginTop: 20
   },
+  words: {
+    color: 'coral',
+    marginRight: 5
+  },
   questions: {
     margin: 100
   },
