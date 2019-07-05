@@ -14,10 +14,16 @@ const useStyles = makeStyles(theme => ({
     color: "rgba(0,0,0,0.87)"
   },
   title: {
+    fontSize: "3rem",
+    marginTop: 0,
+    marginBottom: 20,
+    paddingTop: 80,
+    fontFamily: "Hiragino Kaku Gothic Pro"
+  },
+  secondTitle: {
     fontSize: "4rem",
     marginTop: 0,
     marginBottom: 50,
-    paddingTop: 100,
     fontFamily: "Hiragino Kaku Gothic Pro"
   },
   subtitle: {
@@ -55,11 +61,17 @@ const useStyles = makeStyles(theme => ({
   },
   "@media (max-width: 970px)": {
     title: {
+      fontSize: "2.5rem"
+    },
+    secondTitle: {
       fontSize: "3.5rem"
     }
   },
   "@media (max-width: 840px)": {
     title: {
+      fontSize: "2rem"
+    },
+    secondTitle: {
       fontSize: "3rem"
     }
   },
@@ -68,6 +80,9 @@ const useStyles = makeStyles(theme => ({
       backgroundPosition: "30%"
     },
     title: {
+      fontSize: "1.5rem"
+    },
+    secondTitle: {
       fontSize: "2.5rem"
     }
   },
@@ -81,6 +96,9 @@ const useStyles = makeStyles(theme => ({
       backgroundPosition: "20%"
     },
     title: {
+      fontSize: "1rem"
+    },
+    secondTitle: {
       fontSize: "2rem"
     },
     recommendation: {
@@ -92,31 +110,36 @@ const useStyles = makeStyles(theme => ({
       paddingLeft: 30
     }
   },
-  "@media (max-width: 385px)": {
-    root: {
-      height: "90vh"
-    },
-    main: {
-      backgroundPosition: "33%"
-    },
-    title: {
-      marginTop: 50,
-      fontSize: "1.7rem"
-    }
-  },
-  "@media (max-width: 330px)": {
-    title: {
-      fontSize: "1.5rem"
-    }
-  },
   "@media (max-width: 432px)": {
     title: {
-      paddingTop: 70
+      paddingTop: 50
     },
     subtitle: {
       fontSize: "1.3rem"
     }
-  }
+  },
+  "@media (max-width: 385px)": {
+    root: {
+      height: "90vh"
+    },
+    button: {
+      marginTop: 10,
+      marginBottom: 0,
+      marginLeft:3,
+      marginRight: 3,
+    },
+    main: {
+      backgroundPosition: "33%"
+    },
+    secondTitle: {
+      fontSize: "1.7rem"
+    }
+  },
+  "@media (max-width: 330px)": {
+    secondTitle: {
+      fontSize: "1.5rem"
+    }
+  },
 }));
 
 export default useStyles;
