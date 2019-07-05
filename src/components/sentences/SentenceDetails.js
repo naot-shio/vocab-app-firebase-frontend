@@ -10,7 +10,10 @@ import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import Fab from "@material-ui/core/Fab";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart as faHeartSolid, faPen } from "@fortawesome/free-solid-svg-icons";
+import {
+  faHeart as faHeartSolid,
+  faPen
+} from "@fortawesome/free-solid-svg-icons";
 import {
   faEdit,
   faHeart as faHeartRegular
@@ -88,7 +91,7 @@ function SentenceDetails(props) {
         ))}
 
         <Typography variant="body1" className={classes.translation}>
-          <FontAwesomeIcon icon={faPen} color="maroon" />  {sentence.translation}
+          <FontAwesomeIcon icon={faPen} color="maroon" /> {sentence.translation}
         </Typography>
 
         {editDeleteButton(sentence)}

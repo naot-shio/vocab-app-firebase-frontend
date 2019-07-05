@@ -37,9 +37,7 @@ function LikedSentenceList(props) {
 
   return (
     <div className={classes.container}>
-      <div className={classes.likeButton}>
-        {displayLikeButton}
-      </div>
+      <div className={classes.likeButton}>{displayLikeButton}</div>
       <div className={classes.sentences}>
         <AllSentences
           sentences={sentences}

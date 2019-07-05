@@ -125,8 +125,8 @@ const useStyles = makeStyles(theme => ({
     button: {
       marginTop: 10,
       marginBottom: 0,
-      marginLeft:3,
-      marginRight: 3,
+      marginLeft: 3,
+      marginRight: 3
     },
     main: {
       backgroundPosition: "33%"
@@ -139,7 +139,7 @@ const useStyles = makeStyles(theme => ({
     secondTitle: {
       fontSize: "1.5rem"
     }
-  },
+  }
 }));
 
 export default useStyles;

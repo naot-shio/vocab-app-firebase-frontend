@@ -10,11 +10,11 @@ const useStyles = makeStyles(() => ({
     maxWidth: 700,
     marginRight: "auto",
     marginLeft: "auto",
-    height: '85vh'
+    height: "85vh"
   },
   likeButton: {
     marginTop: 20,
-    marginLeft: 'auto',
+    marginLeft: "auto"
   }
 }));
 
