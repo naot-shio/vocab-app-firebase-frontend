@@ -144,11 +144,11 @@ class SentenceList extends Component {
           color="primary"
           onClick={this.handleClickNext}
           className={
-            sentences.length < indexOfLastSentence
+            sentences.length < indexOfLastSentence + 1
               ? classes.hideButton
               : classes.displayButton
           }
-          disabled={sentences.length < indexOfLastSentence ? true : false}
+          disabled={sentences.length < indexOfLastSentence + 1 ? true : false}
         >
           Next
         </Button>
