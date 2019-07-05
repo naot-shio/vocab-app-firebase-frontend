@@ -37,12 +37,10 @@ function LikedSentenceList(props) {
 
   return (
     <div className={classes.container}>
-      <div />
-      <div>
-        <div className={classes.likeButton}>
-          {displayLikeButton}
-          <h3 className={classes.subtitle}>Sentences you have liked!</h3>
-        </div>
+      <div className={classes.likeButton}>
+        {displayLikeButton}
+      </div>
+      <div className={classes.sentences}>
         <AllSentences
           sentences={sentences}
           loading={loading}
