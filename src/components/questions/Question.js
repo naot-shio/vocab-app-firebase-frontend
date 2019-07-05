@@ -105,9 +105,15 @@ class Question extends Component {
       >
         <CardContent className={classes.cardContent}>
           <h2>
-            Question {questionNumber + 1}: Translate the sentence into English
+            Question {questionNumber + 1}: Paraphrase the sentence with the
+            word(s) below.
           </h2>
-          <h3>{sentence.translation}</h3>
+          <p>
+            {sentence.words.map(word => (
+              <span className={classes.words}>{word.english}</span>
+            ))}
+          </p>
+          <h3 className={classes.translation}>{sentence.translation}</h3>
           <TextField
             id="answer"
             label="Answer"

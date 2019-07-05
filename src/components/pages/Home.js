@@ -32,7 +32,8 @@ function Home(props) {
         <Grid container>
           <Grid item sm={2} xs={1} />
           <Grid item sm={8} xs={10}>
-            <h1 className={classes.title}>ちょっと難しい英単語</h1>
+            <h1 className={classes.title}>パラフレーズで学ぶ</h1>
+            <h1 className={classes.secondTitle}>ちょっと難しい英単語</h1>
             <h3 className={classes.subtitle}>ボキャブラリーを増やして</h3>
             <h3 className={classes.subtitle}>英語をもっと上手に</h3>
             <h3 className={classes.subtitle}>使えるようにしよう！</h3>
@@ -92,9 +93,6 @@ function Home(props) {
           </li>
           <li>
             基本的に外国のドラマを見たり、本やwebサイトなどを読んだりしているときに出会った英語表現を載せていきます。
-          </li>
-          <li>
-            訳は結構てきとうです。翻訳家ではないし、厳密に訳せても特に意味がないので。
           </li>
           <li>単語の意味は文章内で使われている意味しか載せていません。</li>
           <li>

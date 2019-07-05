@@ -5,7 +5,7 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import "../../styles/sentences/Dictionary.css";
 
-export class Dictionary extends Component {
+class Dictionary extends Component {
   state = {
     loading: true,
     notFound: false,

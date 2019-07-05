@@ -6,17 +6,15 @@ const useStyles = makeStyles(() => ({
     gridTemplateColumns: "10% 80% 10%"
   },
   sentences: {
-    marginTop: 30,
+    marginTop: 50,
     maxWidth: 700,
     marginRight: "auto",
     marginLeft: "auto",
-    height: "90vh",
-    overflowY: "scroll"
+    height: "85vh"
   },
   likeButton: {
     marginTop: 20,
-    display: "grid",
-    gridTemplateColumns: "20% 80%"
+    marginLeft: "auto"
   }
 }));
 

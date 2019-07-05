@@ -23,7 +23,9 @@ const useStyles = makeStyles(() => ({
   },
   translation: {
     marginTop: 10,
-    marginLeft: 15
+    marginLeft: 15,
+    fontSize: "1.1rem",
+    userSelect: "none"
   }
 }));
 
