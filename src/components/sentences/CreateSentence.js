@@ -53,6 +53,11 @@ class CreateSentence extends Component {
       words: this.state.words
     };
     this.props.postSentence(newWord);
+    this.setState({
+      sentence: "",
+      translation: "",
+      words: [{ english: "", japanese: "" }]
+    })
     this.handleClose();
   };
 
