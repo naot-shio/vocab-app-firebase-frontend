@@ -9,7 +9,12 @@ import CustomizedIconButton from "../../utils/CustomizedIconButton";
 import withStyles from "@material-ui/core/styles/withStyles";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
+import {
+  faChevronRight,
+  faChevronLeft
+} from "@fortawesome/free-solid-svg-icons";
 import styles from "../../styles/sentences/SentenceListStyles";
 
 // Redux
@@ -138,7 +143,7 @@ class SentenceList extends Component {
           }
           disabled={this.state.currentSentence - 2 < 0 ? true : false}
         >
-          Prev
+          <FontAwesomeIcon icon={faChevronLeft} /> Prev
         </Button>
         <Button
           color="primary"
@@ -150,7 +155,7 @@ class SentenceList extends Component {
           }
           disabled={sentences.length < indexOfLastSentence + 1 ? true : false}
         >
-          Next
+          Next <FontAwesomeIcon icon={faChevronRight} />
         </Button>
       </div>
     );
