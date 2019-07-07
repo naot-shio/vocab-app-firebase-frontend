@@ -57,7 +57,7 @@ class CreateSentence extends Component {
       sentence: "",
       translation: "",
       words: [{ english: "", japanese: "" }]
-    })
+    });
     this.handleClose();
   };
 

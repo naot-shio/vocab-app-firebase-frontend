@@ -31,16 +31,12 @@ class Dictionary extends Component {
     )
       .then(res => {
         if (res.status === 404) {
-          return "Not found";
+          this.setState({ notFound: true, loading: false });
         } else {
           return res.json();
         }
       })
       .then(result => {
-        if (result === "Not found") {
-          this.setState({ notFound: true });
-        }
-
         if (result[0].meaning) {
           let dataLength, example, exampleCapitalized;
           if (result[0].meaning.adverb) {
