@@ -9,6 +9,9 @@ import CustomizedIconButton from "../../utils/CustomizedIconButton";
 import withStyles from "@material-ui/core/styles/withStyles";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
+import Typography from "@material-ui/core/Typography";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import {
@@ -117,8 +120,14 @@ class SentenceList extends Component {
         </div>
       </div>
     ) : (
-      <div className={classes.space}>
-        <br />
+      <div className={classes.loginMessageContainer}>
+        <Card className={classes.loginMessage}>
+          <CardContent>
+            <Typography variant="h5">
+              Log in to use search and stock sentences
+            </Typography>
+          </CardContent>
+        </Card>
       </div>
     );
 
