@@ -124,7 +124,7 @@ class SentenceList extends Component {
         <Card className={classes.loginMessage}>
           <CardContent>
             <Typography variant="h5">
-              Log in to use search and stock sentences
+              Log in to search and stock sentences
             </Typography>
           </CardContent>
         </Card>
