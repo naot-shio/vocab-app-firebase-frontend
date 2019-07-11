@@ -20,8 +20,17 @@ const styles = {
   textField: {
     marginRight: 10
   },
-  space: {
-    marginTop: 20
+  loginMessageContainer: {
+    marginTop: 20,
+    maxWidth: 700,
+    marginRight: "auto",
+    marginLeft: "auto"
+  },
+  loginMessage: {
+    marginRight: 10,
+    marginLeft: 10,
+    textAlign: "center",
+    color: "maroon"
   },
   button: {
     marginTop: 10
