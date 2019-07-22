@@ -7,9 +7,10 @@ import Footer from "./Footer";
 import useStyles from "../../styles/pages/HomeStyles";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
-import sideImage from '../../images/insertPhoto.png'
+import Tooltip from "@material-ui/core/Tooltip";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
+import sideImage from '../../images/sideImage.png'
 
 // Redux
 import { connect } from "react-redux";
@@ -34,38 +35,42 @@ function Home(props) {
           <Grid item sm={2} xs={1} />
           <Grid item sm={8} xs={10}>
             <Grid container>
-              <Grid item sm={4} sx={2}>
-                <img src={sideImage} alt="img" size="sm" />
+              <Grid item sm={4} xs={1}>
+                <img src={sideImage} alt="img" size="sm" className={classes.sideImage} />
               </Grid>
-              <Grid item sm={8} sx={10}>
-                <h1 className={classes.title}>パラフレーズで学ぶ</h1>
-                <h1 className={classes.secondTitle}>ちょっと難しい英単語</h1>
+              <Grid item sm={8} xs={11} className="titleContainer">
+                <h2 className={classes.subtitle}>パラフレーズで学ぶ</h2>
+                <h1 className={classes.title}>ちょっと難しい英単語</h1>
+
+                <Link to="/sentences">
+                  <Tooltip title="Take a look at words without logging in">
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    size="large"
+                    className={classes.button}
+                  >
+                    Take a look
+                  </Button>
+                  </Tooltip>
+                </Link>
+
+                <Tooltip title="You can log in as a test user, so your data in this account can be changed by anybody">
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  size="large"
+                  className={classes.button}
+                  onClick={handleClick}
+                >
+                Explore
+                </Button>
+                </Tooltip>
               </Grid>
             </Grid>
-          
-            <Link to="/sentences">
-              <Button
-                variant="contained"
-                color="primary"
-                size="large"
-                className={classes.button}
-              >
-                単語一覧に行く
-              </Button>
-            </Link>
-
-            <Button
-              variant="contained"
-              color="secondary"
-              size="large"
-              className={classes.button}
-              onClick={handleClick}
-            >
-              簡単ログイン
-            </Button>
 
             <div>
-              <h5>
+              <h5 className={classes.explanation}>
                 &#x203B; ユーザ登録すると文の検索とお気に入り登録ができます。
                 また英訳の問題を解くことができます。
               </h5>
@@ -78,37 +83,7 @@ function Home(props) {
           </Grid>
         </Grid>
       </div>
-      <div className={classes.recommendation}>
-        <h3 className={classes.recommendationTitle}>
-          こんな人におすすめです。
-        </h3>
-        <ul className={classes.recommendationBody}>
-          <li>語彙力を強化したい</li>
-          <li>英語力を上げたい</li>
-          <li>英語で勉強してみたい</li>
-          <li>国際結婚したい</li>
-        </ul>
-      </div>
 
-      <div className={classes.profile}>
-        <h3>どんなサイト？</h3>
-        <ul>
-          <li>
-            管理人が英単語とその英単語を使った文章を適当にあげていく英単語帳です。
-          </li>
-          <li>
-            基本的に外国のドラマを見たり、本やwebサイトなどを読んだりしているときに出会った英語表現を載せていきます。
-          </li>
-          <li>単語の意味は文章内で使われている意味しか載せていません。</li>
-          <li>
-            より詳しい単語の意味を知りたい場合は、単語の横の
-            <span>
-              <FontAwesomeIcon icon={faInfoCircle} />
-            </span>
-            を押すとgoogle辞書を開けるようにしてありあます。
-          </li>
-        </ul>
-      </div>
       <Footer />
     </div>
   );
