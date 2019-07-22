@@ -9,6 +9,7 @@ import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
+import sideImage from '../../images/insertPhoto.png'
 
 // Redux
 import { connect } from "react-redux";
@@ -32,12 +33,16 @@ function Home(props) {
         <Grid container>
           <Grid item sm={2} xs={1} />
           <Grid item sm={8} xs={10}>
-            <h1 className={classes.title}>パラフレーズで学ぶ</h1>
-            <h1 className={classes.secondTitle}>ちょっと難しい英単語</h1>
-            <h3 className={classes.subtitle}>ボキャブラリーを増やして</h3>
-            <h3 className={classes.subtitle}>英語をもっと上手に</h3>
-            <h3 className={classes.subtitle}>使えるようにしよう！</h3>
-
+            <Grid container>
+              <Grid item sm={4} sx={2}>
+                <img src={sideImage} alt="img" size="sm" />
+              </Grid>
+              <Grid item sm={8} sx={10}>
+                <h1 className={classes.title}>パラフレーズで学ぶ</h1>
+                <h1 className={classes.secondTitle}>ちょっと難しい英単語</h1>
+              </Grid>
+            </Grid>
+          
             <Link to="/sentences">
               <Button
                 variant="contained"
