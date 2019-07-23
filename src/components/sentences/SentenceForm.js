@@ -8,7 +8,6 @@ import Fab from "@material-ui/core/Fab";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import useStyles from "../../styles/sentences/SentenceFormStyles";
-import "../../styles/sentences/CreateSentenceForm.css";
 
 function SentenceForm(props) {
   const classes = useStyles();
@@ -57,7 +56,7 @@ function SentenceForm(props) {
                   data-id={idx}
                   id={englishId}
                   value={wordsState[idx].english}
-                  className="english"
+                  className={classes.inputWords}
                   placeholder={`English: ${idx + 1}`}
                   onChange={handleChange}
                 />
@@ -68,7 +67,7 @@ function SentenceForm(props) {
                   data-id={idx}
                   id={japaneseId}
                   value={wordsState[idx].japanese}
-                  className="japanese"
+                  className={classes.inputWords}
                   placeholder={`Japanese: ${idx + 1}`}
                   onChange={handleChange}
                 />
