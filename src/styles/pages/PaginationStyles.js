@@ -1,9 +1,6 @@
 import makeStyles from "@material-ui/core/styles/makeStyles";
 
 const useStyles = makeStyles(() => ({
-  showPagination: {
-    hight: "100%"
-  },
   hamburgerButton: {
     marginLeft: 20,
     marginTop: 20
@@ -14,7 +11,7 @@ const useStyles = makeStyles(() => ({
   paginationButton: {
     display: "block",
     color: "white",
-    marginLeft: 30
+    paddingLeft: 50
   },
   crossButton: {
     marginLeft: 20,
@@ -27,6 +24,7 @@ const useStyles = makeStyles(() => ({
   },
   "@media (max-width: 400px)": {
     hamburgerButton: {
+      marginTop: 5,
       marginLeft: 5
     }
   }

@@ -1,12 +1,10 @@
 const styles = {
   AppBar: {
-    backgroundColor: "#fefefe",
-    marginBottom: 0
+    backgroundColor: "#fefefe"
   },
   root: {
     flexGrow: 1,
     "& a": {
-      textDecoration: "none",
       color: "rgba(0,0,0,0.8)",
       fontFamily: "Nico Moji"
     }

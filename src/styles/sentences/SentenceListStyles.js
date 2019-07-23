@@ -5,8 +5,6 @@ const styles = {
   },
   showPagination: {
     backgroundColor: "rgba(0,0,0,0.8)",
-    height: "100vh",
-    overflowY: "scroll",
     zIndex: 5
   },
   likeSearchContainer: {
@@ -85,7 +83,7 @@ const styles = {
       marginLeft: -5
     },
     showPagination: {
-      width: "400%"
+      width: "500%"
     }
   }
 };
