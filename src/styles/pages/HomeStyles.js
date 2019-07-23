@@ -45,7 +45,7 @@ const useStyles = makeStyles(() => ({
   },
   explanationContainer: {
     padding: "3rem 0",
-    backgroundColor: "white",
+    backgroundColor: "white"
   },
   explanationTitle: {
     textAlign: "center",
@@ -60,7 +60,7 @@ const useStyles = makeStyles(() => ({
   },
   featureContainer: {
     padding: "3rem 0 5rem",
-    textAlign: "center",
+    textAlign: "center"
   },
   featureTitle: {
     fontSize: "1.5rem"

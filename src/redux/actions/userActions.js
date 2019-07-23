@@ -8,7 +8,7 @@ import {
   SET_UNAUTHENTICATED
 } from "../types";
 
-export const signUpUser = newUserData => dispatch => {
+export const signUpUser = (newUserData, history) => dispatch => {
   dispatch({ type: LOADING_UI });
   axios
     .post("/signup", newUserData)
@@ -18,6 +18,7 @@ export const signUpUser = newUserData => dispatch => {
       axios.defaults.headers.common["Authorization"] = FBIdToken;
       dispatch(getUserData());
       dispatch({ type: CLEAR_ERRORS });
+      history.push("/sentences");
     })
     .catch(err => {
       dispatch({
@@ -27,7 +28,7 @@ export const signUpUser = newUserData => dispatch => {
     });
 };
 
-export const loginUser = userData => dispatch => {
+export const loginUser = (userData, history) => dispatch => {
   dispatch({ type: LOADING_UI });
   axios
     .post("/login", userData)
@@ -37,11 +38,12 @@ export const loginUser = userData => dispatch => {
       axios.defaults.headers.common["Authorization"] = FBIdToken;
       dispatch(getUserData());
       dispatch({ type: CLEAR_ERRORS });
+      history.push("/sentences");
     })
     .catch(err => {
       dispatch({
         type: SET_ERRORS,
-        payload: err.response.data
+        payload: err.response
       });
     });
 };
