@@ -1,142 +1,215 @@
 import { makeStyles } from "@material-ui/core/styles";
-import BackgroundImage from "../../images/background-min.png";
+import backgroundImage from "../../images/background-image.jpg";
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    height: "100vh"
-  },
+const useStyles = makeStyles(() => ({
   main: {
-    height: "100%",
-    background: `radial-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5), rgba(0,0,0,0.1)), url(${BackgroundImage})`,
-    backgroundPosition: "center",
+    fontFamily: "游ゴシック体, 'Yu Gothic', YuGothic, 'ヒラギノ角ゴシック Pro'"
+  },
+  header: {
+    height: "63vh",
+    background: `radial-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5), rgba(101,67,33,0.1)), url(${backgroundImage})`,
     backgroundSize: "cover",
-    textAlign: "center",
-    color: "rgba(0,0,0,0.87)"
+    backgroundPosition: "0 30%",
+    color: "rgba(0,0,0,0.87)",
+    textAlign: "center"
+  },
+  titleAdjective: {
+    fontSize: "3rem",
+    marginTop: 85,
+    marginBottom: 20
   },
   title: {
-    fontSize: "3rem",
-    marginTop: 0,
-    marginBottom: 20,
-    paddingTop: 80,
-    fontFamily: "Hiragino Kaku Gothic Pro"
-  },
-  secondTitle: {
     fontSize: "4rem",
-    marginTop: 0,
-    marginBottom: 50,
-    fontFamily: "Hiragino Kaku Gothic Pro"
+    marginTop: 20
   },
   subtitle: {
-    marginTop: 20,
-    fontSize: "2rem",
-    fontFamily: "Yu Gothic"
+    marginLeft: "1rem"
   },
-  button: {
-    margin: "30px 5px 20px"
+  authenticationButton: {
+    display: "none"
   },
-  exampleImage: {
-    backgroundSize: "cover",
-    width: 200,
-    height: 200,
-    paddingLeft: 100,
-    borderRadius: "30 30"
+  authenticationContainer: {
+    maxWidth: 300,
+    marginRight: 40,
+    marginLeft: "auto",
+    marginTop: 30
   },
-  recommendation: {
-    margin: 0,
-    paddingLeft: 50,
-    paddingTop: 20,
-    paddingBottom: 20,
+  authenticationForm: {
+    opacity: 0.9,
+    border: "rgba(255,165,0, 0.6) 1px solid"
+  },
+  authToggleButton: {
+    backgroundColor: "rgba(248,248,248,0.9)",
+    border: "rgba(255,165,0, 0.6) 1px solid",
+    marginTop: 15
+  },
+  explanationContainer: {
+    padding: "3rem 0",
     backgroundColor: "white"
   },
-  recommendationTitle: {
-    marginTop: 0
+  explanationTitle: {
+    textAlign: "center",
+    fontSize: "1.5rem"
   },
-  recommendationBody: {
-    marginBottom: 0
+  explanation: {
+    paddingRight: "3rem"
   },
-  profile: {
-    paddingLeft: 50,
-    paddingTop: 20,
-    paddingBottom: 20
+  explanationImage: {
+    margin: "0 10%",
+    maxWidth: "80%"
   },
-  "@media (max-width: 970px)": {
+  featureContainer: {
+    padding: "3rem 0 5rem",
+    textAlign: "center"
+  },
+  featureTitle: {
+    fontSize: "1.5rem"
+  },
+  feature: {
+    padding: 20
+  },
+  card: {
+    "&:hover": {
+      boxShadow: "0px 0px 0px 3px rgba( 0,144,255,0.5)"
+    }
+  },
+  navigationContainer: {
+    paddingTop: 30,
+    paddingBottom: 30,
+    backgroundColor: "white",
+    textAlign: "center"
+  },
+  navigationTitle: {
+    fontSize: "1.5rem"
+  },
+  notation: {
+    fontSize: "0.8rem",
+    paddingTop: 10
+  },
+  "@media (max-width: 1200px)": {
     title: {
-      fontSize: "2.5rem"
-    },
-    secondTitle: {
+      fontSize: "3.8rem"
+    }
+  },
+  "@media (max-width: 1050px)": {
+    title: {
       fontSize: "3.5rem"
     }
   },
-  "@media (max-width: 840px)": {
+  "@media (max-width: 970px)": {
+    titleAdjective: {
+      fontSize: "2.5rem"
+    },
     title: {
+      fontSize: "3rem"
+    },
+    explanation: {
+      paddingRight: 0,
+      margin: "0 10%",
+      width: "80%"
+    },
+    explanationImage: {
+      display: "none"
+    }
+  },
+  "@media (max-width: 840px)": {
+    titleAdjective: {
       fontSize: "2rem"
     },
-    secondTitle: {
-      fontSize: "3rem"
+    title: {
+      fontSize: "2.5rem"
+    },
+    authenticationContainer: {
+      marginRight: 25
     }
   },
   "@media (max-width: 720px)": {
-    main: {
-      backgroundPosition: "30%"
+    header: {
+      backgroundPosition: "40%"
+    },
+    titleAdjective: {
+      fontSize: "1.2rem"
     },
     title: {
-      fontSize: "1.5rem"
+      fontSize: "2rem"
     },
-    secondTitle: {
-      fontSize: "2.5rem"
+    authenticationContainer: {
+      marginRight: 5
     }
   },
-  "@media (max-width: 600px)": {
-    auth: {
-      float: "right"
+  "@media (max-width: 599px)": {
+    header: {
+      backgroundPosition: "60%"
+    },
+    authenticationButton: {
+      display: "inline"
+    },
+    authenticationContainer: {
+      display: "none"
+    },
+    featureContainer: {
+      marginLeft: "auto",
+      marginRight: "auto",
+      width: "80%"
     }
   },
   "@media (max-width: 480px)": {
-    main: {
-      backgroundPosition: "20%"
+    header: {
+      backgroundPosition: "80%"
     },
-    title: {
+    titleAdjective: {
       fontSize: "1rem"
     },
-    secondTitle: {
+    title: {
       fontSize: "2rem"
-    },
-    recommendation: {
-      paddingRight: 30,
-      paddingLeft: 30
-    },
-    profile: {
-      paddingRight: 30,
-      paddingLeft: 30
     }
   },
   "@media (max-width: 432px)": {
-    title: {
-      paddingTop: 50
+    header: {
+      height: "50vh",
+      backgroundPosition: "100%"
     },
-    subtitle: {
-      fontSize: "1.3rem"
+    titleAdjective: {
+      fontSize: "1.3rem",
+      marginTop: 60
+    },
+    explanationContainer: {
+      padding: "2rem 0"
+    },
+    explanationTitle: {
+      fontSize: "0.8rem"
+    },
+    explanation: {
+      fontSize: "0.8rem"
+    },
+    featureContainer: {
+      padding: "2rem 0"
+    },
+    featureTitle: {
+      fontSize: "0.8rem"
+    },
+    featureContent: {
+      fontSize: "0.8rem"
+    },
+    feature: {
+      padding: "10px 0"
+    },
+    navigationTitle: {
+      fontSize: "0.8rem"
+    },
+    notation: {
+      fontSize: "0.6rem",
+      paddingLeft: 20,
+      paddingRight: 20
     }
   },
   "@media (max-width: 385px)": {
-    root: {
-      height: "90vh"
-    },
-    button: {
-      marginTop: 10,
-      marginBottom: 0,
-      marginLeft: 3,
-      marginRight: 3
-    },
-    main: {
-      backgroundPosition: "33%"
-    },
-    secondTitle: {
+    title: {
       fontSize: "1.7rem"
     }
   },
   "@media (max-width: 330px)": {
-    secondTitle: {
+    title: {
       fontSize: "1.5rem"
     }
   }

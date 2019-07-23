@@ -3,7 +3,8 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import "../../styles/sentences/Dictionary.css";
+import withStyles from "@material-ui/core/styles/withStyles";
+import styles from "../../styles/sentences/DictionaryStyles";
 
 class Dictionary extends Component {
   state = {
@@ -268,19 +269,21 @@ class Dictionary extends Component {
       pronoun
     } = this.state;
 
+    const { classes } = this.props;
+
     const isNotFound = notFound && (
       <DialogContentText>Sorry, not found</DialogContentText>
     );
 
     const showWordAndMeanings = loading ? (
-      <div className="loading">
+      <div className={classes.loading}>
         <CircularProgress size={150} />
       </div>
     ) : (
       <>
         {noun.length > 0 &&
           noun.map((noun, i) => (
-            <DialogContent key={i}>
+            <DialogContent className={classes.dialogContent} key={i}>
               {noun.definition !== undefined && (
                 <DialogContentText>
                   名詞{i + 1}: {noun.definition}
@@ -295,7 +298,7 @@ class Dictionary extends Component {
           ))}
         {verb.length > 0 &&
           verb.map((verb, i) => (
-            <DialogContent key={i}>
+            <DialogContent className={classes.dialogContent} key={i}>
               {verb.definition !== undefined && (
                 <DialogContentText>
                   動詞{i + 1}: {verb.definition}
@@ -310,7 +313,7 @@ class Dictionary extends Component {
           ))}
         {adjective.length > 0 &&
           adjective.map((adjective, i) => (
-            <DialogContent key={i}>
+            <DialogContent className={classes.dialogContent} key={i}>
               {adjective.definition !== undefined && (
                 <DialogContentText>
                   形容詞{i + 1}: {adjective.definition}
@@ -325,7 +328,7 @@ class Dictionary extends Component {
           ))}
         {adverb.length > 0 &&
           adverb.map((adverb, i) => (
-            <DialogContent key={i}>
+            <DialogContent className={classes.dialogContent} key={i}>
               {adverb.definition !== undefined && (
                 <DialogContentText>
                   副詞{i + 1}: {adverb.definition}
@@ -340,7 +343,7 @@ class Dictionary extends Component {
           ))}
         {conjugation.length > 0 &&
           conjugation.map((conjugation, i) => (
-            <DialogContent key={i}>
+            <DialogContent className={classes.dialogContent} key={i}>
               {conjugation.definition !== undefined && (
                 <DialogContentText>
                   接続詞{i + 1}: {conjugation.definition}
@@ -355,7 +358,7 @@ class Dictionary extends Component {
           ))}
         {exclamation.length > 0 &&
           exclamation.map((exclamation, i) => (
-            <DialogContent key={i}>
+            <DialogContent className={classes.dialogContent} key={i}>
               {exclamation.definition !== undefined && (
                 <DialogContentText>
                   感嘆詞{i + 1}: {exclamation.definition}
@@ -370,7 +373,7 @@ class Dictionary extends Component {
           ))}
         {preposition.length > 0 &&
           preposition.map((preposition, i) => (
-            <DialogContent key={i}>
+            <DialogContent className={classes.dialogContent} key={i}>
               {preposition.definition !== undefined && (
                 <DialogContentText>
                   前置詞{i + 1}: {preposition.definition}
@@ -385,7 +388,7 @@ class Dictionary extends Component {
           ))}
         {determiner.length > 0 &&
           determiner.map((determiner, i) => (
-            <DialogContent key={i}>
+            <DialogContent className={classes.dialogContent} key={i}>
               {determiner.definition !== undefined && (
                 <DialogContentText>
                   前置詞{i + 1}: {determiner.definition}
@@ -400,7 +403,7 @@ class Dictionary extends Component {
           ))}
         {pronoun.length > 0 &&
           pronoun.map((pronoun, i) => (
-            <DialogContent key={i}>
+            <DialogContent className={classes.dialogContent} key={i}>
               {pronoun.definition !== undefined && (
                 <DialogContentText>
                   前置詞{i + 1}: {pronoun.definition}
@@ -417,7 +420,7 @@ class Dictionary extends Component {
     );
 
     return (
-      <div className="modal">
+      <div>
         <DialogTitle>{this.props.word}</DialogTitle>
         {isNotFound}
         {showWordAndMeanings}
@@ -426,4 +429,4 @@ class Dictionary extends Component {
   }
 }
 
-export default Dictionary;
+export default withStyles(styles)(Dictionary);

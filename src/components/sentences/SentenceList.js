@@ -66,6 +66,7 @@ class SentenceList extends Component {
       currentSentence: this.state.currentSentence + 1,
       baseIndex: this.state.baseIndex + this.state.sentencesPerPage
     });
+    window.scrollTo(0, 0);
   };
 
   handleClickPrevious = () => {
@@ -73,6 +74,7 @@ class SentenceList extends Component {
       currentSentence: this.state.currentSentence - 1,
       baseIndex: this.state.baseIndex - this.state.sentencesPerPage
     });
+    window.scrollTo(0, 0);
   };
 
   // paginate function is passed down to the Pagination component and when elements of pageNumbers are pushed,
@@ -83,6 +85,7 @@ class SentenceList extends Component {
       currentSentence: page / this.state.sentencesPerPage,
       baseIndex: page - this.state.sentencesPerPage
     });
+    window.scrollTo(0, 0);
   };
 
   render() {
@@ -170,7 +173,7 @@ class SentenceList extends Component {
     );
 
     return (
-      <div className={classes.container}>
+      <main className={classes.container}>
         <div
           className={
             this.state.open ? classes.showPagination : classes.hidePagination
@@ -200,7 +203,7 @@ class SentenceList extends Component {
         <div onClick={this.handleClickClosePagination}>
           <div className={classes.isAuthenticated}>{isAuthenticated}</div>
         </div>
-      </div>
+      </main>
     );
   }
 }
