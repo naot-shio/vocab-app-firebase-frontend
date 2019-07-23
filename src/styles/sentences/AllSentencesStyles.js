@@ -5,9 +5,7 @@ const useStyles = makeStyles(() => ({
     marginTop: 20,
     maxWidth: 700,
     marginRight: "auto",
-    marginLeft: "auto",
-    height: "70vh",
-    overflowY: "scroll"
+    marginLeft: "auto"
   },
   loading: {
     width: 200,

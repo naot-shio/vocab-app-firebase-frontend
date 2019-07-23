@@ -18,6 +18,30 @@ const useStyles = makeStyles(() => ({
     marginLeft: 50,
     marginTop: 25
   },
+  inputWords:{
+    boxSizing: 'border-box',
+    width: '100%',
+    border: 'none',
+    borderBottom: '1px solid grey',
+    marginTop: '1rem',
+    height: '2.5rem',
+    fontSize: '0.95rem',
+    outline: 'none',
+    transition: 'all 0.2s ease',
+
+    "&:focus": {
+      borderBottom: '2px solid purple',
+
+      "&::placeholder": {
+        color: 'transparent'
+      }
+    },
+
+    "&::placeholder": {
+      color: 'grey',
+      transition: 'all 0.2s ease',
+    }
+  },
   "@media (max-width: 600px)": {
     addWord: {
       marginLeft: 35
