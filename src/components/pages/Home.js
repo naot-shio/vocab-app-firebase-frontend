@@ -47,7 +47,7 @@ function Home(props) {
           <Grid item lg={2} md={2} sm={1} xs={1} />
           <Grid item lg={6} md={7} sm={7} xs={10}>
             <h2 className={classes.titleAdjective}>パラフレーズで学ぶ</h2>
-            <h1 className={classes.title}>ちょっと難しい英単語</h1>
+            <h1 className={classes.title}>１万語レベル英単語</h1>
             <h4 className={classes.subtitle}>
               ボキャブラリーを増やして、英語を上達させよう
             </h4>
@@ -77,7 +77,7 @@ function Home(props) {
 
         <Grid container className={classes.explanationContainer}>
           <Grid item xs={12} className={classes.explanationTitle}>
-            <h3>ちょっと難しい英単語とは？</h3>
+            <h3>パラフレーズで学ぶとは？</h3>
           </Grid>
 
           <Grid item xs={12} md={4}>
@@ -90,7 +90,7 @@ function Home(props) {
           </Grid>
           <Grid item xs={12} md={8} className={classes.explanation}>
             <h4>
-              10,000語レベル以上の単語をパラフレーズで学習していく英単語アプリです。
+              英単語を他の英単語で言い換えて、暗記していく学習方法です。
             </h4>
 
             <h5>
