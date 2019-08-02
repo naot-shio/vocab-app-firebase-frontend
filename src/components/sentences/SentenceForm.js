@@ -53,10 +53,11 @@ function SentenceForm(props) {
                 <input
                   type="text"
                   name={englishId}
-                  data-id={idx}
                   id={englishId}
                   value={wordsState[idx].english}
                   className={classes.inputWords}
+                  data-id={idx}
+                  data-language="english"
                   placeholder={`English: ${idx + 1}`}
                   onChange={handleChange}
                 />
@@ -64,10 +65,11 @@ function SentenceForm(props) {
                 <input
                   type="text"
                   name={japaneseId}
-                  data-id={idx}
                   id={japaneseId}
                   value={wordsState[idx].japanese}
                   className={classes.inputWords}
+                  data-id={idx}
+                  data-language="japanese"
                   placeholder={`Japanese: ${idx + 1}`}
                   onChange={handleChange}
                 />

@@ -34,7 +34,7 @@ class CreateSentence extends Component {
       this.setState({ [evt.target.name]: evt.target.value });
     } else {
       let words = [...this.state.words];
-      words[evt.target.dataset.id][evt.target.className] = evt.target.value;
+      words[evt.target.dataset.id][evt.target.dataset.language] = evt.target.value;
       this.setState({ words });
     }
   };
