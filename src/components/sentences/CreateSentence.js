@@ -17,6 +17,7 @@ class CreateSentence extends Component {
     open: false,
     sentence: "",
     translation: "",
+    url: "",
     words: [{ english: "", japanese: "" }],
     errors: {}
   };
@@ -30,7 +31,7 @@ class CreateSentence extends Component {
   };
 
   handleChange = evt => {
-    if (evt.target.name === "sentence" || evt.target.name === "translation") {
+    if (evt.target.name === "sentence" || evt.target.name === "translation" || evt.target.name === "url") {
       this.setState({ [evt.target.name]: evt.target.value });
     } else {
       let words = [...this.state.words];
@@ -50,12 +51,14 @@ class CreateSentence extends Component {
     const newWord = {
       sentence: this.state.sentence,
       translation: this.state.translation,
+      url: this.state.url,
       words: this.state.words
     };
     this.props.postSentence(newWord);
     this.setState({
       sentence: "",
       translation: "",
+      url: "",
       words: [{ english: "", japanese: "" }]
     });
     this.handleClose();
@@ -80,6 +83,7 @@ class CreateSentence extends Component {
               <SentenceForm
                 sentenceState={this.state.sentence}
                 translationState={this.state.translation}
+                urlState={this.state.url}
                 wordsState={this.state.words}
                 handleSubmit={this.handleSubmit}
                 addWord={this.addWord}

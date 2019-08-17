@@ -26,6 +26,11 @@ const useStyles = makeStyles(() => ({
     marginLeft: 15,
     fontSize: "1.1rem",
     userSelect: "none"
+  },
+  url: {
+    marginTop: 2,
+    marginLeft: 10,
+    color: "grey"
   }
 }));
 

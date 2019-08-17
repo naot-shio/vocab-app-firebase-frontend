@@ -14,6 +14,7 @@ function SentenceForm(props) {
   const {
     sentenceState,
     translationState,
+    urlState,
     wordsState,
     addWord,
     handleChange
@@ -43,6 +44,17 @@ function SentenceForm(props) {
         multiline
         rowsMax="3"
       />
+
+      <TextField
+        name="url"
+        type="text"
+        value={urlState}
+        label="url"
+        className={classes.textField}
+        onChange={handleChange}
+        fullWidth
+      />
+
       <Grid container>
         <Grid item xs={9}>
           {wordsState.map((val, idx) => {

@@ -94,6 +94,14 @@ function SentenceDetails(props) {
           <FontAwesomeIcon icon={faPen} color="maroon" /> {sentence.translation}
         </Typography>
 
+        {sentence.url &&
+          <a href={sentence.url} target="_blank" rel="noopener noreferrer">
+            <Typography variant="body2" className={classes.url}>
+              URL: {sentence.url}
+            </Typography>
+          </a>
+        }
+
         {editDeleteButton(sentence)}
       </CardContent>
     </Card>
