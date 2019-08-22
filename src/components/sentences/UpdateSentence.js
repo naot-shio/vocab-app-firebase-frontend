@@ -15,6 +15,7 @@ class UpdateSentence extends Component {
   state = {
     sentence: "",
     translation: "",
+    url: "",
     words: [{ english: "", japanese: "" }],
     errors: {}
   };
@@ -34,6 +35,7 @@ class UpdateSentence extends Component {
         this.setState({
           sentence: res.data.sentence,
           translation: res.data.translation,
+          url: "",
           words: englishJapanesePair
         });
       })
@@ -61,6 +63,7 @@ class UpdateSentence extends Component {
     const word = {
       sentence: this.state.sentence,
       translation: this.state.translation,
+      url: this.state.url,
       words: this.state.words
     };
     this.props.updateSentence(this.props.sentenceId, word);
@@ -76,6 +79,7 @@ class UpdateSentence extends Component {
             sentenceState={this.state.sentence}
             translationState={this.state.translation}
             wordsState={this.state.words}
+            url={this.state.url}
             handleSubmit={this.handleSubmit}
             addWord={this.addWord}
             handleChange={this.handleChange}
