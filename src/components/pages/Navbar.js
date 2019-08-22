@@ -22,7 +22,7 @@ function Navbar(props) {
     <AppBar position="static" className={classes.AppBar} color="default">
       <Toolbar className={classes.root}>
         <Typography variant="h6" className={classes.title}>
-          <Link to="/sentences">1語レベル英単語</Link>
+          <Link to="/sentences">1万語レベル英単語</Link>
         </Typography>
 
         {authenticated && owner && <CreateSentence />}
