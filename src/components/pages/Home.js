@@ -24,15 +24,6 @@ function Home(props) {
   const classes = useStyles();
   const { authenticated } = props.user;
 
-  const handleClick = () => {
-    const userData = {
-      email: "guest@example.com",
-      password: "password"
-    };
-    props.loginUser(userData);
-    props.history.push("/sentences");
-  };
-
   const handleMoveUpToSignUp = () => {
     setLogin(false);
     window.scrollTo({
@@ -46,7 +37,6 @@ function Home(props) {
         <Grid container className={classes.header}>
           <Grid item lg={2} md={2} sm={1} xs={1} />
           <Grid item lg={6} md={7} sm={7} xs={10}>
-            <h2 className={classes.titleAdjective}>パラフレーズで学ぶ</h2>
             <h1 className={classes.title}>１万語レベル英単語</h1>
             <h4 className={classes.subtitle}>
               ボキャブラリーを増やして、英語を上達させよう
@@ -77,7 +67,7 @@ function Home(props) {
 
         <Grid container className={classes.explanationContainer}>
           <Grid item xs={12} className={classes.explanationTitle}>
-            <h3>パラフレーズで学ぶとは？</h3>
+            <h3>１万語レベルとは</h3>
           </Grid>
 
           <Grid item xs={12} md={4}>
@@ -89,9 +79,6 @@ function Home(props) {
             />
           </Grid>
           <Grid item xs={12} md={8} className={classes.explanation}>
-            <h4>
-              英単語を他の英単語で言い換えて、暗記していく学習方法です。
-            </h4>
 
             <h5>
               <a
@@ -105,13 +92,13 @@ function Home(props) {
             </h5>
 
             <h5>
-              一方で、日本にある大半の単語帳は10,000語レベルまでの単語帳です。
-              しかし10,000語しか知らないと、英語が母国語の人たちの話す内容を理解するのはとても困難です。
+              一方で、日本で学習するのは10,000語ほどです。
+              10,000語しか知らないと、英語が母国語の人たちの話す内容を理解するのはとても困難です。
             </h5>
 
             <h5>
               英語の学習理由は人それぞれだと思いますが、
-              ちょっと難しい英単語では、英語がネイティブの人たちの話している内容を、
+              ここでは英語がネイティブの人たちの話している内容を、
               ほとんど理解できるということを目標にしています。
             </h5>
           </Grid>
@@ -133,7 +120,7 @@ function Home(props) {
                   問題
                 </Typography>
                 <Typography variant="body1" className={classes.featureContent}>
-                  記憶を定着させるために、パラフレーズの問題を解くことができます。
+                  記憶を定着させるために、翻訳の問題を解くことができます。
                   解きたい問題数を指定できます。また問題は文章からランダムに出てきます。
                 </Typography>
               </CardContent>
@@ -148,10 +135,10 @@ function Home(props) {
                   color="primary"
                   className={classes.featureTitle}
                 >
-                  パラフレーズ
+                  例文
                 </Typography>
                 <Typography variant="body1" className={classes.featureContent}>
-                  英単語を翻訳して覚えるのではなく、パラフレーズで覚えるようにします。
+                  英単語のみを覚えるのではなく、例文と一緒に覚えるようにします。
                   そうすることによって、覚えた単語をスムーズに使うことができます。
                 </Typography>
               </CardContent>
@@ -188,18 +175,6 @@ function Home(props) {
           >
             Sign Up
           </Button>
-
-          <h3 className={classes.navigationTitle}>
-            ゲストユーザーとしてログインする
-          </h3>
-          <Button variant="contained" color="secondary" onClick={handleClick}>
-            Explore
-          </Button>
-
-          <p className={classes.notation}>
-            &#42;
-            どなたでもゲストユーザーとしてログインできるため、likeなどを押しても他の人がunlikeしてしまう可能性があります。
-          </p>
         </div>
       </main>
 

@@ -6,7 +6,7 @@ const useStyles = makeStyles(() => ({
     fontFamily: "游ゴシック体, 'Yu Gothic', YuGothic, 'ヒラギノ角ゴシック Pro'"
   },
   header: {
-    height: "63vh",
+    height: "70vh",
     background: `radial-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5), rgba(101,67,33,0.1)), url(${backgroundImage})`,
     backgroundSize: "cover",
     backgroundPosition: "0 30%",
@@ -20,7 +20,7 @@ const useStyles = makeStyles(() => ({
   },
   title: {
     fontSize: "4rem",
-    marginTop: 20
+    marginTop: 105
   },
   subtitle: {
     marginLeft: "1rem"
@@ -36,7 +36,7 @@ const useStyles = makeStyles(() => ({
   },
   authenticationForm: {
     opacity: 0.9,
-    border: "rgba(255,165,0, 0.6) 1px solid"
+    border: "rgba(255,165,0, 0.6) 1px solid",
   },
   authToggleButton: {
     backgroundColor: "rgba(248,248,248,0.9)",
@@ -75,7 +75,7 @@ const useStyles = makeStyles(() => ({
   },
   navigationContainer: {
     paddingTop: 30,
-    paddingBottom: 30,
+    paddingBottom: 70,
     backgroundColor: "white",
     textAlign: "center"
   },
